@@ -56,7 +56,6 @@ export const es = {
         tituloB: b("aunque estés ocupado."),
         parrafo: b("Un asistente atiende tu WhatsApp, agenda horas y confirma por correo. Tú intervienes solo cuando hace falta."),
         marco: b("Bandeja · Clínica Dental Sonríe"),
-        etiqueta: b("Demostración"),
         punto: b("Ver la conversación"),
       },
       {
@@ -64,7 +63,6 @@ export const es = {
         tituloB: b("sin que nadie los empuje."),
         parrafo: b("Automatizamos las tareas repetitivas: la información viaja sola de un lugar a otro y tu equipo se enfoca en lo importante."),
         marco: b("Flujo de automatización"),
-        etiqueta: b("Demostración"),
         punto: b("Ver el flujo de automatización"),
       },
       {
@@ -72,12 +70,12 @@ export const es = {
         tituloB: b("en un solo panel."),
         parrafo: b("Citas, pedidos y clientes ordenados en un panel simple, para decidir con información y no a ciegas."),
         marco: b("Panel de tu negocio"),
-        etiqueta: b("Demostración"),
         punto: b("Ver el panel"),
       },
     ],
     secundario: b("Ver cómo trabajamos"),
     huevo: b("✦ No me hagas clic"),
+    nota: b("Escenas ilustrativas"),
     carrusel: {
       region: b("Ejemplos de lo que construimos"),
       diapositiva: b("Ejemplo"),
@@ -107,14 +105,16 @@ export const es = {
         { quien: "bot", texto: b("Te envié la cita a tu correo. Revisa tu bandeja de entrada y, si no la ves, la carpeta de spam.") },
       ],
       tarjeta: { titulo: b("Hora agendada"), detalle: b("Limpieza · jueves 16:30") },
+      telefono: { nombre: b("Clínica Dental Sonríe"), estado: b("Asistente virtual · en línea"), hora: b("9:41"), escribir: b("Escribe un mensaje") },
+      bandeja: b("Bandeja de entrada"),
     },
     flujo: {
       nodos: {
         formulario: b("Formulario recibido"),
         urgente: b("¿Es urgente?"),
         avisar: b("Avisar al equipo"),
-        ficha: b("Crear ficha en planilla"),
-        registrar: b("Registrar resultado"),
+        ficha: b("Crear ficha"),
+        registrar: b("Registrar"),
       },
       si: b("Sí"),
       no: b("No"),

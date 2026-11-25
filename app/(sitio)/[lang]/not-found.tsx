@@ -7,7 +7,7 @@ import { rutaLocal } from "@/lib/rutas";
 
 export default async function NoEncontrado() {
   const valor = await lang();
-  const idioma = esIdioma(valor) ? valor : "es";
+  const idioma = valor && esIdioma(valor) ? valor : "es";
   const c = obtenerContenido(idioma);
   return (
     <main className="mx-auto flex min-h-dvh max-w-xl flex-col justify-center gap-4 px-6">

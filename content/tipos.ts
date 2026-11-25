@@ -35,7 +35,7 @@ export type TokenColor = (typeof tokensColor)[number];
 import type { IdSeccion } from "@/lib/secciones";
 
 /** Escena del hero: título en dos partes (la segunda en color de acento), párrafo y textos del marco. */
-export type EscenaHero = { tituloA: Texto; tituloB: Texto; parrafo: Texto; marco: Texto; etiqueta: Texto; punto: Texto };
+export type EscenaHero = { tituloA: Texto; tituloB: Texto; parrafo: Texto; marco: Texto; punto: Texto };
 export type Contacto = { nombre: Texto; ultimo: Texto; etapa: Texto };
 export type Mensaje = { quien: "bot" | "usuario"; texto: Texto } | { quien: "tarjeta" };
 export type Kpi = { etiqueta: Texto; valor: Texto };
@@ -82,6 +82,7 @@ export type Contenido = {
     escenas: [EscenaHero, EscenaHero, EscenaHero];
     secundario: Texto;
     huevo: Texto;
+    nota: Texto;
     carrusel: { region: Texto; diapositiva: Texto; de: Texto; pausar: Texto; reanudar: Texto };
     conversacion: {
       contactos: [Contacto, Contacto, Contacto, Contacto];
@@ -90,6 +91,8 @@ export type Contenido = {
       clienteFinal: Texto;
       guion: Mensaje[];
       tarjeta: { titulo: Texto; detalle: Texto };
+      telefono: { nombre: Texto; estado: Texto; hora: Texto; escribir: Texto };
+      bandeja: Texto;
     };
     flujo: {
       nodos: { formulario: Texto; urgente: Texto; avisar: Texto; ficha: Texto; registrar: Texto };

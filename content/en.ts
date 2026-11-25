@@ -56,7 +56,6 @@ export const en = {
         tituloB: b("even when you are busy."),
         parrafo: b("An assistant handles your WhatsApp, books appointments and confirms by email. You step in only when needed."),
         marco: b("Inbox · Sonríe Dental Clinic"),
-        etiqueta: b("Demo"),
         punto: b("See the conversation"),
       },
       {
@@ -64,7 +63,6 @@ export const en = {
         tituloB: b("without anyone pushing."),
         parrafo: b("We automate repetitive tasks: information travels on its own and your team focuses on what matters."),
         marco: b("Automation flow"),
-        etiqueta: b("Demo"),
         punto: b("See the automation flow"),
       },
       {
@@ -72,12 +70,12 @@ export const en = {
         tituloB: b("in a single dashboard."),
         parrafo: b("Appointments, orders and customers in one simple dashboard, so you decide with information, not in the dark."),
         marco: b("Your business dashboard"),
-        etiqueta: b("Demo"),
         punto: b("See the dashboard"),
       },
     ],
     secundario: b("See how we work"),
     huevo: b("✦ Don't click me"),
+    nota: b("Illustrative scenes"),
     carrusel: {
       region: b("Examples of what we build"),
       diapositiva: b("Example"),
@@ -107,14 +105,16 @@ export const en = {
         { quien: "bot", texto: b("I sent the appointment to your email. Check your inbox and, if you don't see it, your spam folder.") },
       ],
       tarjeta: { titulo: b("Appointment booked"), detalle: b("Cleaning · Thursday 4:30 pm") },
+      telefono: { nombre: b("Sonríe Dental Clinic"), estado: b("Virtual assistant · online"), hora: b("9:41"), escribir: b("Type a message") },
+      bandeja: b("Inbox"),
     },
     flujo: {
       nodos: {
         formulario: b("Form received"),
         urgente: b("Is it urgent?"),
         avisar: b("Alert the team"),
-        ficha: b("Create record in sheet"),
-        registrar: b("Log the result"),
+        ficha: b("Create record"),
+        registrar: b("Log result"),
       },
       si: b("Yes"),
       no: b("No"),

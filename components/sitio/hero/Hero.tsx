@@ -61,21 +61,21 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
       className="hero-puntos relative overflow-hidden border-b border-linea"
     >
       <FondoHero />
-      <div className="relative mx-auto flex max-w-[1240px] flex-wrap items-center gap-10 px-6 pb-20 pt-14 lg:gap-14 lg:pb-[104px] lg:pt-24">
-        <div className="flex min-w-0 flex-[1_1_460px] flex-col gap-6">
+      <div className="relative mx-auto grid max-w-[1240px] items-center gap-8 px-6 pb-10 pt-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-10 lg:pb-12 lg:pt-10">
+        <div className="flex min-w-0 flex-col gap-5">
           <Texto as="p" valor={c.kicker} className="kicker text-acento-texto" />
-          <div key={e.escena} className="aparecer flex min-h-[250px] flex-col gap-5 sm:min-h-[300px]">
-            <h1 className="disp text-[34px] leading-[1.08] sm:text-[50px]">
+          <div key={e.escena} className="aparecer flex flex-col gap-4 lg:min-h-[228px]">
+            <h1 className="disp text-[30px] leading-[1.08] sm:text-[38px] xl:text-[42px]">
               <Texto valor={esc.tituloA} />
               <Texto valor={esc.tituloB} className="text-acento-texto" />
             </h1>
-            <Texto as="p" valor={esc.parrafo} className="max-w-[520px] text-[17px] leading-relaxed text-texto-sec sm:text-[19px]" />
+            <Texto as="p" valor={esc.parrafo} className="max-w-[520px] text-base leading-relaxed text-texto-sec sm:text-[17px]" />
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <a href={hrefContacto} className="inline-flex h-[50px] items-center rounded-[10px] bg-primario-relleno px-6 font-semibold text-white transition-[filter] hover:brightness-110">
+            <a href={hrefContacto} className="inline-flex h-12 items-center rounded-[10px] bg-primario-relleno px-6 font-semibold text-white transition-[filter] hover:brightness-110">
               <Texto valor={cta} />
             </a>
-            <a href={hrefMetodo} className="inline-flex h-[50px] items-center rounded-[10px] border border-linea bg-superficie px-6 font-semibold text-texto transition-colors hover:bg-suave">
+            <a href={hrefMetodo} className="inline-flex h-12 items-center rounded-[10px] border border-linea bg-superficie px-6 font-semibold text-texto transition-colors hover:bg-suave">
               <Texto valor={c.secundario} />
             </a>
             <span className="relative">
@@ -91,7 +91,7 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
           role="region"
           aria-roledescription="carrusel"
           aria-label={c.carrusel.region.texto}
-          className="flex w-full min-w-0 flex-[1_1_520px] flex-col gap-3"
+          className="flex min-w-0 flex-col gap-2"
           onMouseEnter={() => setEncima(true)}
           onMouseLeave={() => setEncima(false)}
           onFocus={() => setEncima(true)}
@@ -103,20 +103,11 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
             role="group"
             aria-roledescription="diapositiva"
             aria-label={`${c.carrusel.diapositiva.texto} ${e.escena + 1} ${c.carrusel.de.texto} 3: ${esc.marco.texto}`}
-            className="flex h-[420px] flex-col overflow-hidden rounded-xl border border-linea bg-superficie shadow-[0_24px_60px_-24px_rgba(11,21,48,0.35)] sm:h-[460px]"
+            className="h-[440px] sm:h-[470px]"
           >
-            <div className="flex h-11 shrink-0 items-center gap-2.5 border-b border-linea px-4 text-xs text-texto-sec">
-              <span aria-hidden="true" className="flex gap-1.5">
-                <span className="size-2.5 rounded-full bg-linea" />
-                <span className="size-2.5 rounded-full bg-linea" />
-                <span className="size-2.5 rounded-full bg-linea" />
-              </span>
-              <Texto valor={esc.marco} className="ml-1.5 truncate font-semibold text-texto" />
-              <Texto valor={esc.etiqueta} className="ml-auto shrink-0" />
-            </div>
             {e.escena === 0 && <EscenaConversacion c={c.conversacion} paso={paso} escribiendo={!reducido && e.escribiendo} />}
             {e.escena === 1 && <EscenaFlujo c={c.flujo} enMovimiento={enMovimiento} reducido={reducido} />}
-            {e.escena === 2 && <EscenaPanel c={c.panel} />}
+            {e.escena === 2 && <EscenaPanel c={c.panel} titulo={esc.marco} />}
           </div>
           <div className="flex items-center justify-center gap-2">
             {c.escenas.map((s, i) => (
@@ -148,6 +139,7 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
               </button>
             )}
           </div>
+          <Texto as="p" valor={c.nota} className="text-center text-xs text-texto-sec" />
         </div>
       </div>
     </section>

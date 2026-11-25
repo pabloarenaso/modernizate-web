@@ -1,7 +1,7 @@
 import { Texto } from "@/components/Texto";
-import type { Contenido } from "@/content/tipos";
+import type { Contenido, Texto as TextoC } from "@/content/tipos";
 
-type Props = { c: Contenido["hero"]["panel"] };
+type Props = { c: Contenido["hero"]["panel"]; titulo: TextoC };
 
 const barras = [9, 12, 11, 14, 10, 5, 2];
 const coloresKpi = ["var(--graf-1)", "var(--graf-2)", "var(--graf-3)"];
@@ -9,16 +9,17 @@ const anchosKpi = ["70%", "50%", "40%"];
 const avatares = ["#8A6508", "#B8335A", "#2F8F46"];
 const estados = ["#12A150", "var(--primario)", "#D9780A"];
 
-/** Escena 3: panel del negocio con datos ficticios de demostración. */
-export function EscenaPanel({ c }: Props) {
+/** Escena 3: tarjeta de panel del negocio con datos ficticios. */
+export function EscenaPanel({ c, titulo }: Props) {
   return (
-    <div className="aparecer flex min-h-0 flex-1 bg-suave">
-      <div aria-hidden="true" className="flex w-12 shrink-0 flex-col items-center gap-3.5 bg-lateral pt-4 sm:w-16">
+    <div className="aparecer flex h-full overflow-hidden rounded-2xl border border-linea bg-suave shadow-[0_24px_60px_-24px_rgba(11,21,48,0.35)]">
+      <div aria-hidden="true" className="flex w-12 shrink-0 flex-col items-center gap-3.5 bg-lateral pt-4 sm:w-14">
         {[0.18, 0.08, 0.08, 0.08].map((o, i) => (
-          <span key={i} className="size-[26px] rounded-md" style={{ background: `rgba(255,255,255,${o})` }} />
+          <span key={i} className="size-6 rounded-md" style={{ background: `rgba(255,255,255,${o})` }} />
         ))}
       </div>
       <div className="flex min-w-0 flex-1 flex-col gap-3 p-3 sm:p-4">
+        <Texto as="p" valor={titulo} className="font-display text-sm font-semibold" />
         <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
           {c.kpis.map((k, i) => (
             <div key={i} className="min-w-0 rounded-lg border border-linea bg-superficie p-2 sm:p-2.5">

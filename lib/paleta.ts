@@ -58,6 +58,7 @@ const apoyoDia = {
   "ok-fondo": "#E5F6EC",
   "ok-texto": "#0E6B37",
   "barra-suave": "#BFCEF5",
+  bisel: "#0B1530",
 };
 const apoyoNoche = {
   "agua-texto": "#1F2A47",
@@ -73,6 +74,7 @@ const apoyoNoche = {
   "ok-fondo": "#0F2E22",
   "ok-texto": "#6EE7A8",
   "barra-suave": "#2B3F7A",
+  bisel: "#2A3556",
 };
 
 const vars = (p: Record<string, string>) =>
