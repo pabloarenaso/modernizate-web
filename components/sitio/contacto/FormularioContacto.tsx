@@ -58,27 +58,31 @@ export function FormularioContacto({ c }: { c: ContactoC }) {
     }
     setEstado("enviando");
     try {
-      const r = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: CLAVE,
-          subject: c.asunto.texto,
-          from_name: "agmodernizate.cl",
-          name: valor("nombre"),
-          email: valor("correo"),
-          telefono: valor("telefono") || "—",
-          rubro: valor("rubro"),
-          message: valor("mensaje"),
-          botcheck: false,
-        }),
-      });
-      const j = (await r.json().catch(() => ({}))) as { success?: boolean };
+      // FormData sin cabeceras propias: es una petición "simple" y el navegador no hace la consulta previa (CORS),
+      // que el filtro de Cloudflare de Web3Forms puede rechazar.
+      const cuerpo = new FormData();
+      const campos: Record<string, string> = {
+        access_key: CLAVE,
+        subject: c.asunto.texto,
+        from_name: "agmodernizate.cl",
+        name: valor("nombre"),
+        email: valor("correo"),
+        telefono: valor("telefono") || "—",
+        rubro: valor("rubro"),
+        message: valor("mensaje"),
+      };
+      for (const [k, v] of Object.entries(campos)) cuerpo.append(k, v);
+      const r = await fetch("https://api.web3forms.com/submit", { method: "POST", body: cuerpo });
+      const j = (await r.json().catch(() => ({}))) as { success?: boolean; message?: string };
       if (r.ok && j.success) {
         form.reset();
         setEstado("recibido");
-      } else setEstado("error");
-    } catch {
+      } else {
+        console.warn("Formulario de contacto: Web3Forms respondió", r.status, j.message ?? "");
+        setEstado("error");
+      }
+    } catch (e) {
+      console.warn("Formulario de contacto: no se pudo conectar con Web3Forms", e);
       setEstado("error");
     }
   }
