@@ -58,9 +58,11 @@ export const es = {
       frase: b("En el mundo y en Chile, cada año más empresas usan inteligencia artificial."),
       mundo: b("Mundo"),
       chile: b("Chile"),
+      inicioDe: b("inicios de {anio}"),
+      finDe: b("fines de {anio}"),
       descMundo: b("Empresas que usan IA en al menos una función, en el mundo"),
       descChile: b("Empresas chilenas que usan IA"),
-      fuenteMundo: b("Fuente: McKinsey, The State of AI (encuestas globales 2017–2025; en 2025, 1.993 participantes). La definición de uso de IA cambió entre encuestas."),
+      fuenteMundo: b("Fuente: McKinsey Global Surveys on the state of AI, 2017–2025 (en 2025, 1.993 participantes). La definición de uso de IA cambió entre encuestas."),
       fuenteChile: b("Fuente: CCS, PMG y Corfo, Índice de Transformación Digital 2025 (967 empresas), según Diario Financiero, 2025."),
     },
     paso2: {

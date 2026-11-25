@@ -86,7 +86,7 @@ Cerrada el 25 nov 2026. Comprobado con lint, build, Playwright sobre `next start
 
 ## Verificar antes de publicar
 Datos que el sitio muestra pero cuya fuente original no se pudo abrir o que vienen de prensa (ver `docs/datos-tendencia.md`):
-- [ ] A1 · Confirmar en un navegador normal el gráfico de McKinsey "AI at work but not at scale" (la serie se tomó de los textos de los informes; el sitio bloquea el acceso automático).
+- [x] A1 · Verificado por Pablo en el gráfico de McKinsey (25 nov 2026), con dos mediciones en 2024 (72 % inicios, 78 % fines).
 - [ ] B1 · Informe original del Índice de Transformación Digital 2025 (CCS, PMG, Corfo): hoy se cita Diario Financiero. Opción: pedirlo a la CCS o a PMG.
 - [ ] B2 · Estudio de Strand Partners para AWS: hoy se cita Radio Pauta.
 - [ ] B3 · Encuesta IA Defontana 2025: hoy se cita Emol.
@@ -103,7 +103,7 @@ Cerrada el 25 nov 2026. Comprobado con lint, build y Playwright sobre `next star
 - [x] Lint y build en verde; commit y push
 
 **Decisiones de la etapa**
-- A1: serie anual completa 2017–2025 tomada de los informes de McKinsey (2024 = 78 %). No se pudo abrir el gráfico directamente (bloquea el acceso automático): ver "Verificar antes de publicar".
+- A1: serie 2017–2025 verificada por Pablo en el gráfico de McKinsey; 2024 con dos puntos (inicios 72 %, fines 78 %), como la fuente.
 - B1: el informe original de la CCS no está publicado; se cita Diario Financiero (17 oct 2025), que trae la muestra (967 empresas), en lugar de Radio Pauta.
 - El cierre (paso 4) va como bloque centrado después del recorrido, no fijado.
 - Los gráficos son SVG propios (sin librería) y su ancho sigue al contenedor, para que el texto no se escale.

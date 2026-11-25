@@ -2,7 +2,7 @@
 
 import { Texto } from "@/components/Texto";
 import type { Contenido, Idioma } from "@/content/tipos";
-import { A1, B1, B2, B3, B4, B5 } from "@/lib/datosTendencia";
+import { A1, B1, B2, B3, B4, B5, type Punto } from "@/lib/datosTendencia";
 import { numero, rellenar } from "@/lib/formato";
 import { BarraSegmentada } from "./BarraSegmentada";
 import { GraficoLinea } from "./GraficoLinea";
@@ -25,11 +25,13 @@ function Cifra({ valor, texto }: { valor: string; texto: Contenido["porQue"]["pa
 /** Paso 1: adopción en el mundo y en Chile, dos líneas de un color con la misma escala. */
 export function VisualPaso1({ lang, c }: { lang: Idioma; c: Contenido["porQue"]["paso1"] }) {
   const f = (n: number) => numero(lang, n);
+  const nombrar = (p: Punto) =>
+    p.momento ? rellenar((p.momento === "inicio" ? c.inicioDe : c.finDe).texto, { anio: String(p.anio) }) : String(p.anio);
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-2">
-          <GraficoLinea puntos={A1} dominio={DOMINIO} titulo={c.mundo.texto} descripcion={`${c.descMundo.texto}: ${A1.map((p) => `${p.etiqueta ?? p.anio} ${f(p.valor)}%`).join(", ")}`} formatear={f} alto={180} />
+          <GraficoLinea puntos={A1} dominio={DOMINIO} titulo={c.mundo.texto} descripcion={`${c.descMundo.texto}: ${A1.map((p) => `${nombrar(p)} ${f(p.valor)}%`).join(", ")}`} formatear={f} nombrar={nombrar} alto={180} />
           <Fuente valor={c.fuenteMundo} />
         </div>
         <div className="flex flex-col gap-2">

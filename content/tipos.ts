@@ -87,6 +87,8 @@ export type Contenido = {
       frase: Texto;
       mundo: Texto;
       chile: Texto;
+      inicioDe: Texto;
+      finDe: Texto;
       descMundo: Texto;
       descChile: Texto;
       fuenteMundo: Texto;

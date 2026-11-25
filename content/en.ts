@@ -58,9 +58,11 @@ export const en = {
       frase: b("Worldwide and in Chile, more companies use artificial intelligence every year."),
       mundo: b("World"),
       chile: b("Chile"),
+      inicioDe: b("early {anio}"),
+      finDe: b("late {anio}"),
       descMundo: b("Companies using AI in at least one function, worldwide"),
       descChile: b("Chilean companies using AI"),
-      fuenteMundo: b("Source: McKinsey, The State of AI (global surveys 2017–2025; 1,993 participants in 2025). The definition of AI use changed between surveys."),
+      fuenteMundo: b("Source: McKinsey Global Surveys on the state of AI, 2017–2025 (1,993 participants in 2025). The definition of AI use changed between surveys."),
       fuenteChile: b("Source: CCS, PMG and Corfo, Digital Transformation Index 2025 (967 companies), as reported by Diario Financiero, 2025."),
     },
     paso2: {

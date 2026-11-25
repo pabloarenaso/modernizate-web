@@ -7,11 +7,9 @@ Formato de la nota en pantalla: `Fuente: McKinsey, The State of AI 2025 (encuest
 ## A. Adopción de IA en el mundo (serie en el tiempo)
 
 **A1. Empresas que usan IA en al menos una función** (McKinsey Global Survey on the State of AI)
-- **Serie anual usada en el sitio (actualizada 25 nov 2026):** 2017: 20% · 2018: 47% · 2019: 58% · 2020: 50% · 2021: 56% · 2022: 50% · 2023: 55% · 2024: 78% · 2025: 88%.
+- **Serie verificada por Pablo en el gráfico de McKinsey (25 nov 2026):** "Reported use of AI in at least one business function continues to increase", McKinsey Global Surveys on the state of AI, 2017–25. Valores: 2017: 20% · 2018: 47% · 2019: 58% · 2020: 50% · 2021: 56% · 2022: 50% · 2023: 55% · 2024: 72% (inicios de 2024) · 2024: 78% (fines de 2024) · 2025: 88%. El sitio muestra los dos puntos de 2024, como la fuente. No se usa la serie de IA generativa del mismo gráfico.
 - Cada valor sale de un informe de McKinsey: 2017 y 2022 de "The state of AI in 2022"; 2018 de la nota de noviembre de 2018 (n = 2.135); 2019 del informe 2022 ("peaked… in 2019 at 58 percent"); 2020 y 2021 de "The state of AI in 2021"; 2023 y 2024 del informe de marzo de 2025 ("78 percent… up from 72 percent in early 2024"; 55% un año antes); 2025 del informe de noviembre de 2025 ("88 percent… up ten percentage points from 2024"). El Stanford AI Index (2025 y 2026) reproduce la misma serie.
-- Para 2024 se usa 78% (encuesta de julio de 2024), que es el punto con que McKinsey compara el 88% de 2025. El 72% corresponde a inicios de 2024.
 - McKinsey advierte que la definición de "uso de IA" y las muestras cambiaron entre encuestas: se indica en la nota de fuente.
-- **Pendiente:** la página del gráfico y el PDF de McKinsey bloquean el acceso automático; no se pudo leer el gráfico directamente. Confirmar en un navegador normal que el gráfico "AI at work but not at scale" muestra estos mismos valores.
 - Valores anteriores en este archivo (reemplazados): 2017: 20% · 2023: 55% · 2024: 72% · 2025: 88%
 - El informe 2025 compara 88% contra 78% "un año antes". El 72% corresponde a la encuesta de inicios de 2024 y el 78% a la de fines de 2024. **Usar la serie exacta del gráfico de McKinsey** ("AI at work but not at scale"), sin interpolar años que falten.
 - Fuentes: https://www.mckinsey.com/featured-insights/charts/ai-at-work-but-not-at-scale · https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-2025

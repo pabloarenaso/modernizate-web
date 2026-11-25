@@ -38,7 +38,10 @@ export function PorQueAhora({ lang, c, hrefSoluciones }: Props) {
               resumen={c.verTabla}
               encabezados={enc}
               filas={[
-                ...A1.map((p): [string, string] => [`${c.paso1.mundo.texto} ${p.etiqueta ?? p.anio}`, pct(p.valor)]),
+                ...A1.map((p): [string, string] => [
+                  `${c.paso1.mundo.texto} ${p.momento ? rellenar((p.momento === "inicio" ? c.paso1.inicioDe : c.paso1.finDe).texto, { anio: String(p.anio) }) : p.anio}`,
+                  pct(p.valor),
+                ]),
                 ...B1.map((p): [string, string] => [`${c.paso1.chile.texto} ${p.anio}`, pct(p.valor)]),
               ]}
             />
