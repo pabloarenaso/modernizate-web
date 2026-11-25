@@ -20,17 +20,24 @@ Leyenda: `[ ]` pendiente · `[x]` hecho y comprobado · `[~]` en curso.
 - [x] Primer commit
 
 ## Etapa 1 · Base del proyecto y sistema de marca
-- [ ] Next.js 16 (App Router) + TypeScript + Tailwind v4 + ESLint, npm, sin `src/` (generado en carpeta temporal y movido sin tocar `CLAUDE.md` ni `docs/`)
-- [ ] Rutas: `app/(sitio)/[lang]` (es en `/` vía `proxy.ts`, en en `/en`); `/ingresar` y `/app` fuera de `[lang]`
-- [ ] `app/(intranet)` reservado con README
-- [ ] `content/tipos.ts`, `es.ts`, `en.ts` con `satisfies Contenido` (falta una clave → el build falla)
-- [ ] Sistema de borrador: `{ texto, estado }`, ayudante `b()`, `<Texto>` con `data-estado`, `?revision=1` con contorno ámbar y etiqueta "BORRADOR" desde `content/`
-- [ ] Tokens por uso en `@theme` para día y noche; modo noche con `next-themes` y `data-theme`, sin parpadeo, según el sistema
-- [ ] Fuentes con `next/font`: Archivo (eje `wdth`) e Inter; clases `.wordmark` y `.disp`
-- [ ] `<Logo>` (principal, invertido, agua), isotipo de la tilde y favicon
-- [ ] Página `/marca` y `/en/marca` (noindex) con colores y contraste AA, tipografía, logo, textos borrador/aprobado, selector de idioma y botón de tema
-- [ ] `.env.example` sin valores; `.gitignore` con `.env*`
-- [ ] Lint y build en verde; commit y push
+Cerrada el 25 nov 2026. Comprobado con lint, build y curl sobre `next start`. No hubo revisión visual en navegador (no hay uno disponible en WSL); queda para Pablo.
+- [x] Next.js 16.4 (App Router, Turbopack, Cache Components) + TypeScript + Tailwind v4 + ESLint, npm, sin `src/` (generado en carpeta temporal y movido sin tocar `CLAUDE.md` ni `docs/`)
+- [x] Rutas: `app/(sitio)/[lang]` (es en `/` vía `proxy.ts`, en en `/en`, `/es/*` redirige con 308); `/ingresar` y `/app` fuera de `[lang]` (hoy dan 404 con `app/global-not-found.tsx`)
+- [x] `app/(intranet)` reservado con README
+- [x] `content/tipos.ts`, `es.ts`, `en.ts` con `satisfies Contenido` (probado: quitar una clave en `en.ts` rompe TypeScript y el build)
+- [x] Sistema de borrador: `{ texto, estado }`, ayudantes `b()` y `ok()`, `<Texto>` con `data-estado`, `?revision=1` con contorno ámbar y etiqueta "BORRADOR"/"DRAFT" desde `content/`
+- [x] Tokens por uso (fuente única en `lib/paleta.ts`, expuestos en `@theme`) para día y noche; modo noche con `next-themes` y `data-theme`, sin parpadeo, según el sistema
+- [x] Fuentes con `next/font`: Archivo (eje `wdth` 62–125) e Inter; clases `.wordmark` y `.disp`
+- [x] `<Logo>` (principal, invertido, agua), `<Isotipo>` y favicon `app/icon.svg`
+- [x] Página `/marca` y `/en/marca` (noindex, nofollow) con colores y contraste AA, tipografía, logo, textos borrador/aprobado, selector de idioma y botón de tema
+- [x] `.env.example` sin valores; `.gitignore` con `.env*` salvo `.env.example`
+- [x] Lint y build en verde; commit y push
+
+**Notas para etapas siguientes**
+- Contraste en noche: `--primario` (#3D6BFF) como texto sobre `--fondo` da 4,27:1 y el blanco sobre `--primario` da 4,43:1, ambos bajo AA para texto normal. Los botones de la Etapa 2 necesitan texto grande o una decisión de Pablo.
+- Gráficos de día: `--graf-2` (3,16:1) y `--graf-3` (3,26:1) sirven para trazos (≥ 3:1), no para texto.
+- `--celeste` de noche = #16203D (tomado de `sel` en Landing.dc.html; marca.md no lo define).
+- `/ingresar` necesitará su propio layout raíz (no hay `app/layout.tsx` común).
 
 ## Etapa 2 · Cabecera, hero y portal
 - [ ] Cabecera fija: navegación (Por qué ahora · Soluciones · Cómo trabajamos · Calcula · Contacto), ES/EN
