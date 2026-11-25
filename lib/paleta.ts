@@ -43,8 +43,37 @@ export const noche: Paleta = {
 };
 
 /** Colores de apoyo que no son tokens de marca (logo, modo revisión). */
-const apoyoDia = { "agua-texto": "#C9D6F2", "agua-tilde": "#DCE6FF", revision: "#B45309", "revision-texto": "#FFFFFF" };
-const apoyoNoche = { "agua-texto": "#1F2A47", "agua-tilde": "#16203D", revision: "#F59E0B", "revision-texto": "#0A1022" };
+const apoyoDia = {
+  "agua-texto": "#C9D6F2",
+  "agua-tilde": "#DCE6FF",
+  revision: "#B45309",
+  "revision-texto": "#FFFFFF",
+  // Hero y escenas (Landing.dc.html)
+  "hero-fondo": "#F7F9FD",
+  "hero-puntos": "rgba(120,150,220,.35)",
+  cielo: "#E6EEFF",
+  seleccion: "#EEF3FF",
+  "burbuja-entrante": "#E9F7EF",
+  "burbuja-borde": "#CFEBDC",
+  "ok-fondo": "#E5F6EC",
+  "ok-texto": "#0E6B37",
+  "barra-suave": "#BFCEF5",
+};
+const apoyoNoche = {
+  "agua-texto": "#1F2A47",
+  "agua-tilde": "#16203D",
+  revision: "#F59E0B",
+  "revision-texto": "#0A1022",
+  "hero-fondo": "#070C1C",
+  "hero-puntos": "rgba(120,150,220,.18)",
+  cielo: "transparent",
+  seleccion: "#16203D",
+  "burbuja-entrante": "#0F2E22",
+  "burbuja-borde": "#1C4A36",
+  "ok-fondo": "#0F2E22",
+  "ok-texto": "#6EE7A8",
+  "barra-suave": "#2B3F7A",
+};
 
 const vars = (p: Record<string, string>) =>
   Object.entries(p)

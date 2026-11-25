@@ -34,6 +34,13 @@ export type TokenColor = (typeof tokensColor)[number];
 
 import type { IdSeccion } from "@/lib/secciones";
 
+/** Escena del hero: título en dos partes (la segunda en color de acento), párrafo y textos del marco. */
+export type EscenaHero = { tituloA: Texto; tituloB: Texto; parrafo: Texto; marco: Texto; etiqueta: Texto; punto: Texto };
+export type Contacto = { nombre: Texto; ultimo: Texto; etapa: Texto };
+export type Mensaje = { quien: "bot" | "usuario"; texto: Texto } | { quien: "tarjeta" };
+export type Kpi = { etiqueta: Texto; valor: Texto };
+export type FilaPanel = { nombre: Texto; estado: Texto };
+
 export type Contenido = {
   meta: { titulo: Texto; descripcion: Texto };
   /** Etiqueta del modo revisión (?revision=1). Debe ser texto corto. */
@@ -52,7 +59,34 @@ export type Contenido = {
     menuAbrir: Texto;
     menuCerrar: Texto;
   };
-  inicio: { titulo: Texto; texto: Texto; enlaceMarca: Texto };
+  hero: {
+    kicker: Texto;
+    escenas: [EscenaHero, EscenaHero, EscenaHero];
+    secundario: Texto;
+    huevo: Texto;
+    carrusel: { region: Texto; diapositiva: Texto; de: Texto; pausar: Texto; reanudar: Texto };
+    conversacion: {
+      contactos: [Contacto, Contacto, Contacto, Contacto];
+      nueva: Texto;
+      escribiendo: Texto;
+      clienteFinal: Texto;
+      guion: Mensaje[];
+      tarjeta: { titulo: Texto; detalle: Texto };
+    };
+    flujo: {
+      nodos: { formulario: Texto; urgente: Texto; avisar: Texto; ficha: Texto; registrar: Texto };
+      si: Texto;
+      no: Texto;
+      ejecutado: Texto;
+      fichaCreada: Texto;
+    };
+    panel: {
+      kpis: [Kpi, Kpi, Kpi];
+      grafico: Texto;
+      dias: [Texto, Texto, Texto, Texto, Texto, Texto, Texto];
+      filas: [FilaPanel, FilaPanel, FilaPanel];
+    };
+  };
   marca: {
     meta: { titulo: Texto };
     titulo: Texto;
