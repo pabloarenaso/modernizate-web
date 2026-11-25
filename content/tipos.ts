@@ -59,13 +59,57 @@ export type EscenaTiendaC = {
 export type Producto = { nombre: Texto; detalle: Texto; precio: Texto };
 export type FilaPedido = { numero: Texto; cliente: Texto; estado: Texto };
 export type Caso = { titulo: Texto; frase: Texto; lineas: [Linea, Linea, Linea]; cta: Texto };
+export type EscenaAsistenteC = {
+  descripcion: Texto;
+  negocio: Texto;
+  estado: Texto;
+  escribiendo: Texto;
+  hoy: Texto;
+  hora: Texto;
+  bateria: Texto;
+  escribir: Texto;
+  cliente1: Texto;
+  bot1: Texto;
+  horarios: [Texto, Texto, Texto];
+  cliente2: Texto;
+  bot2: Texto;
+  cita: { titulo: Texto; detalle: Texto };
+  derivado: Texto;
+  agenda: { titulo: Texto; filas: { hora: Texto; nombre: Texto; estado: Texto }[] };
+  app: Texto;
+  ahora: Texto;
+};
+export type EscenaAutomatizacionC = { descripcion: Texto; ayuda: Texto };
+export type EtapaMedida = { nombre: Texto; detalle: Texto };
+export type EscenaMedidaC = {
+  descripcion: Texto;
+  app: Texto;
+  menu: [Texto, Texto, Texto, Texto];
+  buscar: Texto;
+  filtro: Texto;
+  nuevo: Texto;
+  columnas: [Texto, Texto, Texto, Texto];
+  filas: { folio: Texto; fecha: Texto; responsable: Texto; estado: Texto }[];
+  pdf: { titulo: Texto; empresa: Texto; timbre: Texto };
+  permisos: Texto;
+  etapas: [EtapaMedida, EtapaMedida, EtapaMedida, EtapaMedida];
+  llamada: { tu: Texto; nosotros: Texto; frase: Texto };
+  mapa: { titulo: Texto; notas: [Texto, Texto, Texto, Texto, Texto]; hallazgo: Texto };
+  piloto: Texto;
+  entregado: Texto;
+};
 export type Soluciones = {
   kicker: Texto;
   titulo: Texto;
   intro: Texto;
   abrir: Texto;
   cerrar: Texto;
+  huevo: Texto;
+  huevoFrase: Texto;
   tienda: Caso & { escena: EscenaTiendaC };
+  asistente: Caso & { escena: EscenaAsistenteC };
+  automatizacion: Caso & { escena: EscenaAutomatizacionC };
+  medida: Caso & { escena: EscenaMedidaC };
 };
 
 export type FlujoC = { nombre: Texto; nodos: Texto[] };

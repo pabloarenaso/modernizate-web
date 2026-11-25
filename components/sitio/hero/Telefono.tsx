@@ -1,13 +1,13 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Texto } from "@/components/Texto";
 import type { Texto as TextoC } from "@/content/tipos";
 
-type Props = { hora: TextoC; bateria: TextoC; children: ReactNode; className?: string };
+type Props = { hora: TextoC; bateria: TextoC; children: ReactNode; className?: string; /** Ancho y alto propios (si no, los del hero). */ tamano?: CSSProperties };
 
 /** Celular moderno (alto ≈ 2,1 × ancho): marco delgado, isla superior y barra de estado completa. */
-export function Telefono({ hora, bateria, children, className = "" }: Props) {
+export function Telefono({ hora, bateria, children, className = "", tamano }: Props) {
   return (
-    <div className={`celular relative h-[470px] w-[228px] shrink-0 rounded-[44px] p-[7px] sm:h-[510px] sm:w-[248px] ${className}`}>
+    <div className={`celular relative shrink-0 rounded-[44px] p-[7px] ${tamano ? "" : "h-[470px] w-[228px] sm:h-[510px] sm:w-[248px]"} ${className}`} style={tamano}>
       {/* botones laterales */}
       <span aria-hidden="true" className="absolute -left-[3px] top-[22%] h-10 w-[3px] rounded-l bg-[#2a2e38]" />
       <span aria-hidden="true" className="absolute -left-[3px] top-[33%] h-10 w-[3px] rounded-l bg-[#2a2e38]" />

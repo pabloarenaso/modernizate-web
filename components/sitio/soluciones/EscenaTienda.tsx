@@ -3,14 +3,15 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Texto } from "@/components/Texto";
 import type { EscenaTiendaC } from "@/content/tipos";
+import { useDisparo } from "./disparo";
 import { Escalar } from "./Escalar";
 import { FotoProducto, fondosProducto, type TipoProducto } from "./FotoProducto";
 
 type Props = {
   c: EscenaTiendaC;
   tamano: "mini" | "grande";
-  /** Cada vez que cambia (y es mayor que 0), un producto vuela al carrito. */
-  disparo: number;
+  /** Cada vez que cambia (y es mayor que 0), un producto vuela al carrito. Por defecto, el del contexto. */
+  disparo?: number;
 };
 
 const tipos: TipoProducto[] = ["bolsa", "prensa", "taza"];
@@ -34,7 +35,9 @@ const CANDADO = "M7 11V8a5 5 0 0 1 10 0v3M6 11h12v9H6z";
 type Vuelo = { k: number; x: number; y: number; dx: number; dy: number };
 
 /** Escena "Tienda en línea": navegador con una tienda ficticia, pago aprobado y pedidos del día. */
-export function EscenaTienda({ c, tamano, disparo }: Props) {
+export function EscenaTienda({ c, tamano, disparo: propio }: Props) {
+  const contexto = useDisparo();
+  const disparo = propio ?? contexto;
   const raiz = useRef<HTMLDivElement>(null);
   const [cuenta, setCuenta] = useState(2);
   const [vuelo, setVuelo] = useState<Vuelo | null>(null);

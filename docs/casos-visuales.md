@@ -3,6 +3,9 @@
 ## Problema que resolvemos
 Las miniaturas de la maqueta son demasiado conceptuales: vista sola, la de "Tienda en línea" no se reconoce como ecommerce y la de "Automatización" se ve escuálida. Cada ilustración debe entenderse **sin leer el título**.
 
+## Nivel de referencia
+La escena de la Tienda en línea (aprobada por Pablo el 25 nov 2026) fija el nivel de todas: semirrealista, con interfaz verosímil, datos ficticios creíbles y animación con sentido (producto que vuela al carrito, contador, pago aprobado).
+
 ## Enfoque
 - **Escenas de producto hechas en código** (React + SVG/HTML + Tailwind), no fotos de stock ni imágenes planas. Se ven nítidas, cambian con el modo noche y se traducen ES/EN.
 - Cada escena tiene un **dispositivo** (celular, navegador o notebook) con una **interfaz verosímil** y una o dos **tarjetas flotantes** que cuentan el resultado.
@@ -27,20 +30,20 @@ Las miniaturas de la maqueta son demasiado conceptuales: vista sola, la de "Tien
 - **Miniatura:** navegador con 3 productos, carrito con contador y la tarjeta "Pago aprobado". Debe gritar "tienda".
 - **Animación:** un producto "vuela" al carrito y el contador sube.
 
-## 3. Sistema a medida
-- **Dispositivo:** notebook con una app de gestión (menú lateral, tabla).
-- **Interfaz:** tabla de registros con folio, fecha, responsable y estado; filtro activo; botón "Nuevo registro".
-- **Tarjetas flotantes:** una hoja de documento PDF con encabezado "Registro N° 0153" y un timbre "Emitido"; una etiqueta "Solo administración" (permisos).
-- **Miniatura:** notebook con tabla y el PDF asomando.
-- **Animación:** aparece una fila nueva y se genera el PDF.
-- **Ojo:** inspirado en la app de actas, pero genérico. No mostrar nombres, logos ni datos de Aceros Arequipa.
+## 3. Proyecto a tu medida (reemplaza a "Sistema a medida", 25 nov 2026)
+- **Idea:** una app de gestión como ejemplo de resultado, más una animación de cómo trabajamos: conversación → diagnóstico → construcción → entrega.
+- **Dispositivo:** notebook con la app "Gestión de registros" (menú lateral, filtro "Estado: abierto", botón "Nuevo registro", tabla con folio, fecha, responsable y estado).
+- **Etapas (escena grande, con barra de pasos arriba):** 1) videollamada con el cliente ("Hoy lo hacemos en tres planillas…"); 2) mapa del proceso con notas adhesivas y los pasos repetidos marcados; 3) la app en construcción con el piloto en marcha; 4) la app completa.
+- **Tarjetas flotantes:** hoja PDF "Registro N° 0153" con timbre "Emitido"; etiqueta "Solo administración" (permisos); "Entregado · equipo capacitado".
+- **Miniatura:** notebook con la tabla y el PDF asomando. Al pasar el mouse, aparece una fila nueva y sale el PDF.
+- **Ojo:** inspirado en la app de actas, pero genérico. Sin nombres, logos ni datos de clientes reales.
 
 ## 4. Automatización de procesos
-- **Lienzo de flujo** estilo n8n (nodos y conectores), con React Flow en la escena grande y SVG en la miniatura.
-- **Nodos:** "Formulario recibido" → "¿Es urgente?" (bifurcación) → sí: "Avisar al equipo" · no: "Crear ficha en planilla" → "Registrar resultado".
-- **Tarjetas flotantes:** "Flujo ejecutado · 3,2 s · 0 errores" y "Ficha creada: Juan P.".
-- **Miniatura:** 4 o 5 nodos con iconos claros y un punto de luz recorriendo los conectores.
-- **Animación:** el punto recorre el camino y cada nodo se enciende al pasar.
+- **Coherente con el slide 2 del hero:** mismo editor estilo n8n, mismos nodos y los mismos tres flujos ("Atención de consultas", "Pedidos y despacho", "Recordatorios de pago"), con pestañas.
+- **Nodos:** disparador, decisiones "sí / no" con dos salidas, un agente de IA con herramientas conectadas debajo (calendario, planilla, correo) y acciones. Geometría compartida en `lib/flujos.ts`.
+- **Miniatura:** el lienzo en SVG/HTML; al pasar el mouse, el punto de luz recorre el camino y cada nodo se enciende (check verde).
+- **Escena grande:** React Flow interactivo (mover nodos, acercar y alejar con controles que sí funcionan); el punto de luz recorre el flujo en bucle.
+- Sin mensaje final de tiempo de ejecución (pedido de Pablo).
 
 ## Opcional: fotografía
 Si Pablo genera fondos o fotos con Magnific (por ejemplo, un local, una bodega o un mostrador), se usan solo como fondo desenfocado detrás del dispositivo, nunca como la ilustración principal. Guardarlas en `public/img/casos/` con texto alternativo.

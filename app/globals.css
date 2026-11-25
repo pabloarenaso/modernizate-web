@@ -188,6 +188,118 @@ html[data-revision] [data-estado="borrador"]::after {
 .pulsar { animation: pulsar 0.6s ease 0.4s; }
 @keyframes pulsar { 50% { transform: scale(0.92); filter: brightness(1.2); } }
 
+/* Easter egg del panel: botón eléctrico (Uiverse, Pradeepsaranbishnoi/dull-mole-49, MIT) y texto letra por letra. */
+.boton-voltaje { position: relative; display: inline-block; }
+.boton-voltaje button {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  background: #0d1127;
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px;
+  border: 3px solid #5978f3;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: background 0.3s;
+}
+.boton-voltaje button:hover, .boton-voltaje button:focus-visible { background: #14287a; }
+.boton-voltaje svg {
+  position: absolute;
+  top: -0.75em;
+  left: -0.25em;
+  width: calc(100% + 0.5em);
+  height: calc(100% + 1.5em);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s 0.1s;
+}
+.boton-voltaje .voltaje { fill: transparent; stroke-dasharray: 100; filter: url("#voltaje-brillo"); }
+.boton-voltaje .linea-1 { stroke: #9ec1ff; animation: chispa-1 3s linear infinite; }
+.boton-voltaje .linea-2 { stroke: #6bfeff; stroke-dashoffset: 500; animation: chispa-2 3s linear infinite; }
+.boton-voltaje .puntos { opacity: 0; transition: opacity 0.3s 0.4s; }
+.boton-voltaje .puntos span { position: absolute; width: 0.7rem; height: 0.7rem; border-radius: 50%; background: #fff; opacity: 0; }
+.boton-voltaje .puntos span:nth-child(1) { top: 0; left: 20%; animation: subir 3s linear infinite; }
+.boton-voltaje .puntos span:nth-child(2) { top: 0; left: 55%; animation: subir 3s linear 0.5s infinite; }
+.boton-voltaje .puntos span:nth-child(3) { top: 0; left: 80%; animation: subir 3s linear 1s infinite; }
+.boton-voltaje .puntos span:nth-child(4) { bottom: 0; left: 30%; animation: bajar-punto 3s linear 2.5s infinite; }
+.boton-voltaje .puntos span:nth-child(5) { bottom: 0; left: 65%; animation: bajar-punto 3s linear 1.5s infinite; }
+.boton-voltaje:hover svg, .boton-voltaje:hover .puntos, .boton-voltaje:focus-within svg, .boton-voltaje:focus-within .puntos { opacity: 1; }
+@keyframes chispa-1 { to { stroke-dashoffset: -1000; } }
+@keyframes chispa-2 { to { stroke-dashoffset: -500; } }
+@keyframes subir {
+  0% { opacity: 0; transform: translateY(0) scale(0.2); }
+  5% { opacity: 1; transform: translateY(-1.5rem) scale(0.4); }
+  10%, 100% { opacity: 0; transform: translateY(-3rem) scale(0.2); }
+}
+@keyframes bajar-punto {
+  0% { opacity: 0; transform: translateY(0) scale(0.2); }
+  5% { opacity: 1; transform: translateY(1.5rem) scale(0.4); }
+  10%, 100% { opacity: 0; transform: translateY(3rem) scale(0.2); }
+}
+.texto-animado span { display: inline-block; animation: letra 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.3) both; transform-origin: 50% 100%; }
+@keyframes letra { from { opacity: 0; transform: translateY(14px) rotateX(90deg); } }
+
+/* React Flow con los colores del sitio. */
+.flujo-react { --xy-background-color: transparent; }
+.flujo-react .react-flow__controls { box-shadow: 0 2px 8px rgba(11, 21, 48, 0.12); border: 1px solid var(--linea); border-radius: 8px; overflow: hidden; }
+.flujo-react .react-flow__controls-button { background: var(--superficie); border-bottom: 1px solid var(--linea); color: var(--texto); fill: var(--texto); }
+.flujo-react .react-flow__controls-button:hover { background: var(--suave); }
+.flujo-react .react-flow__controls-button svg { fill: currentColor; }
+.flujo-react .react-flow__attribution { background: transparent; }
+.flujo-react .react-flow__node { cursor: grab; }
+
+/* Proyecto a tu medida: PDF que sale, fila nueva, notas del mapa y la persona que habla. */
+.pdf-sale { animation: pdf-sale 0.7s cubic-bezier(0.2, 0.9, 0.25, 1.1) 0.4s both; }
+@keyframes pdf-sale { from { opacity: 0; transform: translate(-40px, 20px) rotate(-6deg) scale(0.9); } }
+.fila-nueva { animation: fila-nueva 1.6s ease both; }
+@keyframes fila-nueva { 0% { opacity: 0; transform: translateY(-8px); background: var(--seleccion); } 30% { opacity: 1; transform: none; background: var(--seleccion); } }
+.nota { animation: aparecer 0.45s ease both; }
+.hablar { animation: hablar 1.2s ease-in-out infinite; }
+@keyframes hablar { 50% { opacity: 0.2; } }
+.timbre { animation: timbre 0.4s ease 1s both; }
+@keyframes timbre { from { opacity: 0; transform: rotate(-10deg) scale(1.8); } }
+
+/* Easter egg del hero: botón con estrellas (Uiverse, MuhammadHasann/silent-lizard-44, MIT), colores de la marca. */
+.boton-estrellas {
+  position: relative;
+  z-index: 0;
+  padding: 7px 18px;
+  white-space: nowrap;
+  border-radius: 8px;
+  border: 2px solid var(--celeste);
+  background: var(--celeste);
+  color: var(--acento-texto);
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 0 0 rgba(61, 107, 255, 0.35);
+  transition: all 0.3s ease-in-out;
+}
+.boton-estrellas:hover, .boton-estrellas:focus-visible {
+  background: transparent;
+  box-shadow: 0 0 22px rgba(61, 107, 255, 0.35);
+}
+.boton-estrellas > span {
+  position: absolute;
+  height: auto;
+  z-index: -5;
+  filter: drop-shadow(0 0 0 #fff);
+}
+.boton-estrellas svg { display: block; width: 100%; height: auto; fill: #3d6bff; }
+.boton-estrellas .estrella-1 { top: 20%; left: 20%; width: 22px; transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96); }
+.boton-estrellas .estrella-2 { top: 45%; left: 45%; width: 14px; transition: all 1s cubic-bezier(0, 0.4, 0, 1.01); }
+.boton-estrellas .estrella-3 { top: 40%; left: 40%; width: 6px; transition: all 1s cubic-bezier(0, 0.4, 0, 1.01); }
+.boton-estrellas .estrella-4 { top: 20%; left: 40%; width: 8px; transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01); }
+.boton-estrellas .estrella-5 { top: 25%; left: 45%; width: 14px; transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01); }
+.boton-estrellas .estrella-6 { top: 5%; left: 50%; width: 6px; transition: all 0.8s ease; }
+.boton-estrellas:hover > span, .boton-estrellas:focus-visible > span { z-index: 2; filter: drop-shadow(0 0 8px rgba(143, 176, 255, 0.9)); }
+.boton-estrellas:hover .estrella-1, .boton-estrellas:focus-visible .estrella-1 { top: -80%; left: -30%; }
+.boton-estrellas:hover .estrella-2, .boton-estrellas:focus-visible .estrella-2 { top: -25%; left: 10%; }
+.boton-estrellas:hover .estrella-3, .boton-estrellas:focus-visible .estrella-3 { top: 55%; left: 25%; }
+.boton-estrellas:hover .estrella-4, .boton-estrellas:focus-visible .estrella-4 { top: 30%; left: 80%; }
+.boton-estrellas:hover .estrella-5, .boton-estrellas:focus-visible .estrella-5 { top: 25%; left: 115%; }
+.boton-estrellas:hover .estrella-6, .boton-estrellas:focus-visible .estrella-6 { top: 5%; left: 60%; }
+
 /* Burbujas con colita. */
 .burbuja { position: relative; }
 .burbuja-recibida { border-top-left-radius: 0; }

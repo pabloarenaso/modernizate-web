@@ -19,7 +19,7 @@ export default async function Inicio({ params }: PageProps<"/[lang]">) {
       <main id="contenido">
         <Hero c={c.hero} cta={c.cabecera.cta} hrefContacto={`${inicio}#contacto`} hrefMetodo={`${inicio}#como-trabajamos`} />
         <PorQueAhora lang={lang} c={c.porQue} hrefSoluciones={`${inicio}#soluciones`} />
-        <Soluciones c={c.soluciones} hrefContacto={inicio} />
+        <Soluciones c={c.soluciones} flujos={c.hero.flujo} hrefContacto={inicio} />
       </main>
     </>
   );

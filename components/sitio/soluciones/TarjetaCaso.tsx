@@ -1,20 +1,23 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { Texto } from "@/components/Texto";
-import type { Caso, EscenaTiendaC, Soluciones } from "@/content/tipos";
-import { EscenaTienda } from "./EscenaTienda";
+import type { Caso, Soluciones } from "@/content/tipos";
+import { Disparo } from "./disparo";
+import { HuevoPanel } from "./HuevoPanel";
 
 type Props = {
   caso: Caso;
-  c: Pick<Soluciones, "abrir" | "cerrar">;
+  c: Pick<Soluciones, "abrir" | "cerrar" | "huevo" | "huevoFrase">;
   hrefContacto: string;
-  escena: EscenaTiendaC;
   id: string;
+  /** Escena chica (tarjeta) y grande (panel); se animan con el contexto Disparo. */
+  mini: ReactNode;
+  grande: ReactNode;
 };
 
 /** Tarjeta de un caso con su miniatura; al abrirla, un panel con la escena grande y los tres pasos. */
-export function TarjetaCaso({ caso, c, hrefContacto, escena, id }: Props) {
+export function TarjetaCaso({ caso, c, hrefContacto, id, mini, grande }: Props) {
   const dialogo = useRef<HTMLDialogElement>(null);
   const [hover, setHover] = useState(0);
   const [abierto, setAbierto] = useState(0);
@@ -28,7 +31,7 @@ export function TarjetaCaso({ caso, c, hrefContacto, escena, id }: Props) {
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-linea bg-superficie transition-shadow hover:shadow-[0_24px_50px_-28px_rgba(11,21,48,0.45)]"
       onMouseEnter={() => setHover((n) => n + 1)}
     >
-      <div className="border-b border-linea bg-suave"><EscenaTienda c={escena} tamano="mini" disparo={hover} /></div>
+      <div className="border-b border-linea bg-suave"><Disparo.Provider value={hover}>{mini}</Disparo.Provider></div>
       <div className="flex flex-1 flex-col gap-2 p-5">
         <Texto as="h3" valor={caso.titulo} className="font-display text-xl font-bold" />
         <Texto as="p" valor={caso.frase} className="text-[15px] leading-relaxed text-texto-sec" />
@@ -65,7 +68,7 @@ export function TarjetaCaso({ caso, c, hrefContacto, escena, id }: Props) {
               <svg aria-hidden="true" viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6l12 12M18 6 6 18" /></svg>
             </button>
           </div>
-          <div className="rounded-2xl bg-suave p-3 sm:p-6">{abierto > 0 && <EscenaTienda c={escena} tamano="grande" disparo={abierto} />}</div>
+          <div className="rounded-2xl bg-suave p-3 sm:p-6">{abierto > 0 && <Disparo.Provider value={abierto}>{grande}</Disparo.Provider>}</div>
           <ol className="grid gap-5 md:grid-cols-3">
             {caso.lineas.map((l, i) => (
               <li key={i} className="flex flex-col gap-1.5">
@@ -77,9 +80,12 @@ export function TarjetaCaso({ caso, c, hrefContacto, escena, id }: Props) {
               </li>
             ))}
           </ol>
-          <a href={hrefContacto} className="inline-flex h-12 items-center self-start rounded-[10px] bg-primario-relleno px-6 font-semibold text-white hover:brightness-110">
-            <Texto valor={caso.cta} />
-          </a>
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <a href={hrefContacto} className="inline-flex h-12 items-center rounded-[10px] bg-primario-relleno px-6 font-semibold text-white hover:brightness-110">
+              <Texto valor={caso.cta} />
+            </a>
+            <HuevoPanel boton={c.huevo} frase={c.huevoFrase} />
+          </div>
         </div>
       </dialog>
     </article>
