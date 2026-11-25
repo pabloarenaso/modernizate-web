@@ -158,10 +158,11 @@ Cerrada el 25 nov 2026. Comprobado con lint, build y Playwright sobre `next star
 - [ ] `docs/pendientes-contenido.md` con todos los textos en borrador, por sección
 - [ ] Lint y build en verde; commit y push
 
-## Etapa 7 · Publicación (solo cuando Pablo lo pida)
-- [ ] Servicio Node en el VPS de actas, puerto 3200, con la caja de herramientas (sin tocar la app de actas)
-- [ ] Sitio en Apache como proxy hacia 3200
-- [ ] HTTPS
-- [ ] DNS en Cloudflare con `~/modernizate/herramientas/cloudflare/dns.sh` (con "sí" de Pablo)
-- [ ] Comando `/desplegar` propio del proyecto
-- [ ] Acciones con sudo registradas en la bitácora del servidor
+## Etapa 7 · Publicación (publicado el 2026-11-25)
+
+- [x] Sitio en https://agmodernizate.cl (www → raíz con 301), certificado con renovación automática (vence 2027-02-23).
+- [x] Servicio `modernizate-web.service` en 127.0.0.1:3200, reinicio sin clave, comandos `/estado-servidor` y `/desplegar` (ver `docs/servidor.md`).
+- [x] Portal /ingresar con archivo de relaciones vacío en el servidor; noindex en /marca e /ingresar; `?revision=1` desactivado en producción.
+- [ ] Variables de contacto en el `.env` del servidor (correo, WhatsApp, clave de Web3Forms) y nuevo build; prueba del formulario.
+- [ ] `http://agmodernizate.cl` (sin s) lo atiende `000-default.conf`: decisión de Pablo.
+- Publicado sin "Por qué ahora" (bandera en `lib/banderas.ts`), sin calculadora ni agenda; tres casos de Soluciones sin panel.
