@@ -7,7 +7,12 @@ Formato de la nota en pantalla: `Fuente: McKinsey, The State of AI 2025 (encuest
 ## A. Adopción de IA en el mundo (serie en el tiempo)
 
 **A1. Empresas que usan IA en al menos una función** (McKinsey Global Survey on the State of AI)
-- 2017: 20% · 2023: 55% · 2024: 72% · 2025: 88%
+- **Serie anual usada en el sitio (actualizada 25 nov 2026):** 2017: 20% · 2018: 47% · 2019: 58% · 2020: 50% · 2021: 56% · 2022: 50% · 2023: 55% · 2024: 78% · 2025: 88%.
+- Cada valor sale de un informe de McKinsey: 2017 y 2022 de "The state of AI in 2022"; 2018 de la nota de noviembre de 2018 (n = 2.135); 2019 del informe 2022 ("peaked… in 2019 at 58 percent"); 2020 y 2021 de "The state of AI in 2021"; 2023 y 2024 del informe de marzo de 2025 ("78 percent… up from 72 percent in early 2024"; 55% un año antes); 2025 del informe de noviembre de 2025 ("88 percent… up ten percentage points from 2024"). El Stanford AI Index (2025 y 2026) reproduce la misma serie.
+- Para 2024 se usa 78% (encuesta de julio de 2024), que es el punto con que McKinsey compara el 88% de 2025. El 72% corresponde a inicios de 2024.
+- McKinsey advierte que la definición de "uso de IA" y las muestras cambiaron entre encuestas: se indica en la nota de fuente.
+- **Pendiente:** la página del gráfico y el PDF de McKinsey bloquean el acceso automático; no se pudo leer el gráfico directamente. Confirmar en un navegador normal que el gráfico "AI at work but not at scale" muestra estos mismos valores.
+- Valores anteriores en este archivo (reemplazados): 2017: 20% · 2023: 55% · 2024: 72% · 2025: 88%
 - El informe 2025 compara 88% contra 78% "un año antes". El 72% corresponde a la encuesta de inicios de 2024 y el 78% a la de fines de 2024. **Usar la serie exacta del gráfico de McKinsey** ("AI at work but not at scale"), sin interpolar años que falten.
 - Fuentes: https://www.mckinsey.com/featured-insights/charts/ai-at-work-but-not-at-scale · https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-2025
 - Muestra 2025: 1.993 participantes, 25 jun a 29 jul 2025.
@@ -19,9 +24,11 @@ Formato de la nota en pantalla: `Fuente: McKinsey, The State of AI 2025 (encuest
 
 ## B. Chile
 
-**B1. Uso de IA en empresas chilenas** (Cámara de Comercio de Santiago, Índice de Transformación Digital 2025, citado por Radio Pauta, 31 ago 2026)
-- 2023: 29% → 2025: 54%.
-- Pendiente: ubicar el informe original de la CCS antes de publicar.
+**B1. Uso de IA en empresas chilenas** (CCS, PMG Chile y Corfo, Índice de Transformación Digital 2025, 6ª edición)
+- 2023: 29% → 2025: 54%. Por tamaño: 63% en grandes, 52% en micro y pymes.
+- Muestra: 967 empresas (micro, pymes y grandes) de todos los sectores según la clasificación del SII. Presentado el 16 oct 2025 en el e-commerce Innovation Summit 2025.
+- **El informe original no está publicado** en ccs.cl (búsqueda del 25 nov 2026: solo existe la invitación a responder la encuesta y el ITD 2023). Se cita la mejor fuente secundaria: Diario Financiero, 17 oct 2025: https://www.df.cl/df-lab/tech-negocios/reporte-de-la-camara-de-comercio-de-santiago-revela-que-empresas-que-usan
+- Nota: Radio Pauta (31 ago 2026) repite la cifra; su titular se refiere a otro estudio (MAS Analytics, 3,6%).
 - Fuente de prensa: https://www.pauta.cl/tendencias/2026/08/31/solo-el-36-de-las-empresas-chilenas-logra-escalar-sus-proyectos-de-inteligencia-artificial.html
 
 **B2. Adopción y profundidad de uso** (estudio encargado por AWS a Strand Partners, 1.000 líderes de empresas, citado por Radio Pauta, 25 sep 2026)

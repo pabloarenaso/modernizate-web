@@ -77,6 +77,45 @@ export type Contenido = {
     equipo: Texto;
     equipoNota: Texto;
   };
+  porQue: {
+    kicker: Texto;
+    titulo: Texto;
+    verTabla: Texto;
+    tabla: { anio: Texto; valor: Texto; categoria: Texto };
+    paso1: {
+      titulo: Texto;
+      frase: Texto;
+      mundo: Texto;
+      chile: Texto;
+      descMundo: Texto;
+      descChile: Texto;
+      fuenteMundo: Texto;
+      fuenteChile: Texto;
+    };
+    paso2: {
+      titulo: Texto;
+      frase: Texto;
+      barraTitulo: Texto;
+      basico: Texto;
+      integrada: Texto;
+      avanzada: Texto;
+      preparadas: Texto;
+      fuenteUso: Texto;
+      fuentePreparadas: Texto;
+    };
+    paso3: {
+      titulo: Texto;
+      frase: Texto;
+      ventas: Texto;
+      ventasTexto: Texto;
+      online: Texto;
+      sitio: Texto;
+      fuenteVentas: Texto;
+      fuenteOnline: Texto;
+      fuenteSitio: Texto;
+    };
+    cierre: { frase: Texto; secundaria: Texto; boton: Texto; fuente: Texto };
+  };
   hero: {
     kicker: Texto;
     escenas: [EscenaHero, EscenaHero, EscenaHero];

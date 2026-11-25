@@ -231,6 +231,19 @@ html[data-revision] [data-estado="borrador"]::after {
   100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(220deg) scale(0.6); opacity: 0; }
 }
 
+/* ---------- Por qué ahora ---------- */
+.trazo-linea {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.2s ease;
+}
+[data-esperando] .trazo-linea { stroke-dashoffset: 1; }
+.segmento {
+  transform-origin: left;
+  transition: transform 0.8s cubic-bezier(0.2, 0.9, 0.25, 1);
+}
+[data-esperando] .segmento { transform: scaleX(0); }
+
 @media (prefers-reduced-motion: reduce) {
   /* Fondos quietos: las nubes quedan a la vista y los meteoros se ocultan. */
   .nube { animation: none; transform: translateX(var(--reposo, 700px)); }
