@@ -119,13 +119,28 @@ Cerrada el 25 nov 2026. Comprobado con lint, build y Playwright sobre `next star
 - Capturas: `Descargas\modernizate-capturas\etapa-3`.
 
 ## Etapa 4 · Soluciones (`docs/casos-visuales.md`)
-- [ ] "Tienda en línea" en sus dos tamaños, aprobada por Pablo (se reconoce como tienda sin leer el título). Construida en código el 25 nov 2026; capturas en `etapa-4-tienda`, **esperando aprobación** antes de las otras tres.
-- [ ] Las otras tres escenas al mismo nivel
-- [ ] Tarjetas con miniatura, título y una frase
-- [ ] Panel al abrir: escena grande, 3 líneas (dónde partimos, cómo lo armamos, qué recibes) y "Lo quiero para mi negocio" → Contacto con el caso preseleccionado
-- [ ] Automatización con React Flow en el panel grande, punto de luz recorriendo conectores
-- [ ] Sin logos de terceros; datos ficticios
-- [ ] Lint y build en verde; commit y push
+Cerrada el 25 nov 2026. Comprobado con lint, build y Playwright sobre `next start` (1440 y 390, día y noche): consola sin errores.
+- [x] "Tienda en línea" en sus dos tamaños, aprobada por Pablo (fija el nivel de todas las escenas)
+- [x] Las otras tres escenas al mismo nivel: Asistente de atención, Automatización de procesos y "Proyecto a tu medida" (reemplaza a "Sistema a medida")
+- [x] Tarjetas con miniatura animada al pasar el mouse, título y una frase
+- [x] Panel al abrir: escena grande, 3 líneas (dónde partimos, cómo lo armamos, qué recibes) y "Lo quiero para mi negocio" → `?caso=…#contacto` (el contacto llega en la Etapa 5)
+- [x] Automatización con React Flow en el panel grande (nodos movibles, zoom con controles reales), mismos tres flujos que el hero y punto de luz en bucle
+- [x] Sin logos de terceros; datos ficticios
+- [x] Lint y build en verde; commit y push
+
+### Ajustes del hero (25 nov 2026, pedido junto con la Etapa 4)
+- [x] Fondo de día con partículas de luz y destellos celeste y cobalto (mismo movimiento que los meteoros de la noche)
+- [x] Slide 1 con bandeja y celular más anchos
+- [x] Indicadores con barra de progreso; clic en otro va a esa escena, clic en el activo pausa o reanuda (WCAG 2.2.2, también con teclado); se quitó el botón de pausa
+- [x] Slide 2 estilo editor de automatizaciones, horizontal, con pestañas para tres flujos (disparador, decisiones sí/no, agente de IA con herramientas, acciones); sin controles de zoom ni mensaje final
+- [x] Slide 3 animado: la tabla avanza, pestaña "Reporte" con barras, línea y dona que se dibujan, y descarga (botón → progreso → archivo listo)
+
+### Easter eggs (`docs/catalogo-efectos.md`)
+- [x] Hero: confeti con el botón de estrellas de Uiverse (MuhammadHasann/silent-lizard-44, MIT)
+- [x] Soluciones: texto animado letra por letra en el panel, con el botón eléctrico de Uiverse (Pradeepsaranbishnoi/dull-mole-49, MIT)
+- [ ] Por qué ahora: pendiente hasta rehacer la sección (Pablo)
+- [ ] Cómo trabajamos (uno por paso), Calculadora (título ondulado) y Contacto ("Actívame" con inclinación 3D): se hacen cuando existan esas secciones (Etapas 5 y 6). Botones de Uiverse ya obtenidos para usarlos: Navarog21/ordinary-rat-19 y adamgiebl/big-ape-36 (del repositorio público uiverse-io/galaxy, MIT)
+- [ ] Faltan dos botones de Uiverse que no están en el repositorio público: barisdogansutcu/proud-lion-79 y AatreyuShau/brown-baboon-8 (Pablo los pega)
 
 ## Etapa 5 · Cómo trabajamos, calculadora, contacto y pie
 - [ ] Línea de tiempo de 4 pasos con revelado fijado y easter egg por paso (destacador, giro 3D, ondulado, confeti)

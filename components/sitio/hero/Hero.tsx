@@ -6,6 +6,7 @@ import { Texto } from "@/components/Texto";
 import type { Contenido, Texto as TextoC } from "@/content/tipos";
 import { useEnPantalla } from "@/hooks/useEnPantalla";
 import { useMovimientoReducido } from "@/hooks/useMovimientoReducido";
+import { BotonEstrellas } from "./BotonEstrellas";
 import { EscenaConversacion } from "./EscenaConversacion";
 import { EscenaFlujo } from "./EscenaFlujo";
 import { EscenaPanel } from "./EscenaPanel";
@@ -102,9 +103,9 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
               <Texto valor={c.secundario} />
             </a>
             <span className="relative">
-              <button type="button" onClick={disparar} className="huevo">
+              <BotonEstrellas onClick={disparar}>
                 <Texto valor={c.huevo} />
-              </button>
+              </BotonEstrellas>
               {confeti}
             </span>
           </div>
