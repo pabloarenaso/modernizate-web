@@ -102,7 +102,7 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
             <a href={hrefMetodo} className="inline-flex h-12 items-center rounded-[10px] border border-linea bg-superficie px-6 font-semibold text-texto transition-colors hover:bg-suave">
               <Texto valor={c.secundario} />
             </a>
-            <span className="relative">
+            <span className="relative basis-full">
               <BotonEstrellas onClick={disparar}>
                 <Texto valor={c.huevo} />
               </BotonEstrellas>

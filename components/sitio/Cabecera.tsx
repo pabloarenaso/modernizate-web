@@ -5,7 +5,7 @@ import { SelectorIdioma } from "@/components/SelectorIdioma";
 import { Texto } from "@/components/Texto";
 import type { Contenido, Idioma } from "@/content/tipos";
 import { rutaLocal } from "@/lib/rutas";
-import { secciones } from "@/lib/secciones";
+import { seccionesVisibles } from "@/lib/secciones";
 import { MenuMovil } from "./MenuMovil";
 
 type Props = { lang: Idioma; ruta: string; c: Contenido };
@@ -18,7 +18,7 @@ export const claseBotonSecundario =
 export function Cabecera({ lang, ruta, c }: Props) {
   const k = c.cabecera;
   const inicio = rutaLocal(lang, "/");
-  const enlaces = secciones.map((id) => ({ id, href: `${inicio}#${id}`, texto: k.nav[id] }));
+  const enlaces = seccionesVisibles.map((id) => ({ id, href: `${inicio}#${id}`, texto: k.nav[id] }));
 
   return (
     <>

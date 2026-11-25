@@ -13,7 +13,8 @@ type Props = {
   id: string;
   /** Escena chica (tarjeta) y grande (panel); se animan con el contexto Disparo. */
   mini: ReactNode;
-  grande: ReactNode;
+  /** Sin escena grande, la tarjeta no abre panel. */
+  grande?: ReactNode;
 };
 
 /** Tarjeta de un caso con su miniatura; al abrirla, un panel con la escena grande y los tres pasos. */
@@ -35,6 +36,7 @@ export function TarjetaCaso({ caso, c, hrefContacto, id, mini, grande }: Props) 
       <div className="flex flex-1 flex-col gap-2 p-5">
         <Texto as="h3" valor={caso.titulo} className="font-display text-xl font-bold" />
         <Texto as="p" valor={caso.frase} className="text-[15px] leading-relaxed text-texto-sec" />
+        {grande && (
         <button
           type="button"
           onClick={abrir}
@@ -44,8 +46,10 @@ export function TarjetaCaso({ caso, c, hrefContacto, id, mini, grande }: Props) 
           <Texto valor={c.abrir} />
           <span aria-hidden="true">→</span>
         </button>
+        )}
       </div>
 
+      {grande && (
       <dialog
         ref={dialogo}
         aria-labelledby={`${id}-titulo`}
@@ -88,6 +92,7 @@ export function TarjetaCaso({ caso, c, hrefContacto, id, mini, grande }: Props) 
           </div>
         </div>
       </dialog>
+      )}
     </article>
   );
 }

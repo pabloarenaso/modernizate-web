@@ -114,6 +114,50 @@ export type Soluciones = {
 
 export type FlujoC = { nombre: Texto; nodos: Texto[] };
 
+export type Servicio = { nombre: Texto; que: Texto; para: Texto; plazo: Texto };
+export type PasoTrabajo = { titulo: Texto; corto: Texto; texto: Texto; puntos: [Texto, Texto, Texto] };
+export type Servicios = {
+  kicker: Texto;
+  titulo: Texto;
+  intro: Texto;
+  etiquetas: { para: Texto; plazo: Texto };
+  items: [Servicio, Servicio, Servicio, Servicio, Servicio, Servicio];
+  nota: Texto;
+};
+export type ComoTrabajamos = {
+  kicker: Texto;
+  titulo: Texto;
+  pasos: [PasoTrabajo, PasoTrabajo, PasoTrabajo, PasoTrabajo];
+  modelo: { titulo: Texto; texto: Texto; puntos: [Texto, Texto, Texto] };
+};
+export type ContactoC = {
+  kicker: Texto;
+  titulo: Texto;
+  intro: Texto;
+  nombre: Texto;
+  correo: Texto;
+  telefono: Texto;
+  opcional: Texto;
+  rubro: Texto;
+  rubroEjemplo: Texto;
+  mensaje: Texto;
+  mensajeEjemplo: Texto;
+  enviar: Texto;
+  enviando: Texto;
+  recibidoTitulo: Texto;
+  recibido: Texto;
+  otro: Texto;
+  error: Texto;
+  limite: Texto;
+  incompleto: Texto;
+  asunto: Texto;
+  oWhatsapp: Texto;
+  whatsapp: Texto;
+  whatsappMensaje: Texto;
+  privacidad: Texto;
+};
+export type PieC = { lema: Texto; derechos: Texto; ingresar: Texto; correo: Texto; whatsapp: Texto; hecho: Texto };
+
 export type Contenido = {
   meta: { titulo: Texto; descripcion: Texto };
   /** Etiqueta del modo revisión (?revision=1). Debe ser texto corto. */
@@ -151,6 +195,10 @@ export type Contenido = {
     equipoNota: Texto;
   };
   soluciones: Soluciones;
+  servicios: Servicios;
+  comoTrabajamos: ComoTrabajamos;
+  contacto: ContactoC;
+  pie: PieC;
   porQue: {
     kicker: Texto;
     titulo: Texto;
