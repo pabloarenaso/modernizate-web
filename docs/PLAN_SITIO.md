@@ -40,25 +40,40 @@ Cerrada el 25 nov 2026. Comprobado con lint, build y curl sobre `next start`. No
 - Primario separado por uso: `--primario-relleno` (noche #3563F7) para botones con texto blanco, `--acento-texto` para texto y enlaces, `--primario` solo para elementos no textuales. Ver `docs/marca.md`.
 - Series de gráficos solo en trazos y rellenos; valores, etiquetas y leyendas con colores de texto.
 
-**Notas para etapas siguientes**
-- `/ingresar` necesitará su propio layout raíz (no hay `app/layout.tsx` común).
 
 ## Etapa 2 · Cabecera, hero y portal
-- [ ] Cabecera fija: navegación (Por qué ahora · Soluciones · Cómo trabajamos · Calcula · Contacto), ES/EN
-- [ ] Botón de modo noche con halo (noche) o sombra (día)
-- [ ] Botón secundario "Ingresar" (a `/ingresar`) y principal "Agenda una conversación"
-- [ ] Hero según `Landing.dc.html`: nubes (día); estrellas y meteoros (noche)
-- [ ] Carrusel de 3 escenas (conversación con agenda, flujo automatizado, panel) con título sincronizado
-- [ ] Pausa al pasar el mouse, movimiento reducido respetado, confeti como easter egg
-- [ ] `/ingresar` como portal de clientes (diseño `Login.dc.html`, vórtice de partículas en azules de la marca a la izquierda):
-  - [ ] El usuario escribe su correo y se le redirige al acceso de su proyecto (subdominio)
-  - [ ] Relación correo/dominio → URL solo en el servidor (variable de entorno o archivo fuera del repo), documentada en `.env.example` sin valores
-  - [ ] Sin coincidencia: mensaje neutro con enlace de contacto
-  - [ ] Límite de intentos por IP
-  - [ ] Nunca una lista pública de clientes (nada en el código ni en el navegador)
-  - [ ] Acceso secundario "Equipo Modernízate", discreto y sin función
-- [ ] Revisión en 1440 y 390 px, día y noche
-- [ ] Lint y build en verde; commit y push
+Cerrada el 25 nov 2026. Comprobado con lint, build, Playwright sobre `next start` (/, /en, /marca, /ingresar en 1440 y 390 px, día y noche, más movimiento reducido): consola sin errores ni avisos.
+- [x] Cabecera fija: navegación (Por qué ahora · Soluciones · Cómo trabajamos · Calcula · Contacto), ES/EN; menú desplegable bajo 1280 px (Esc cierra y devuelve el foco)
+- [x] Botón de modo noche con halo (noche) o sombra (día)
+- [x] Botón secundario "Ingresar" (a `/ingresar`) y principal "Agenda una conversación"
+- [x] Hero según `Landing.dc.html`: nubes (día); estrellas y meteoros (noche), solo CSS
+- [x] Carrusel de 3 escenas hechas en código (conversación con agenda, flujo SVG con punto de luz, panel) con título sincronizado
+- [x] Pausa al pasar el mouse o con el foco, botón visible de pausa e indicadores; se detiene fuera de pantalla; con movimiento reducido no avanza solo y la conversación se ve completa; confeti como easter egg
+- [x] `/ingresar` como portal de clientes (diseño `Login.dc.html`, vórtice en canvas a la izquierda; franja en celular):
+  - [x] El usuario escribe su correo y se le redirige al acceso de su proyecto (subdominio)
+  - [x] Relación correo/dominio → URL solo en el servidor (`PORTAL_CLIENTES_ARCHIVO`), documentada en `.env.example` sin valores
+  - [x] Destinos permitidos configurables (`PORTAL_DESTINOS_PERMITIDOS`, por defecto `*.agmodernizate.cl`)
+  - [x] Sin coincidencia: mensaje neutro con enlace de contacto; tiempo de respuesta mínimo igual para todos los casos
+  - [x] Límite de 5 intentos cada 10 minutos por IP
+  - [x] Nunca una lista pública de clientes (nada en el código ni en el navegador)
+  - [x] Acceso secundario "Equipo Modernízate", discreto y sin función (muestra una nota)
+- [x] Revisión en 1440 y 390 px, día y noche
+- [x] Lint y build en verde; commit y push
+
+**Decisiones de Pablo (25 nov 2026):** `/ingresar` solo en español por ahora (textos en inglés ya en `en.ts`); se acepta el riesgo de que la redirección revele que un correo es cliente (ver `docs/plataforma-vision.md`).
+
+**Decisiones tomadas en la etapa (por revisar)**
+- Se reemplazó `next-themes` (0.4.6, la última, provoca el aviso "Encountered a script tag") por un script propio en `lib/tema.ts` y el hook `hooks/useTema.ts`. Clave en localStorage: `tema`.
+- No se instaló Motion: los cambios de escena usan animaciones CSS, más livianas. Se instalará cuando una sección lo necesite de verdad.
+- `/ingresar` lleva `noindex`.
+- `PORTAL_PROXIES_CONFIABLES` (por defecto 1): cuántos proxies agregan `X-Forwarded-For`. Si Cloudflare queda con proxy activado, debe ser 2 (Etapa 7).
+- En `dominios` se ignoran los dominios públicos (gmail.com, outlook.com…): esos van siempre como correo exacto.
+- Colores de apoyo del hero tomados de la maqueta (`lib/paleta.ts`); avatares oscurecidos para que el blanco encima cumpla AA.
+- Las anclas de la navegación apuntan a secciones que se construyen en las etapas 3 a 5.
+
+**Notas para etapas siguientes**
+- En la Etapa 7, el servicio debe escuchar solo en 127.0.0.1:3200 (detrás de Apache) para que nadie se salte el límite por IP.
+- Capturas de revisión: carpeta de Windows `Descargas\modernizate-capturas\etapa-2`.
 
 ## Etapa 3 · "Por qué ahora" con infografías
 - [ ] Boceto en texto de cada paso (dato, gráfico, frase) aprobado por Pablo **antes de construir**

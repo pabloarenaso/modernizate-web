@@ -33,3 +33,5 @@ agmodernizate.cl no es solo un sitio: con el tiempo será la herramienta interna
 2. **Blog con IA:** los artículos generados llegan siempre como **borrador** y Pablo los aprueba antes de publicar. Publicar contenido masivo sin revisión daña la reputación y el posicionamiento en buscadores. Cada artículo cita sus fuentes.
 3. **Workflows:** n8n queda como motor; la intranet solo lanza, programa y muestra resultados. Las claves de n8n viven en el servidor, nunca en el navegador.
 4. **Portal de clientes:** la parte de redirección ya está decidida (ver `CLAUDE.md`). Que cada cliente vea el estado de su implementación sigue siendo idea futura, con permisos separados.
+   - **Riesgo aceptado (Pablo, 25 nov 2026):** que `/ingresar` redirija revela que ese correo (o su dominio) es cliente. Mitigación actual: límite de 5 intentos cada 10 minutos por IP, mismo mensaje neutro y mismo tiempo de respuesta en todos los casos sin coincidencia.
+   - **Alternativa futura (fase de intranet):** en vez de redirigir, enviar el enlace de acceso por correo y mostrar siempre el mismo mensaje ("si tu correo está registrado, te enviamos el enlace"). Así la página no revela nada.
