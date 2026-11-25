@@ -84,13 +84,30 @@ Cerrada el 25 nov 2026. Comprobado con lint, build, Playwright sobre `next start
 - Decisión: el lienzo de flujo usa diseño vertical salvo en contenedores de 700 px o más, para que los textos de los nodos se lean.
 - Capturas: `Descargas\modernizate-capturas\etapa-2b`.
 
+## Verificar antes de publicar
+Datos que el sitio muestra pero cuya fuente original no se pudo abrir o que vienen de prensa (ver `docs/datos-tendencia.md`):
+- [ ] A1 · Confirmar en un navegador normal el gráfico de McKinsey "AI at work but not at scale" (la serie se tomó de los textos de los informes; el sitio bloquea el acceso automático).
+- [ ] B1 · Informe original del Índice de Transformación Digital 2025 (CCS, PMG, Corfo): hoy se cita Diario Financiero. Opción: pedirlo a la CCS o a PMG.
+- [ ] B2 · Estudio de Strand Partners para AWS: hoy se cita Radio Pauta.
+- [ ] B3 · Encuesta IA Defontana 2025: hoy se cita Emol.
+- [ ] B4 y B5 · Cifras de la CCS y del Banco Central: hoy se citan notas de prensa.
+
 ## Etapa 3 · "Por qué ahora" con infografías
-- [ ] Boceto en texto de cada paso (dato, gráfico, frase) aprobado por Pablo **antes de construir**
-- [ ] Solo cifras de `docs/datos-tendencia.md`, con fuente visible (institución, estudio, año)
-- [ ] Recorrido de 3 o 4 pasos con scroll fijado (sección D): línea de un color con valores por punto, barra apilada con etiquetas directas, cifras grandes; sin eje doble
-- [ ] Tooltip, tabla alternativa accesible y paleta de noche
-- [ ] Redacción "las empresas que la usan reportan…", nunca como causa
-- [ ] Lint y build en verde; commit y push
+Cerrada el 25 nov 2026. Comprobado con lint, build y Playwright sobre `next start` (1440 y 390 px, día y noche, movimiento reducido): consola sin errores.
+- [x] Boceto en texto de cada paso aprobado por Pablo **antes de construir**
+- [x] Solo cifras de `docs/datos-tendencia.md` (`lib/datosTendencia.ts`), con fuente visible bajo cada gráfico o cifra
+- [x] Recorrido de 3 pasos con scroll fijado en escritorio (en celular, cada paso con su gráfico debajo); cierre aparte con la frase, el botón "Ver soluciones" y el 92% como línea secundaria
+- [x] Líneas de un color con valor en cada punto (misma escala 0–100 % para mundo y Chile), barra apilada con etiquetas directas, cifras grandes; sin eje doble
+- [x] Tooltip al pasar el mouse, tabla alternativa ("Ver los datos en una tabla") y paleta de noche; paleta de gráficos validada (daltonismo y contraste) en día y noche
+- [x] Redacción "según las propias empresas", nunca como causa
+- [x] Lint y build en verde; commit y push
+
+**Decisiones de la etapa**
+- A1: serie anual completa 2017–2025 tomada de los informes de McKinsey (2024 = 78 %). No se pudo abrir el gráfico directamente (bloquea el acceso automático): ver "Verificar antes de publicar".
+- B1: el informe original de la CCS no está publicado; se cita Diario Financiero (17 oct 2025), que trae la muestra (967 empresas), en lugar de Radio Pauta.
+- El cierre (paso 4) va como bloque centrado después del recorrido, no fijado.
+- Los gráficos son SVG propios (sin librería) y su ancho sigue al contenedor, para que el texto no se escale.
+- Capturas: `Descargas\modernizate-capturas\etapa-3`.
 
 ## Etapa 4 · Soluciones (`docs/casos-visuales.md`)
 - [ ] "Tienda en línea" en sus dos tamaños, aprobada por Pablo (se reconoce como tienda sin leer el título)
