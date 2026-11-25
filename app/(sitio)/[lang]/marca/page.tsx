@@ -129,15 +129,15 @@ export default async function PaginaMarca({ params }: PageProps<"/[lang]/marca">
       <Seccion titulo={m.logo.titulo}>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <figure className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-linea bg-superficie p-8">
-            <Logo nombre={c.marcaNombre.texto} className="text-2xl" />
+            <Logo nombre={c.marcaNombre.texto} className="text-xl" />
             <Texto as="figcaption" valor={m.logo.principal} className="text-sm text-texto-sec" />
           </figure>
           <figure className="flex flex-col items-center justify-center gap-4 rounded-2xl bg-primario-relleno p-8">
-            <Logo nombre={c.marcaNombre.texto} variante="invertido" className="text-2xl" />
+            <Logo nombre={c.marcaNombre.texto} variante="invertido" className="text-xl" />
             <Texto as="figcaption" valor={m.logo.invertido} className="text-sm text-white" />
           </figure>
           <figure className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-linea bg-superficie p-8">
-            <Logo nombre={c.marcaNombre.texto} variante="agua" className="text-2xl" />
+            <Logo nombre={c.marcaNombre.texto} variante="agua" className="text-xl" />
             <Texto as="figcaption" valor={m.logo.agua} className="text-sm text-texto-sec" />
           </figure>
           <figure className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-linea bg-superficie p-8">

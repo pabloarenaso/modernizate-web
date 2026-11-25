@@ -59,6 +59,24 @@ export type Contenido = {
     menuAbrir: Texto;
     menuCerrar: Texto;
   };
+  portal: {
+    meta: { titulo: Texto };
+    volver: Texto;
+    lema: Texto;
+    lemaTexto: Texto;
+    titulo: Texto;
+    intro: Texto;
+    correo: Texto;
+    correoEjemplo: Texto;
+    continuar: Texto;
+    buscando: Texto;
+    sinCoincidencia: Texto;
+    contacto: Texto;
+    limite: Texto;
+    invalido: Texto;
+    equipo: Texto;
+    equipoNota: Texto;
+  };
   hero: {
     kicker: Texto;
     escenas: [EscenaHero, EscenaHero, EscenaHero];
