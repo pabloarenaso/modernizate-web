@@ -14,6 +14,22 @@ export const es = {
     texto: b("La dirección que buscas no existe o cambió."),
     volver: b("Volver al inicio"),
   },
+  cabecera: {
+    saltar: b("Saltar al contenido"),
+    inicio: b("Modernízate, inicio"),
+    navegacion: b("Principal"),
+    nav: {
+      "por-que-ahora": b("Por qué ahora"),
+      soluciones: b("Soluciones"),
+      "como-trabajamos": b("Cómo trabajamos"),
+      calcula: b("Calcula"),
+      contacto: b("Contacto"),
+    },
+    ingresar: b("Ingresar"),
+    cta: b("Agenda una conversación"),
+    menuAbrir: b("Abrir menú"),
+    menuCerrar: b("Cerrar menú"),
+  },
   inicio: {
     titulo: b("Sitio en construcción"),
     texto: b("Estamos preparando el nuevo sitio de Modernízate."),

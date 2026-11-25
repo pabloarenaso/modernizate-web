@@ -14,6 +14,22 @@ export const en = {
     texto: b("The address you are looking for does not exist or has changed."),
     volver: b("Back to home"),
   },
+  cabecera: {
+    saltar: b("Skip to content"),
+    inicio: b("Modernízate, home"),
+    navegacion: b("Main"),
+    nav: {
+      "por-que-ahora": b("Why now"),
+      soluciones: b("Solutions"),
+      "como-trabajamos": b("How we work"),
+      calcula: b("Calculate"),
+      contacto: b("Contact"),
+    },
+    ingresar: b("Log in"),
+    cta: b("Book a call"),
+    menuAbrir: b("Open menu"),
+    menuCerrar: b("Close menu"),
+  },
   inicio: {
     titulo: b("Site under construction"),
     texto: b("We are preparing the new Modernízate website."),

@@ -32,6 +32,8 @@ export const tokensColor = [
 ] as const;
 export type TokenColor = (typeof tokensColor)[number];
 
+import type { IdSeccion } from "@/lib/secciones";
+
 export type Contenido = {
   meta: { titulo: Texto; descripcion: Texto };
   /** Etiqueta del modo revisión (?revision=1). Debe ser texto corto. */
@@ -40,6 +42,16 @@ export type Contenido = {
   idioma: { etiqueta: Texto; es: Texto; en: Texto };
   tema: { cambiarANoche: Texto; cambiarADia: Texto };
   noEncontrado: { titulo: Texto; texto: Texto; volver: Texto };
+  cabecera: {
+    saltar: Texto;
+    inicio: Texto;
+    navegacion: Texto;
+    nav: Record<IdSeccion, Texto>;
+    ingresar: Texto;
+    cta: Texto;
+    menuAbrir: Texto;
+    menuCerrar: Texto;
+  };
   inicio: { titulo: Texto; texto: Texto; enlaceMarca: Texto };
   marca: {
     meta: { titulo: Texto };
