@@ -50,7 +50,7 @@ export function EscenaConversacion({ c, paso, escribiendo, redactando }: Props) 
   return (
     <div className="aparecer relative flex h-full items-center justify-center lg:justify-end">
       {/* Bandeja del negocio (como en la maqueta): solo en pantallas anchas. */}
-      <div className="absolute left-0 top-1/2 hidden w-[300px] -translate-y-1/2 overflow-hidden rounded-xl border border-linea bg-superficie shadow-[0_24px_50px_-26px_rgba(11,21,48,0.45)] lg:block">
+      <div className="absolute left-0 top-1/2 hidden w-[300px] -translate-y-1/2 xl:w-[340px] overflow-hidden rounded-xl border border-linea bg-superficie shadow-[0_24px_50px_-26px_rgba(11,21,48,0.45)] lg:block">
         <div className="flex items-center justify-between border-b border-linea px-3.5 py-2.5">
           <Texto valor={c.bandeja} className="text-[13px] font-semibold" />
           <span className="rounded-full bg-seleccion px-2 py-0.5 text-[11px] font-semibold text-acento-texto">{c.contactos.length}</span>

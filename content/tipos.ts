@@ -68,6 +68,8 @@ export type Soluciones = {
   tienda: Caso & { escena: EscenaTiendaC };
 };
 
+export type FlujoC = { nombre: Texto; nodos: Texto[] };
+
 export type Contenido = {
   meta: { titulo: Texto; descripcion: Texto };
   /** Etiqueta del modo revisión (?revision=1). Debe ser texto corto. */
@@ -164,15 +166,15 @@ export type Contenido = {
       bandeja: Texto;
     };
     flujo: {
-      nodos: { formulario: Texto; urgente: Texto; avisar: Texto; ficha: Texto; registrar: Texto };
+      flujos: [FlujoC, FlujoC, FlujoC];
       si: Texto;
       no: Texto;
-      ejecutado: Texto;
-      fichaCreada: Texto;
-      nombreFlujo: Texto;
+      agente: Texto;
+      herramientas: Texto;
       activo: Texto;
       ejecutar: Texto;
       guardado: Texto;
+      selector: Texto;
     };
     panel: {
       kpis: [Kpi, Kpi, Kpi];
@@ -182,6 +184,20 @@ export type Contenido = {
       periodo: Texto;
       pedidos: Texto;
       menu: [Texto, Texto, Texto, Texto];
+      masFilas: FilaPanel[];
+      pestanas: [Texto, Texto];
+      reporte: {
+        ventas: Texto;
+        semanas: [Texto, Texto, Texto, Texto];
+        pedidosDia: Texto;
+        medios: Texto;
+        tarjeta: Texto;
+        transferencia: Texto;
+        descargar: Texto;
+        generando: Texto;
+        listo: Texto;
+        archivo: Texto;
+      };
     };
   };
   marca: {

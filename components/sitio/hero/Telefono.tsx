@@ -7,7 +7,7 @@ type Props = { hora: TextoC; bateria: TextoC; children: ReactNode; className?: s
 /** Celular moderno (alto ≈ 2,1 × ancho): marco delgado, isla superior y barra de estado completa. */
 export function Telefono({ hora, bateria, children, className = "" }: Props) {
   return (
-    <div className={`celular relative h-[460px] w-[219px] shrink-0 rounded-[42px] p-[7px] sm:h-[480px] sm:w-[229px] ${className}`}>
+    <div className={`celular relative h-[470px] w-[228px] shrink-0 rounded-[44px] p-[7px] sm:h-[510px] sm:w-[248px] ${className}`}>
       {/* botones laterales */}
       <span aria-hidden="true" className="absolute -left-[3px] top-[22%] h-10 w-[3px] rounded-l bg-[#2a2e38]" />
       <span aria-hidden="true" className="absolute -left-[3px] top-[33%] h-10 w-[3px] rounded-l bg-[#2a2e38]" />

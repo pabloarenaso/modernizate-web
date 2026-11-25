@@ -149,6 +149,45 @@ html[data-revision] [data-estado="borrador"]::after {
 .aparecer-tarde { animation: aparecer-tarde 0.5s ease 0.9s backwards; }
 @keyframes aparecer-tarde { from { opacity: 0; transform: translateY(10px); } }
 
+/* Lienzo de automatización: punto de luz, nodos que se encienden y cámara que lo sigue. */
+.punto-flujo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 3px var(--primario), 0 0 14px 4px rgba(61, 107, 255, 0.6);
+  offset-rotate: 0deg;
+  opacity: 0;
+  animation: recorrer linear;
+}
+.punto-herramienta { width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px; box-shadow: 0 0 0 2px #6d4aff, 0 0 10px 3px rgba(109, 74, 255, 0.5); }
+@keyframes recorrer {
+  from { offset-distance: 0%; opacity: 1; }
+  to { offset-distance: 100%; opacity: 1; }
+}
+.trazo-ok { stroke-dasharray: 1; stroke-dashoffset: 1; animation: dibujar linear forwards; }
+@keyframes dibujar { to { stroke-dashoffset: 0; } }
+.nodo-encender { animation: encender 0.3s ease forwards; }
+@keyframes encender { to { border-color: #12a150; box-shadow: 0 0 0 4px rgba(18, 161, 80, 0.15); } }
+.nodo-encendido { border-color: #12a150; }
+.insignia-ok { opacity: 0; transform: scale(0.4); animation: insignia 0.3s ease forwards; }
+@keyframes insignia { to { opacity: 1; transform: none; } }
+.paneo { animation: paneo var(--dur-pan) ease-in-out 0.2s both; }
+@keyframes paneo { to { transform: translateX(var(--pan)); } }
+[data-pausado] .paneo, [data-pausado] .trazo-ok, [data-pausado] .nodo-encender, [data-pausado] .insignia-ok { animation-play-state: paused; }
+
+/* Panel: dona que se dibuja, barra de descarga y botón pulsado. */
+.dona { stroke-dasharray: 0 100; animation: dona 0.9s ease forwards; }
+@keyframes dona { to { stroke-dasharray: var(--arco); } }
+.barra-progreso { width: 0; animation: progreso 2.2s ease-in-out forwards; }
+@keyframes progreso { to { width: 100%; } }
+.pulsar { animation: pulsar 0.6s ease 0.4s; }
+@keyframes pulsar { 50% { transform: scale(0.92); filter: brightness(1.2); } }
+
 /* Burbujas con colita. */
 .burbuja { position: relative; }
 .burbuja-recibida { border-top-left-radius: 0; }
@@ -245,9 +284,46 @@ html[data-revision] [data-estado="borrador"]::after {
   70% { opacity: 1; }
   100% { transform: rotate(215deg) translateX(-900px); opacity: 0; }
 }
+/* Día: partículas de luz que suben y destellos que cruzan el cielo (mismo movimiento que los meteoros). */
+.particula {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 30%, #8fb0ff 60%, transparent 72%);
+  box-shadow: 0 0 10px 2px rgba(61, 107, 255, 0.35);
+  opacity: 0;
+  animation: flotar 7s ease-in-out infinite;
+}
+@keyframes flotar {
+  0% { opacity: 0; transform: translateY(0) scale(0.6); }
+  30% { opacity: 0.95; }
+  70% { opacity: 0.8; }
+  100% { opacity: 0; transform: translateY(-70px) scale(1.1); }
+}
+.destello {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px 2px rgba(110, 160, 255, 0.9);
+  opacity: 0;
+  animation: caer 6s linear infinite;
+}
+.destello::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 130px;
+  height: 2px;
+  transform: translateY(-50%);
+  border-radius: 2px;
+  background: linear-gradient(90deg, #9ec1ff, rgba(158, 193, 255, 0));
+}
+.destello-cobalto { box-shadow: 0 0 8px 2px rgba(31, 79, 224, 0.7); }
+.destello-cobalto::before { background: linear-gradient(90deg, #3d6bff, rgba(61, 107, 255, 0)); }
 .solo-dia, .solo-noche { display: none; }
 [data-theme="light"] .solo-dia, [data-theme="dark"] .solo-noche { display: block; }
-[data-pausado] .nube, [data-pausado] .estrella, [data-pausado] .meteoro, [data-pausado] .punto-escribiendo {
+[data-pausado] .nube, [data-pausado] .estrella, [data-pausado] .meteoro, [data-pausado] .particula, [data-pausado] .destello, [data-pausado] .punto-escribiendo, [data-pausado] .paso-flujo, [data-pausado] .punto-flujo {
   animation-play-state: paused;
 }
 .aparecer { animation: aparecer 0.45s ease both; }
@@ -306,7 +382,8 @@ html[data-revision] [data-estado="borrador"]::after {
   /* Fondos quietos: las nubes quedan a la vista y los meteoros se ocultan. */
   .nube { animation: none; transform: translateX(var(--reposo, 700px)); }
   .estrella { animation: none; opacity: 0.7; }
-  .meteoro, .chispa { display: none; }
+  .meteoro, .chispa, .destello { display: none; }
+  .particula { animation: none; opacity: 0.6; }
   .checks { color: var(--chat-leido); }
 }
 
