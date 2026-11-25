@@ -17,7 +17,8 @@ export function proxy(request: NextRequest) {
 
   const url = request.nextUrl.clone();
   url.pathname = `/es${pathname === "/" ? "" : pathname}`;
-  return NextResponse.rewrite(url);
+  // Con el origen de request.url (no el de nextUrl, que toma X-Forwarded-Proto) Next la trata como interna.
+  return NextResponse.rewrite(new URL(url.pathname + url.search, request.url));
 }
 
 export const config = {
