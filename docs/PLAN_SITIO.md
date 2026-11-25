@@ -92,6 +92,15 @@ Datos que el sitio muestra pero cuya fuente original no se pudo abrir o que vien
 - [ ] B3 · Encuesta IA Defontana 2025: hoy se cita Emol.
 - [ ] B4 y B5 · Cifras de la CCS y del Banco Central: hoy se citan notas de prensa.
 
+### Ajustes 2c (hero realista)
+Cerrados el 25 nov 2026.
+- [x] Chat sin superposiciones: los mensajes no se encogen y los antiguos salen por arriba (revisado cuadro a cuadro con Playwright, 1440 y 390, día y noche)
+- [x] Vuelve la bandeja de contactos con estados junto al chat (solo desde 1024 px; en celular, solo el teléfono)
+- [x] Celular realista: proporción 2,1, isla, barra de estado con batería, cabecera con avatar e íconos, papel tapiz, separador "Hoy", colitas, hora y checks que pasan a azul, "escribiendo…", barra con emoji, clip, cámara y micrófono que cambia a enviar; la hora agendada baja como notificación
+- [x] Colores de app de mensajería genérica (sin marcas) en `lib/paleta.ts`, día y noche
+- [x] Alto del texto fijo para las tres escenas (los botones no saltan); columnas rebalanceadas
+- [x] Flujo con barra de herramienta (nombre, "Guardado", interruptor Activo, Ejecutar) y controles de zoom; panel como dashboard con menú lateral, período, variaciones y últimos pedidos
+
 ## Etapa 3 · "Por qué ahora" con infografías
 Cerrada el 25 nov 2026. Comprobado con lint, build y Playwright sobre `next start` (1440 y 390 px, día y noche, movimiento reducido): consola sin errores.
 - [x] Boceto en texto de cada paso aprobado por Pablo **antes de construir**

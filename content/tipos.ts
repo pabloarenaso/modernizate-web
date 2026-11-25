@@ -36,10 +36,10 @@ import type { IdSeccion } from "@/lib/secciones";
 
 /** Escena del hero: título en dos partes (la segunda en color de acento), párrafo y textos del marco. */
 export type EscenaHero = { tituloA: Texto; tituloB: Texto; parrafo: Texto; marco: Texto; punto: Texto };
-export type Contacto = { nombre: Texto; ultimo: Texto; etapa: Texto };
+export type Contacto = { nombre: Texto; ultimo: Texto; etapa: Texto; hora: Texto };
 export type Mensaje = { quien: "bot" | "usuario"; texto: Texto } | { quien: "tarjeta" };
-export type Kpi = { etiqueta: Texto; valor: Texto };
-export type FilaPanel = { nombre: Texto; estado: Texto };
+export type Kpi = { etiqueta: Texto; valor: Texto; variacion: Texto };
+export type FilaPanel = { pedido: Texto; nombre: Texto; monto: Texto; estado: Texto };
 
 export type Contenido = {
   meta: { titulo: Texto; descripcion: Texto };
@@ -132,7 +132,7 @@ export type Contenido = {
       clienteFinal: Texto;
       guion: Mensaje[];
       tarjeta: { titulo: Texto; detalle: Texto };
-      telefono: { nombre: Texto; estado: Texto; hora: Texto; escribir: Texto };
+      telefono: { nombre: Texto; estado: Texto; hora: Texto; escribir: Texto; hoy: Texto; bateria: Texto; ahora: Texto; app: Texto };
       bandeja: Texto;
     };
     flujo: {
@@ -141,12 +141,19 @@ export type Contenido = {
       no: Texto;
       ejecutado: Texto;
       fichaCreada: Texto;
+      nombreFlujo: Texto;
+      activo: Texto;
+      ejecutar: Texto;
+      guardado: Texto;
     };
     panel: {
       kpis: [Kpi, Kpi, Kpi];
       grafico: Texto;
       dias: [Texto, Texto, Texto, Texto, Texto, Texto, Texto];
       filas: [FilaPanel, FilaPanel, FilaPanel];
+      periodo: Texto;
+      pedidos: Texto;
+      menu: [Texto, Texto, Texto, Texto];
     };
   };
   marca: {

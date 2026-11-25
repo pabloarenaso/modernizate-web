@@ -140,7 +140,28 @@ export function EscenaFlujo({ c, enMovimiento, reducido }: Props) {
   const listo = reducido || terminado;
 
   return (
-    <div ref={caja} className="lienzo-flujo aparecer relative flex h-full items-center justify-center overflow-hidden rounded-2xl border border-linea p-3">
+    <div className="aparecer flex h-full flex-col overflow-hidden rounded-2xl border border-linea bg-superficie shadow-[0_24px_60px_-28px_rgba(11,21,48,0.4)]">
+      {/* Barra de la herramienta: nombre del flujo, estado y ejecutar */}
+      <div className="flex shrink-0 items-center gap-2 border-b border-linea px-3 py-2">
+        <span aria-hidden="true" className="flex size-7 items-center justify-center rounded-md bg-seleccion text-acento-texto">
+          <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M5 6h4v4H5zM15 14h4v4h-4zM9 8h3a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2" /></svg>
+        </span>
+        <div className="flex min-w-0 flex-1 flex-col leading-tight">
+          <Texto valor={c.nombreFlujo} className="truncate text-[13px] font-semibold" />
+          <Texto valor={c.guardado} className="text-[10.5px] text-texto-sec" />
+        </div>
+        <span className="flex items-center gap-1.5 text-[11.5px] font-medium">
+          <span aria-hidden="true" className="relative h-4 w-7 rounded-full bg-[#12A150]">
+            <span className="absolute right-0.5 top-0.5 size-3 rounded-full bg-white shadow" />
+          </span>
+          <Texto valor={c.activo} className="hidden sm:inline" />
+        </span>
+        <span className="ml-1 inline-flex items-center gap-1 rounded-md bg-primario-relleno px-2.5 py-1.5 text-[11.5px] font-semibold text-white">
+          <svg aria-hidden="true" viewBox="0 0 24 24" className="size-3" fill="currentColor"><path d="M7 4v16l13-8z" /></svg>
+          <Texto valor={c.ejecutar} />
+        </span>
+      </div>
+    <div ref={caja} className="lienzo-flujo relative flex min-h-0 flex-1 items-center justify-center overflow-hidden p-3">
       <svg viewBox={d.vista} className="h-full max-h-full w-full" role="img" aria-labelledby="flujo-desc">
         <desc id="flujo-desc">
           {[c.nodos.formulario, c.nodos.urgente, c.nodos.avisar, c.nodos.ficha, c.nodos.registrar].map((t) => t.texto).join(" → ")}
@@ -210,6 +231,15 @@ export function EscenaFlujo({ c, enMovimiento, reducido }: Props) {
           <Texto valor={c.fichaCreada} className="aparecer rounded-lg border border-linea bg-superficie px-3 py-1.5 font-medium text-texto shadow-sm" />
         )}
       </div>
+      {/* Controles de zoom, como en un editor real */}
+      <div aria-hidden="true" className="absolute bottom-3 left-3 flex flex-col overflow-hidden rounded-lg border border-linea bg-superficie text-texto-sec shadow-sm">
+        {["M12 5v14M5 12h14", "M5 12h14", "M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"].map((dd) => (
+          <span key={dd} className="flex size-7 items-center justify-center border-b border-linea last:border-b-0">
+            <svg viewBox="0 0 24 24" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d={dd} /></svg>
+          </span>
+        ))}
+      </div>
+    </div>
     </div>
   );
 }

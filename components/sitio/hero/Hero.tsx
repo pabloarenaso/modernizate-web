@@ -13,7 +13,7 @@ import { FondoHero } from "./FondoHero";
 
 type Props = { c: Contenido["hero"]; cta: TextoC; hrefContacto: string; hrefMetodo: string };
 
-type Estado = { escena: number; paso: number; escribiendo: boolean; espera: number };
+type Estado = { escena: number; paso: number; escribiendo: boolean; redactando: boolean; espera: number };
 const TIC = 1200;
 const ESPERAS = [3, 5, 6];
 
@@ -24,7 +24,7 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
   const reducido = useMovimientoReducido();
   const [encima, setEncima] = useState(false);
   const [detenido, setDetenido] = useState(false);
-  const [e, setE] = useState<Estado>({ escena: 0, paso: 0, escribiendo: false, espera: 0 });
+  const [e, setE] = useState<Estado>({ escena: 0, paso: 0, escribiendo: false, redactando: false, espera: 0 });
   const { disparar, confeti } = useConfeti();
   const guion = c.conversacion.guion;
 
@@ -38,17 +38,18 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
         if (s.escena === 0 && s.paso < guion.length) {
           const sig = guion[s.paso];
           if (sig.quien === "bot" && !s.escribiendo) return { ...s, escribiendo: true };
-          return { ...s, escribiendo: false, paso: s.paso + 1 };
+          if (sig.quien === "usuario" && !s.redactando) return { ...s, redactando: true };
+          return { ...s, escribiendo: false, redactando: false, paso: s.paso + 1 };
         }
         if (s.espera < ESPERAS[s.escena]) return { ...s, espera: s.espera + 1 };
         const escena = (s.escena + 1) % 3;
-        return { escena, paso: 0, escribiendo: false, espera: 0 };
+        return { escena, paso: 0, escribiendo: false, redactando: false, espera: 0 };
       });
     }, TIC);
     return () => clearInterval(id);
   }, [avanza, guion]);
 
-  const ir = (i: number) => setE({ escena: i, paso: 0, escribiendo: false, espera: 0 });
+  const ir = (i: number) => setE({ escena: i, paso: 0, escribiendo: false, redactando: false, espera: 0 });
   const esc = c.escenas[e.escena];
   // Con movimiento reducido la conversación se muestra completa.
   const paso = reducido ? guion.length : e.paso;
@@ -61,15 +62,28 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
       className="hero-puntos relative overflow-hidden border-b border-linea"
     >
       <FondoHero />
-      <div className="relative mx-auto grid max-w-[1240px] items-center gap-8 px-6 pb-10 pt-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-10 lg:pb-12 lg:pt-10">
+      <div className="relative mx-auto grid max-w-[1240px] items-center gap-8 px-6 pb-10 pt-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 lg:pb-12 lg:pt-10">
         <div className="flex min-w-0 flex-col gap-5">
           <Texto as="p" valor={c.kicker} className="kicker text-acento-texto" />
-          <div key={e.escena} className="aparecer flex flex-col gap-4 lg:min-h-[228px]">
-            <h1 className="disp text-[30px] leading-[1.08] sm:text-[38px] xl:text-[42px]">
-              <Texto valor={esc.tituloA} />
-              <Texto valor={esc.tituloB} className="text-acento-texto" />
-            </h1>
-            <Texto as="p" valor={esc.parrafo} className="max-w-[520px] text-base leading-relaxed text-texto-sec sm:text-[17px]" />
+          {/* Las tres versiones ocupan la misma celda: el alto es el de la más larga y los botones no saltan. */}
+          <div className="grid">
+            {c.escenas.map((s, i) => {
+              const actual = i === e.escena;
+              const Titulo = actual ? "h1" : "p";
+              return (
+                <div
+                  key={actual ? `a${e.escena}` : i}
+                  aria-hidden={actual ? undefined : true}
+                  className={`col-start-1 row-start-1 flex flex-col gap-4 ${actual ? "aparecer" : "invisible"}`}
+                >
+                  <Titulo className="disp text-[30px] leading-[1.08] sm:text-[38px] xl:text-[42px]">
+                    <Texto valor={s.tituloA} />
+                    <Texto valor={s.tituloB} className="text-acento-texto" />
+                  </Titulo>
+                  <Texto as="p" valor={s.parrafo} className="max-w-[520px] text-base leading-relaxed text-texto-sec sm:text-[17px]" />
+                </div>
+              );
+            })}
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <a href={hrefContacto} className="inline-flex h-12 items-center rounded-[10px] bg-primario-relleno px-6 font-semibold text-white transition-[filter] hover:brightness-110">
@@ -103,9 +117,9 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
             role="group"
             aria-roledescription="diapositiva"
             aria-label={`${c.carrusel.diapositiva.texto} ${e.escena + 1} ${c.carrusel.de.texto} 3: ${esc.marco.texto}`}
-            className="h-[440px] sm:h-[470px]"
+            className="h-[470px] sm:h-[490px]"
           >
-            {e.escena === 0 && <EscenaConversacion c={c.conversacion} paso={paso} escribiendo={!reducido && e.escribiendo} />}
+            {e.escena === 0 && <EscenaConversacion c={c.conversacion} paso={paso} escribiendo={!reducido && e.escribiendo} redactando={!reducido && e.redactando} />}
             {e.escena === 1 && <EscenaFlujo c={c.flujo} enMovimiento={enMovimiento} reducido={reducido} />}
             {e.escena === 2 && <EscenaPanel c={c.panel} titulo={esc.marco} />}
           </div>
