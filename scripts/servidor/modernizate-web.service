@@ -1,0 +1,19 @@
+[Unit]
+Description=modernizate-web (sitio agmodernizate.cl)
+After=network.target
+
+[Service]
+Type=simple
+User=pablo
+Group=pablo
+WorkingDirectory=/home/pablo/apps/modernizate-web
+Environment=NODE_ENV=production
+Environment=NEXT_TELEMETRY_DISABLED=1
+EnvironmentFile=/home/pablo/apps/modernizate-web/.env
+ExecStart=/home/pablo/.nvm/versions/node/v22.23.4/bin/node /home/pablo/apps/modernizate-web/node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3200
+Restart=on-failure
+RestartSec=5
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

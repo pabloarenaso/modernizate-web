@@ -1,0 +1,3 @@
+# Reglas sin clave de modernizate-web. Instalado como /etc/sudoers.d/mz-modernizate-web (root 440).
+# "" = sin argumentos. Revisar con visudo -cf antes de instalar. (Sin base de datos: no hay respaldo.)
+pablo ALL=(root) NOPASSWD: /usr/local/sbin/mz-reiniciar-modernizate-web ""
