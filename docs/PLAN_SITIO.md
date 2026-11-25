@@ -119,7 +119,7 @@ Cerrada el 25 nov 2026. Comprobado con lint, build y Playwright sobre `next star
 - Capturas: `Descargas\modernizate-capturas\etapa-3`.
 
 ## Etapa 4 · Soluciones (`docs/casos-visuales.md`)
-- [ ] "Tienda en línea" en sus dos tamaños, aprobada por Pablo (se reconoce como tienda sin leer el título)
+- [ ] "Tienda en línea" en sus dos tamaños, aprobada por Pablo (se reconoce como tienda sin leer el título). Construida en código el 25 nov 2026; capturas en `etapa-4-tienda`, **esperando aprobación** antes de las otras tres.
 - [ ] Las otras tres escenas al mismo nivel
 - [ ] Tarjetas con miniatura, título y una frase
 - [ ] Panel al abrir: escena grande, 3 líneas (dónde partimos, cómo lo armamos, qué recibes) y "Lo quiero para mi negocio" → Contacto con el caso preseleccionado

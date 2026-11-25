@@ -48,6 +48,48 @@ export const en = {
     equipo: b("Modernízate team"),
     equipoNota: b("Team access will be available with the intranet."),
   },
+  soluciones: {
+    kicker: b("Solutions"),
+    titulo: b("What we build, and how we build it with you."),
+    intro: b("Open each case and see it in three steps: where we start, how we build it together and what you get in the end. You know your business; we know the technology."),
+    abrir: b("Walk through the case"),
+    cerrar: b("Close"),
+    tienda: {
+      titulo: b("Online store"),
+      frase: b("Your catalog, payments and orders in a dashboard your team runs without depending on anyone."),
+      lineas: [
+        { etiqueta: b("Where we start"), titulo: b("How you sell today"), texto: b("We look at how customers buy from you today, by message, on social media or in person, and what gets complicated: confirming payments, sorting orders or answering about stock.") },
+        { etiqueta: b("How we build it"), titulo: b("Your store with your products"), texto: b("We organize your catalog with your photos and prices, connect a payment method in your business's name and agree with you on delivery or pickup.") },
+        { etiqueta: b("What you get"), titulo: b("A store that sells on its own"), texto: b("Your customers buy and pay without intermediaries, and you see every order sorted by status in a simple dashboard.") },
+      ],
+      cta: b("I want this for my business"),
+      escena: {
+        descripcion: b("Illustration: a fictional online store in a browser, with three products, a cart with two items, an approved payment and today's order list."),
+        dominio: b("tutienda.cl"),
+        marca: b("Café Altiplano"),
+        nav: [b("Coffee"), b("Gear"), b("Gifts")],
+        buscar: b("Search products"),
+        carrito: b("Cart"),
+        aviso: b("Free shipping on orders over $30,000"),
+        seccion: b("Best sellers"),
+        productos: [
+          { nombre: b("Whole bean coffee 250 g"), detalle: b("Medium roast"), precio: b("$8,990") },
+          { nombre: b("French press"), detalle: b("Glass, 600 ml"), precio: b("$16,000") },
+          { nombre: b("Ceramic mug"), detalle: b("Handmade"), precio: b("$7,990") },
+        ],
+        agregar: b("Add"),
+        pago: { titulo: b("Payment approved"), pedido: b("Order #1042"), monto: b("$24,990"), medio: b("Card ending in 4821"), tarjeta: b("Card"), transferencia: b("Bank transfer") },
+        pedidos: {
+          titulo: b("Today's orders"),
+          filas: [
+            { numero: b("#1042"), cliente: b("Valentina R."), estado: b("Paid") },
+            { numero: b("#1041"), cliente: b("Tomás G."), estado: b("Preparing") },
+            { numero: b("#1040"), cliente: b("Daniela M."), estado: b("Shipped") },
+          ],
+        },
+      },
+    },
+  },
   porQue: {
     kicker: b("Why now"),
     titulo: b("Technology is already in your market"),

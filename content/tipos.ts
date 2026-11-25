@@ -41,6 +41,33 @@ export type Mensaje = { quien: "bot" | "usuario"; texto: Texto } | { quien: "tar
 export type Kpi = { etiqueta: Texto; valor: Texto; variacion: Texto };
 export type FilaPanel = { pedido: Texto; nombre: Texto; monto: Texto; estado: Texto };
 
+export type Linea = { etiqueta: Texto; titulo: Texto; texto: Texto };
+export type EscenaTiendaC = {
+  descripcion: Texto;
+  dominio: Texto;
+  marca: Texto;
+  nav: [Texto, Texto, Texto];
+  buscar: Texto;
+  carrito: Texto;
+  aviso: Texto;
+  seccion: Texto;
+  productos: [Producto, Producto, Producto];
+  agregar: Texto;
+  pago: { titulo: Texto; pedido: Texto; monto: Texto; medio: Texto; tarjeta: Texto; transferencia: Texto };
+  pedidos: { titulo: Texto; filas: [FilaPedido, FilaPedido, FilaPedido] };
+};
+export type Producto = { nombre: Texto; detalle: Texto; precio: Texto };
+export type FilaPedido = { numero: Texto; cliente: Texto; estado: Texto };
+export type Caso = { titulo: Texto; frase: Texto; lineas: [Linea, Linea, Linea]; cta: Texto };
+export type Soluciones = {
+  kicker: Texto;
+  titulo: Texto;
+  intro: Texto;
+  abrir: Texto;
+  cerrar: Texto;
+  tienda: Caso & { escena: EscenaTiendaC };
+};
+
 export type Contenido = {
   meta: { titulo: Texto; descripcion: Texto };
   /** Etiqueta del modo revisión (?revision=1). Debe ser texto corto. */
@@ -77,6 +104,7 @@ export type Contenido = {
     equipo: Texto;
     equipoNota: Texto;
   };
+  soluciones: Soluciones;
   porQue: {
     kicker: Texto;
     titulo: Texto;

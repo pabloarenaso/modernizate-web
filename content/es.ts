@@ -48,6 +48,48 @@ export const es = {
     equipo: b("Equipo Modernízate"),
     equipoNota: b("El acceso del equipo estará disponible con la intranet."),
   },
+  soluciones: {
+    kicker: b("Soluciones"),
+    titulo: b("Lo que construimos y cómo lo construimos contigo."),
+    intro: b("Abre cada caso y míralo en tres pasos: dónde partimos, cómo lo armamos juntos y qué recibes al final. Tú conoces tu negocio; nosotros, la tecnología."),
+    abrir: b("Recorrer el caso"),
+    cerrar: b("Cerrar"),
+    tienda: {
+      titulo: b("Tienda en línea"),
+      frase: b("Tu catálogo, pagos y pedidos en un panel que tu equipo maneja sin depender de nadie."),
+      lineas: [
+        { etiqueta: b("Dónde partimos"), titulo: b("Cómo vendes hoy"), texto: b("Vemos cómo te compran hoy, por mensajes, redes o en persona, y qué se te complica: confirmar pagos, ordenar pedidos o responder por stock.") },
+        { etiqueta: b("Cómo lo armamos"), titulo: b("Tu tienda con tus productos"), texto: b("Ordenamos tu catálogo con tus fotos y precios, conectamos un medio de pago a nombre de tu negocio y definimos contigo el despacho o retiro.") },
+        { etiqueta: b("Qué recibes"), titulo: b("Una tienda que vende sola"), texto: b("Tus clientes compran y pagan sin intermediarios, y tú ves cada pedido ordenado por estado en un panel simple.") },
+      ],
+      cta: b("Lo quiero para mi negocio"),
+      escena: {
+        descripcion: b("Ilustración: tienda en línea ficticia en un navegador, con tres productos, carrito con dos productos, un pago aprobado y la lista de pedidos del día."),
+        dominio: b("tutienda.cl"),
+        marca: b("Café Altiplano"),
+        nav: [b("Cafés"), b("Accesorios"), b("Regalos")],
+        buscar: b("Buscar productos"),
+        carrito: b("Carrito"),
+        aviso: b("Despacho gratis en compras sobre $30.000"),
+        seccion: b("Lo más vendido"),
+        productos: [
+          { nombre: b("Café de grano 250 g"), detalle: b("Tostado medio"), precio: b("$8.990") },
+          { nombre: b("Prensa francesa"), detalle: b("Vidrio, 600 ml"), precio: b("$16.000") },
+          { nombre: b("Taza de cerámica"), detalle: b("Hecha a mano"), precio: b("$7.990") },
+        ],
+        agregar: b("Agregar"),
+        pago: { titulo: b("Pago aprobado"), pedido: b("Pedido #1042"), monto: b("$24.990"), medio: b("Tarjeta terminada en 4821"), tarjeta: b("Tarjeta"), transferencia: b("Transferencia") },
+        pedidos: {
+          titulo: b("Pedidos de hoy"),
+          filas: [
+            { numero: b("#1042"), cliente: b("Valentina R."), estado: b("Pagado") },
+            { numero: b("#1041"), cliente: b("Tomás G."), estado: b("En preparación") },
+            { numero: b("#1040"), cliente: b("Daniela M."), estado: b("Despachado") },
+          ],
+        },
+      },
+    },
+  },
   porQue: {
     kicker: b("Por qué ahora"),
     titulo: b("La tecnología ya está en tu mercado"),
