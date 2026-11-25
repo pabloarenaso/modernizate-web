@@ -75,6 +75,15 @@ Cerrada el 25 nov 2026. Comprobado con lint, build, Playwright sobre `next start
 - En la Etapa 7, el servicio debe escuchar solo en 127.0.0.1:3200 (detrás de Apache) para que nadie se salte el límite por IP.
 - Capturas de revisión: carpeta de Windows `Descargas\modernizate-capturas\etapa-2`.
 
+**Ajustes 2b (25 nov 2026, pedidos por Pablo)**
+- [x] Hero compacto: título de máximo 3 líneas a 1440 px y hero completo dentro de 1440×900 (termina en 696 px)
+- [x] Indicador "escribiendo…" corregido (la burbuja vacía era el indicador sin sus puntos)
+- [x] Escenas con su propio marco: celular con chat (más bandeja al lado en pantallas ≥1280 px), lienzo de flujo con cuadrícula de puntos y nodos con ícono, panel como tarjeta
+- [x] Sin "Demostración"; nota "Escenas ilustrativas" bajo el carrusel
+- [x] Propuestas de imágenes en `docs/imagenes-propuestas.md` (pendiente de elección de Pablo)
+- Decisión: el lienzo de flujo usa diseño vertical salvo en contenedores de 700 px o más, para que los textos de los nodos se lean.
+- Capturas: `Descargas\modernizate-capturas\etapa-2b`.
+
 ## Etapa 3 · "Por qué ahora" con infografías
 - [ ] Boceto en texto de cada paso (dato, gráfico, frase) aprobado por Pablo **antes de construir**
 - [ ] Solo cifras de `docs/datos-tendencia.md`, con fuente visible (institución, estudio, año)
