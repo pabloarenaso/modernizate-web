@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Modernízate — Landing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F4FE0}a:hover{color:#1639A8}
+.wm{font-family:'Archivo',sans-serif;font-stretch:125%;font-variation-settings:'wdth' 125;font-weight:800;line-height:1}
+.ac{position:relative;display:inline-block}
+.ac i{position:absolute;left:50%;top:-0.34em;width:0.13em;height:0.30em;margin-left:-0.02em;background:#1F4FE0;transform:skewX(-38deg);border-radius:0.02em}
+.dots{background-image:radial-gradient(rgba(120,150,220,.35) 1.2px,transparent 1.2px);background-size:20px 20px}
+.h2{font-family:'Archivo',sans-serif;font-weight:600;letter-spacing:-0.02em;margin:0}
+.disp{font-family:'Archivo',sans-serif;font-stretch:110%;font-variation-settings:'wdth' 110;font-weight:800;letter-spacing:-0.015em;text-transform:uppercase}
+.kick{font-size:13px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin:0}
+.sky{position:absolute;top:0;right:0;bottom:0;width:62%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 30%);mask-image:linear-gradient(90deg,transparent 0%,#000 30%)}
+.cloud{position:absolute;border-radius:50%;background:#FFFFFF;filter:blur(14px);opacity:.95}
+.c1{width:320px;height:110px;top:12%;left:-30%;animation:drift 46s linear infinite}
+.c2{width:240px;height:90px;top:46%;left:-40%;animation:drift 38s linear infinite;animation-delay:-14s;opacity:.85}
+.c3{width:420px;height:140px;top:68%;left:-50%;animation:drift 60s linear infinite;animation-delay:-30s;opacity:.8}
+.c4{width:200px;height:70px;top:28%;left:-30%;animation:drift 32s linear infinite;animation-delay:-22s;opacity:.7}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(1500px)}}
+.star{position:absolute;width:2px;height:2px;border-radius:50%;background:#FFFFFF;animation:tw 3s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.25}50%{opacity:1}}
+.meteor{position:absolute;width:2px;height:2px;border-radius:50%;background:#DCE6FF;box-shadow:0 0 6px 1px rgba(160,190,255,.7);transform:rotate(215deg);animation:fall 6s linear infinite}
+.meteor::before{content:"";position:absolute;top:50%;width:90px;height:1px;transform:translateY(-50%);background:linear-gradient(90deg,#8FB0FF,transparent)}
+@keyframes fall{0%{transform:rotate(215deg) translateX(0);opacity:1}70%{opacity:1}100%{transform:rotate(215deg) translateX(-900px);opacity:0}}
+.pulse{position:relative}
+.pulse::after{content:"";position:absolute;inset:-4px;border-radius:14px;border:2px solid #1F4FE0;animation:ring 1.8s ease-out infinite;pointer-events:none}
+@keyframes ring{0%{opacity:.7;transform:scale(1)}100%{opacity:0;transform:scale(1.12)}}
+.seg{transition:stroke-width .5s cubic-bezier(.2,.9,.25,1.3),opacity .5s ease}
+.needle{transition:transform .8s cubic-bezier(.2,.9,.25,1.15)}
+.fadein{animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.egg{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:999px;border:1px dashed #9BB3EE;background:transparent;font:500 12px Inter,sans-serif;cursor:pointer}
+.bit{position:absolute;left:50%;top:50%;animation:burst 1.3s cubic-bezier(.1,.7,.3,1) forwards}
+@keyframes burst{0%{transform:translate(-50%,-50%) scale(1);opacity:1}70%{opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(220deg) scale(.6);opacity:0}}
+.word{display:inline-block;opacity:0;filter:blur(8px);animation:wf .5s ease forwards}
+@keyframes wf{to{opacity:1;filter:blur(0)}}
+.sq{filter:url(#squiggle)}
+.grow{transform-origin:bottom;animation:grow .7s cubic-bezier(.2,.9,.25,1) both}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.gooey{transition:box-shadow .3s ease,transform .3s ease}.gooey:focus-within{box-shadow:0 0 0 4px rgba(31,79,224,.18);transform:scale(1.02)}
+.blob{animation:blob .6s cubic-bezier(.2,.9,.25,1.3) both}
+@keyframes blob{0%{transform:scale(.6);border-radius:40px;opacity:0}60%{transform:scale(1.05);opacity:1}100%{transform:scale(1)}}
+.dot{width:6px;height:6px;border-radius:50%;animation:bounce 1s ease-in-out infinite}
+@keyframes bounce{0%,80%,100%{transform:translateY(0);opacity:.5}40%{transform:translateY(-4px);opacity:1}}
+.hl{background-image:linear-gradient(transparent 55%,rgba(232,177,12,.55) 55%);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .9s ease;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.hl.on{background-size:100% 100%}
+.flipA{animation:flipA .9s ease}.flipB{animation:flipB .9s ease}
+@keyframes flipA{from{transform:perspective(600px) rotateX(0)}to{transform:perspective(600px) rotateX(360deg)}}
+@keyframes flipB{from{transform:perspective(600px) rotateX(0)}to{transform:perspective(600px) rotateX(360deg)}}
+.noscroll{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-y:auto}
+.noscroll::-webkit-scrollbar{display:none}
+@media (prefers-reduced-motion: reduce){.cloud,.star,.meteor,.pulse::after,.fadein,.word{animation:none;opacity:1;filter:none}.needle{transition:none}}
+input[type=range]{accent-color:#1F4FE0}
+</style>
+</helmet>
+<div style="font-family: Inter, sans-serif; color: {{t.text}}; background: {{t.bg}}; position: relative">
+  <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+    <filter id="squiggle"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" result="n"><animate attributeName="baseFrequency" values="0.02;0.04;0.02" dur="0.6s" repeatCount="indefinite"></animate></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="6"></feDisplacementMap></filter>
+  </svg>
+
+  <header style="border-bottom: 1px solid {{t.line}}; background: {{t.bg}}">
+    <nav style="max-width: 1240px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+      <a href="#inicio" style="text-decoration: none; color: {{t.brand}}" aria-label="Modernízate, inicio"><span class="wm" style="font-size: 20px">MODERN<span class="ac">I<i></i></span>ZATE</span></a>
+      <div style="display: flex; gap: 28px; font-size: 15px; font-weight: 500; flex-wrap: wrap">
+                <a href="#metodo" style="color: {{t.muted}}; text-decoration: none">{{tx.n2}}</a>
+        <a href="#soluciones" style="color: {{t.muted}}; text-decoration: none">{{tx.n3}}</a>
+        <a href="#problema" style="color: {{t.muted}}; text-decoration: none">{{tx.n1}}</a>
+        <a href="#contacto" style="color: {{t.muted}}; text-decoration: none">{{tx.n4}}</a>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: center">
+        <div style="display: flex; height: 32px; border: 1px solid {{t.line}}; border-radius: 999px; overflow: hidden" role="group" aria-label="Idioma">
+          <sc-for list="{{langs}}" as="l" hint-placeholder-count="2"><button onClick="{{l.pick}}" style="width: 38px; border: 0; background: {{l.bg}}; color: {{l.color}}; font: 600 11px Inter, sans-serif; cursor: pointer">{{l.label}}</button></sc-for>
+        </div>
+        <button onClick="{{toggleNight}}" aria-label="{{nightLabel}}" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid {{t.line}}; background: {{t.surface}}; color: {{t.text}}; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: {{nightGlow}}; transition: box-shadow .5s ease">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="{{nightIcon}}"></path></svg>
+        </button>
+        <a href="#contacto" style="display: inline-flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 10px; background: {{t.primary}}; color: #FFFFFF; font-weight: 600; font-size: 15px; text-decoration: none">{{tx.cta}}</a>
+      </div>
+    </nav>
+  </header>
+
+  <section id="inicio" class="dots" style="background-color: {{t.heroBg}}; border-bottom: 1px solid {{t.line}}; position: relative; overflow: hidden">
+    <sc-if value="{{day}}" hint-placeholder-val="{{ true }}">
+      <div class="sky" style="background: #E6EEFF" aria-hidden="true"><div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div><div class="cloud c4"></div></div>
+    </sc-if>
+    <sc-if value="{{night}}" hint-placeholder-val="{{ false }}">
+      <div style="position: absolute; inset: 0; overflow: hidden" aria-hidden="true">
+        <sc-for list="{{stars}}" as="s" hint-placeholder-count="30"><div class="star" style="left: {{s.x}}; top: {{s.y}}; animation-delay: {{s.d}}"></div></sc-for>
+        <sc-for list="{{meteors}}" as="m" hint-placeholder-count="6"><div class="meteor" style="left: {{m.x}}; top: {{m.y}}; animation-delay: {{m.d}}; animation-duration: {{m.dur}}"></div></sc-for>
+      </div>
+    </sc-if>
+    <div style="max-width: 1240px; margin: 0 auto; padding: 96px 24px 104px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center; position: relative">
+      <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+        <p class="kick" style="color: {{t.accentText}}">{{tx.hk}}</p>
+        <div style="min-height: 300px; display: flex; flex-direction: column; gap: 20px">
+          <sc-for list="{{heroTexts}}" as="ht" hint-placeholder-count="1">
+            <sc-if value="{{ht.on}}" hint-placeholder-val="{{ true }}">
+              <div class="fadein" style="display: flex; flex-direction: column; gap: 20px">
+                <h1 class="h2 disp" style="font-size: 50px; line-height: 1.08">{{ht.a}}<span style="color: {{t.accentText}}">{{ht.b}}</span></h1>
+                <p style="margin: 0; font-size: 19px; line-height: 1.6; color: {{t.muted}}; max-width: 520px">{{ht.p}}</p>
+              </div>
+            </sc-if>
+          </sc-for>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center">
+          <a href="#contacto" style="display: inline-flex; align-items: center; height: 50px; padding: 0 24px; border-radius: 10px; background: {{t.primary}}; color: #FFFFFF; font-weight: 600; text-decoration: none">{{tx.cta}}</a>
+          <a href="#metodo" style="display: inline-flex; align-items: center; height: 50px; padding: 0 24px; border-radius: 10px; background: {{t.surface}}; border: 1px solid {{t.line}}; color: {{t.text}}; font-weight: 600; text-decoration: none">{{tx.hw}}</a>
+          <div style="position: relative">
+            <button class="egg" onClick="{{boom}}" style="color: {{t.muted}}">✦ No me hagas clic</button>
+            <sc-for list="{{bursts}}" as="bu" hint-placeholder-count="0"><div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none"><sc-for list="{{bits}}" as="b" hint-placeholder-count="40"><span class="bit" style="background: {{b.c}}; width: {{b.s}}; height: {{b.s}}; border-radius: {{b.rad}}; --dx: {{b.dx}}; --dy: {{b.dy}}"></span></sc-for></div></sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+        <div style="background: {{t.surface}}; border: 1px solid {{t.line}}; border-radius: 12px; box-shadow: 0 24px 60px -24px rgba(11,21,48,0.35); overflow: hidden; height: 460px; display: flex; flex-direction: column">
+          <div style="height: 44px; flex-shrink: 0; border-bottom: 1px solid {{t.line}}; display: flex; align-items: center; gap: 10px; padding: 0 16px; font-size: 12px; color: {{t.muted}}">
+            <span style="width: 10px; height: 10px; border-radius: 50%; background: {{t.line}}"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: {{t.line}}"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: {{t.line}}"></span>
+            <span style="margin-left: 6px; font-weight: 600; color: {{t.text}}">{{slideTitle}}</span>
+            <span style="margin-left: auto">{{slideTag}}</span>
+          </div>
+          <sc-if value="{{slide0}}" hint-placeholder-val="{{ true }}">
+            <div style="flex: 1; min-height: 0; display: flex">
+            <div style="width: 38%; flex-shrink: 0; border-right: 1px solid {{t.line}}; overflow: hidden">
+              <sc-for list="{{chats}}" as="c" hint-placeholder-count="4">
+                <div style="display: flex; gap: 10px; padding: 12px; border-bottom: 1px solid {{t.line}}; background: {{c.bg}}; box-shadow: inset 3px 0 0 {{c.bar}}">
+                  <div style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; background: {{c.av}}; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{c.ini}}</div>
+                  <div style="min-width: 0; display: flex; flex-direction: column; gap: 4px">
+                    <div style="font-size: 13px; font-weight: 600">{{c.name}}</div>
+                    <div style="font-size: 12px; color: {{t.muted}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.last}}</div>
+                    <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 5px; font-size: 11px; border: 1px solid {{t.line}}; border-radius: 999px; padding: 1px 8px"><span style="width: 6px; height: 6px; border-radius: 50%; background: {{c.dot}}"></span>{{c.stage}}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 14px 16px; overflow: hidden; background: {{t.soft}}">
+              <sc-for list="{{msgs}}" as="m" hint-placeholder-count="4">
+                <div class="fadein" style="align-self: {{m.align}}; max-width: 82%">
+                  <sc-if value="{{m.isText}}" hint-placeholder-val="{{ true }}">
+                    <div style="background: {{m.bg}}; border: 1px solid {{m.border}}; color: {{m.color}}; border-radius: 10px; padding: 8px 12px; font-size: 13px; line-height: 1.5">{{m.text}}<sc-if value="{{m.isBot}}" hint-placeholder-val="{{ false }}"><div style="text-align: right; font-size: 10px; color: {{t.accentText}}; margin-top: 2px">IA</div></sc-if></div>
+                  </sc-if>
+                  <sc-if value="{{m.isCard}}" hint-placeholder-val="{{ false }}">
+                    <div style="border: 1px solid {{t.line}}; background: {{t.surface}}; border-radius: 10px; padding: 10px 12px; display: flex; gap: 10px; align-items: center; min-width: 260px">
+                      <div style="width: 32px; height: 32px; border-radius: 8px; background: {{t.primary}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></div>
+                      <div><div style="font-size: 13px; font-weight: 600">Cita confirmada · jueves 16:30</div><div style="font-size: 12px; color: {{t.muted}}">Limpieza dental · registrada en la agenda</div></div>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{m.isSys}}" hint-placeholder-val="{{ false }}">
+                    <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: {{m.color}}; background: {{m.bg}}; border-radius: 999px; padding: 5px 12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg>{{m.text}}</div>
+                  </sc-if>
+                </div>
+              </sc-for>
+              <sc-if value="{{typing}}" hint-placeholder-val="{{ false }}">
+                <div style="align-self: flex-end; display: flex; gap: 4px; padding: 10px 12px; border-radius: 10px; background: {{t.surface}}; border: 1px solid {{t.line}}" aria-label="El asistente está escribiendo"><span class="dot" style="background: {{t.muted}}"></span><span class="dot" style="background: {{t.muted}}; animation-delay: .15s"></span><span class="dot" style="background: {{t.muted}}; animation-delay: .3s"></span></div>
+              </sc-if>
+            </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{slide1}}" hint-placeholder-val="{{ false }}">
+            <div class="fadein" style="flex: 1; min-height: 0; position: relative; background: #141414">
+              <img src="/_blob/75d9c87c519e84f9868f8010a6496f10" alt="Flujo de automatización con varios pasos conectados" style="width: 100%; height: 100%; object-fit: cover; display: block">
+              <div style="position: absolute; left: 0; right: 0; top: 0; padding: 22px 24px 40px; background: linear-gradient(180deg, rgba(10,16,34,0.85), rgba(10,16,34,0))"><div class="disp" style="font-size: 26px; line-height: 1.1; color: #FFFFFF">Automatiza tus procesos</div></div>
+            </div>
+          </sc-if>
+          <sc-if value="{{slide2}}" hint-placeholder-val="{{ false }}">
+            <div class="fadein" style="flex: 1; min-height: 0; display: flex; background: {{t.soft}}">
+              <div style="width: 64px; flex-shrink: 0; background: #14287A; display: flex; flex-direction: column; align-items: center; gap: 14px; padding-top: 16px">
+                <div style="width: 26px; height: 26px; border-radius: 6px; background: rgba(255,255,255,.18)"></div><div style="width: 26px; height: 26px; border-radius: 6px; background: rgba(255,255,255,.08)"></div><div style="width: 26px; height: 26px; border-radius: 6px; background: rgba(255,255,255,.08)"></div><div style="width: 26px; height: 26px; border-radius: 6px; background: rgba(255,255,255,.08)"></div>
+              </div>
+              <div style="flex: 1; min-width: 0; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+                <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+                  <sc-for list="{{miniKpis}}" as="k" hint-placeholder-count="3">
+                    <div style="background: {{t.surface}}; border: 1px solid {{t.line}}; border-radius: 8px; padding: 10px"><div style="font-size: 11px; color: {{t.muted}}">{{k.l}}</div><div style="font-family: Archivo, sans-serif; font-size: 22px; font-weight: 700">{{k.v}}</div><div style="height: 3px; border-radius: 2px; margin-top: 6px; background: {{k.c}}; width: {{k.w}}"></div></div>
+                  </sc-for>
+                </div>
+                <div style="flex: 1; min-height: 0; background: {{t.surface}}; border: 1px solid {{t.line}}; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+                  <div style="font-size: 12px; font-weight: 600">Citas por día</div>
+                  <div style="flex: 1; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; align-items: end">
+                    <sc-for list="{{miniBars}}" as="b" hint-placeholder-count="7"><div class="grow" style="height: {{b.h}}; border-radius: 4px 4px 0 0; background: {{b.c}}"></div></sc-for>
+                  </div>
+                </div>
+                <div style="background: {{t.surface}}; border: 1px solid {{t.line}}; border-radius: 8px">
+                  <sc-for list="{{miniRows}}" as="r" hint-placeholder-count="3">
+                    <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid {{t.line}}; font-size: 12px"><span style="width: 22px; height: 22px; border-radius: 50%; background: {{r.av}}"></span><span style="flex: 1">{{r.n}}</span><span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px"><span style="width: 6px; height: 6px; border-radius: 50%; background: {{r.c}}"></span>{{r.s}}</span></div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; justify-content: center">
+          <sc-for list="{{dots}}" as="d" hint-placeholder-count="3">
+            <button onClick="{{d.go}}" aria-label="{{d.label}}" style="width: {{d.w}}; height: 8px; border-radius: 999px; border: 0; padding: 0; background: {{d.bg}}; cursor: pointer; transition: width .3s ease"></button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="soluciones" style="max-width: 1240px; margin: 0 auto; padding: 110px 24px; display: flex; flex-direction: column; gap: 40px">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+      <div style="display: flex; flex-direction: column; gap: 16px; max-width: 720px">
+        <p class="kick" style="color: {{t.accentText}}">{{tx.k3}}</p>
+        <h2 class="h2 disp" style="font-size: 38px; line-height: 1.12">{{tx.t3}}</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.7; color: {{t.muted}}">{{tx.p3}}</p>
+      </div>
+      <button class="egg" onClick="{{openModal}}" style="color: {{t.muted}}">? ¿Qué hay detrás de esto?</button>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
+      <sc-for list="{{cases}}" as="c" hint-placeholder-count="4">
+        <div style="border: 1px solid {{t.line}}; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; background: {{t.surface}}">
+          <div style="aspect-ratio: 16 / 9; background: {{c.thumbBg}}; border-bottom: 1px solid {{t.line}}">
+            <sc-if value="{{c.k0}}" hint-placeholder-val="{{ false }}">
+              <svg viewBox="0 0 320 180" width="100%" height="100%" role="img" aria-label="Miniatura de una bandeja de atención por WhatsApp"><rect width="320" height="180" fill="#F4F7FC"></rect><rect width="62" height="180" fill="#14287A"></rect><rect x="12" y="16" width="38" height="6" rx="3" fill="#FFFFFF"></rect><rect x="12" y="36" width="38" height="12" rx="3" fill="#2E46A0"></rect><rect x="12" y="56" width="30" height="5" rx="2" fill="#8FA3E0"></rect><rect x="12" y="70" width="30" height="5" rx="2" fill="#8FA3E0"></rect><rect x="62" width="96" height="180" fill="#FFFFFF"></rect><circle cx="78" cy="22" r="8" fill="#D9446C"></circle><rect x="92" y="16" width="50" height="5" rx="2" fill="#0B1530"></rect><rect x="92" y="25" width="40" height="4" rx="2" fill="#C9D6F2"></rect><circle cx="78" cy="52" r="8" fill="#0E9F9A"></circle><rect x="92" y="46" width="44" height="5" rx="2" fill="#0B1530"></rect><rect x="92" y="55" width="34" height="4" rx="2" fill="#C9D6F2"></rect><circle cx="78" cy="82" r="8" fill="#9B5DE5"></circle><rect x="92" y="76" width="48" height="5" rx="2" fill="#0B1530"></rect><rect x="92" y="85" width="30" height="4" rx="2" fill="#C9D6F2"></rect><rect x="170" y="20" width="90" height="22" rx="6" fill="#E9F7EF" stroke="#CFEBDC"></rect><rect x="210" y="50" width="98" height="30" rx="6" fill="#FFFFFF" stroke="#C9D6F2"></rect><rect x="170" y="88" width="70" height="18" rx="6" fill="#E9F7EF" stroke="#CFEBDC"></rect><rect x="200" y="114" width="108" height="30" rx="6" fill="#FFFFFF" stroke="#1F4FE0"></rect><rect x="208" y="122" width="14" height="14" rx="3" fill="#1F4FE0"></rect><rect x="228" y="124" width="60" height="4" rx="2" fill="#0B1530"></rect><rect x="228" y="132" width="44" height="4" rx="2" fill="#C9D6F2"></rect></svg>
+            </sc-if>
+            <sc-if value="{{c.k1}}" hint-placeholder-val="{{ false }}">
+              <svg viewBox="0 0 320 180" width="100%" height="100%" role="img" aria-label="Miniatura de una tienda en línea con productos"><rect width="320" height="180" fill="#FFFFFF"></rect><rect width="320" height="26" fill="#F4F7FC"></rect><rect x="12" y="10" width="40" height="6" rx="3" fill="#2F8F46"></rect><rect x="200" y="10" width="26" height="5" rx="2" fill="#8A94A6"></rect><rect x="234" y="10" width="26" height="5" rx="2" fill="#8A94A6"></rect><circle cx="296" cy="13" r="7" fill="#2F8F46"></circle><text x="296" y="16" font-size="8" fill="#FFFFFF" text-anchor="middle" font-family="Inter, sans-serif">2</text><rect x="12" y="38" width="90" height="70" rx="6" fill="#E3F5E8"></rect><path d="M57 92c-12-6-14-22 0-34 14 12 12 28 0 34z" fill="#2F8F46"></path><rect x="115" y="38" width="90" height="70" rx="6" fill="#FDF1E3"></rect><circle cx="160" cy="70" r="16" fill="#D9780A"></circle><rect x="218" y="38" width="90" height="70" rx="6" fill="#E3F5F4"></rect><path d="M263 92c-10-8-10-22 0-30 10 8 10 22 0 30z" fill="#0E9F9A"></path><rect x="12" y="116" width="60" height="5" rx="2" fill="#0B1530"></rect><rect x="12" y="126" width="34" height="5" rx="2" fill="#2F8F46"></rect><rect x="115" y="116" width="54" height="5" rx="2" fill="#0B1530"></rect><rect x="115" y="126" width="34" height="5" rx="2" fill="#2F8F46"></rect><rect x="218" y="116" width="64" height="5" rx="2" fill="#0B1530"></rect><rect x="218" y="126" width="34" height="5" rx="2" fill="#2F8F46"></rect><rect x="12" y="146" width="90" height="20" rx="5" fill="#1F4FE0"></rect><rect x="115" y="146" width="90" height="20" rx="5" fill="#1F4FE0"></rect><rect x="218" y="146" width="90" height="20" rx="5" fill="#1F4FE0"></rect></svg>
+            </sc-if>
+            <sc-if value="{{c.k2}}" hint-placeholder-val="{{ false }}">
+              <svg viewBox="0 0 320 180" width="100%" height="100%" role="img" aria-label="Miniatura de un sistema de actas con folios y reportes"><rect width="320" height="180" fill="#F4F7FC"></rect><rect x="16" y="14" width="288" height="152" rx="8" fill="#FFFFFF" stroke="#E2E8F2"></rect><rect x="30" y="28" width="80" height="7" rx="3" fill="#0B1530"></rect><rect x="232" y="24" width="58" height="16" rx="4" fill="#1F4FE0"></rect><rect x="30" y="50" width="260" height="14" fill="#F4F7FC"></rect><rect x="36" y="55" width="30" height="4" rx="2" fill="#8A94A6"></rect><rect x="96" y="55" width="40" height="4" rx="2" fill="#8A94A6"></rect><rect x="170" y="55" width="40" height="4" rx="2" fill="#8A94A6"></rect><rect x="246" y="55" width="30" height="4" rx="2" fill="#8A94A6"></rect><g fill="#0B1530"><rect x="36" y="76" width="24" height="4" rx="2"></rect><rect x="36" y="96" width="24" height="4" rx="2"></rect><rect x="36" y="116" width="24" height="4" rx="2"></rect><rect x="36" y="136" width="24" height="4" rx="2"></rect></g><g fill="#C9D6F2"><rect x="96" y="76" width="56" height="4" rx="2"></rect><rect x="96" y="96" width="46" height="4" rx="2"></rect><rect x="96" y="116" width="52" height="4" rx="2"></rect><rect x="96" y="136" width="40" height="4" rx="2"></rect><rect x="170" y="76" width="46" height="4" rx="2"></rect><rect x="170" y="96" width="52" height="4" rx="2"></rect><rect x="170" y="116" width="40" height="4" rx="2"></rect><rect x="170" y="136" width="48" height="4" rx="2"></rect></g><g fill="#D93036"><rect x="246" y="72" width="22" height="12" rx="2"></rect><rect x="246" y="92" width="22" height="12" rx="2"></rect><rect x="246" y="112" width="22" height="12" rx="2"></rect><rect x="246" y="132" width="22" height="12" rx="2"></rect></g><g fill="#E2E8F2"><rect x="30" y="86" width="260" height="1"></rect><rect x="30" y="106" width="260" height="1"></rect><rect x="30" y="126" width="260" height="1"></rect></g></svg>
+            </sc-if>
+            <sc-if value="{{c.k3}}" hint-placeholder-val="{{ false }}">
+              <svg viewBox="0 0 320 180" width="100%" height="100%" role="img" aria-label="Miniatura de un flujo de automatización con nodos conectados"><rect width="320" height="180" fill="#151821"></rect><g fill="#2A2F3C"><circle cx="20" cy="20" r="1"></circle><circle cx="60" cy="40" r="1"></circle><circle cx="300" cy="160" r="1"></circle></g><path d="M58 90 H86 M126 90 C150 90 150 50 172 50 M126 90 C150 90 150 130 172 130 M212 50 C236 50 236 90 256 90 M212 130 C236 130 236 90 256 90" fill="none" stroke="#5B6478" stroke-width="1.5"></path><rect x="22" y="72" width="36" height="36" rx="10" fill="#232838" stroke="#3A4256"></rect><path d="M34 84l12 6-12 6z" fill="#E8890C"></path><rect x="86" y="72" width="40" height="36" rx="6" fill="#232838" stroke="#3A4256"></rect><path d="M98 96l8-12 8 12z" fill="none" stroke="#7EA2FF" stroke-width="2"></path><rect x="172" y="32" width="40" height="36" rx="6" fill="#232838" stroke="#3A4256"></rect><circle cx="192" cy="50" r="8" fill="none" stroke="#0E9F9A" stroke-width="2"></circle><rect x="172" y="112" width="40" height="36" rx="6" fill="#232838" stroke="#3A4256"></rect><rect x="182" y="124" width="20" height="12" rx="2" fill="none" stroke="#9B5DE5" stroke-width="2"></rect><rect x="256" y="72" width="40" height="36" rx="6" fill="#232838" stroke="#3A4256"></rect><path d="M266 90l6 6 12-12" fill="none" stroke="#12A150" stroke-width="2.5"></path><g fill="#8A94A6" font-family="Inter, sans-serif" font-size="7" text-anchor="middle"><text x="40" y="120">Formulario</text><text x="106" y="120">Reglas</text><text x="192" y="80">Ficha</text><text x="192" y="160">Aviso</text><text x="276" y="120">Listo</text></g></svg>
+            </sc-if>
+          </div>
+          <div style="padding: 18px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1">
+            <span style="align-self: flex-start; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; color: {{c.tagColor}}; background: {{c.tagBg}}">{{c.tag}}</span>
+            <div style="font-family: Archivo, sans-serif; font-size: 19px; font-weight: 600">{{c.t}}</div>
+            <div style="font-size: 14px; line-height: 1.6; color: {{t.muted}}">{{c.short}}</div>
+            <button onClick="{{c.open}}" style="margin-top: auto; align-self: flex-start; height: 38px; padding: 0 14px; border-radius: 8px; border: 1px solid {{t.line}}; background: {{t.surface}}; color: {{t.accentText}}; font: 600 13px Inter, sans-serif; cursor: pointer">Recorrer el caso →</button>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+  <section id="problema" style="max-width: 1240px; margin: 0 auto; padding: 100px 24px; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start; position: relative">
+    <div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+      <p class="kick" style="color: {{t.accentText}}">{{tx.k1}}</p>
+      <h2 class="h2 disp {{sqClass}}" style="font-size: 38px; line-height: 1.12">{{tx.t1}}</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.7; color: {{t.muted}}">{{tx.p1}}</p>
+      <div><button class="egg" onClick="{{toggleSq}}" style="color: {{t.muted}}">〰 Esto no es un botón</button></div>
+    </div>
+    <div style="flex: 1 1 600px; min-width: 0">
+      <sc-if value="{{calcClosed}}" hint-placeholder-val="{{ true }}">
+        <div class="dots" style="border: 1px solid {{t.line}}; border-radius: 12px; background-color: {{t.soft}}; padding: 32px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start">
+          <div style="font-family: Archivo, sans-serif; font-size: 24px; font-weight: 600; line-height: 1.25">¿Quieres saber cuánta carga podrías automatizar?</div>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: {{t.muted}}">Marca tus tareas, ajusta las horas y el valor de tu hora. Toma un minuto.</p>
+          <button class="pulse" onClick="{{openCalc}}" style="height: 46px; padding: 0 22px; border-radius: 12px; border: 0; background: {{t.primary}}; color: #FFFFFF; font: 600 15px Inter, sans-serif; cursor: pointer">Pruébalo tú mismo →</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{calcOpen}}" hint-placeholder-val="{{ false }}">
+        <div class="fadein" style="border: 1px solid {{t.line}}; border-radius: 12px; background: {{t.surface}}; padding: 20px; display: flex; flex-wrap: wrap; gap: 20px">
+          <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+            <sc-for list="{{tasks}}" as="tk" hint-placeholder-count="5">
+              <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 8px; background: {{tk.bg}}">
+                <input type="checkbox" id="{{tk.id}}" checked="{{tk.on}}" onChange="{{tk.toggle}}" style="width: 16px; height: 16px; accent-color: #1F4FE0">
+                <label for="{{tk.id}}" style="flex: 1; min-width: 0; font-size: 13px; font-weight: 500; color: {{tk.color}}">{{tk.label}}</label>
+                <button onClick="{{tk.dec}}" aria-label="Restar una hora" style="width: 28px; height: 28px; border-radius: 6px; border: 1px solid {{t.line}}; background: {{t.surface}}; color: {{t.text}}; cursor: pointer">−</button>
+                <span style="width: 34px; text-align: center; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; color: {{tk.color}}">{{tk.h}} h</span>
+                <button onClick="{{tk.inc}}" aria-label="Sumar una hora" style="width: 28px; height: 28px; border-radius: 6px; border: 1px solid {{t.line}}; background: {{t.surface}}; color: {{t.text}}; cursor: pointer">+</button>
+              </div>
+            </sc-for>
+            <div style="display: flex; flex-direction: column; gap: 6px; padding: 8px 8px 0">
+              <label for="valor" style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 500"><span>Valor de tu hora</span><span style="font-weight: 700; font-variant-numeric: tabular-nums">{{rateLabel}}</span></label>
+              <input id="valor" type="range" min="3000" max="40000" step="1000" value="{{rate}}" onChange="{{setRate}}" style="width: 100%">
+            </div>
+          </div>
+          <div style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 8px">
+            <svg width="220" height="132" viewBox="0 -4 220 136" role="img" aria-label="{{meterLabel}}">
+              <path class="seg" d="{{arcG}}" fill="none" stroke="#12A150" style="stroke-width: {{seg.wG}}; opacity: {{seg.oG}}"></path>
+              <path class="seg" d="{{arcY}}" fill="none" stroke="#E8B10C" style="stroke-width: {{seg.wY}}; opacity: {{seg.oY}}"></path>
+              <path class="seg" d="{{arcR}}" fill="none" stroke="#D93036" style="stroke-width: {{seg.wR}}; opacity: {{seg.oR}}"></path>
+              <g class="needle" style="transform: rotate({{deg}}deg); transform-origin: 110px 110px">
+                <line x1="110" y1="110" x2="110" y2="34" stroke="{{t.text}}" stroke-width="3" stroke-linecap="round"></line>
+              </g>
+              <circle cx="110" cy="110" r="8" fill="{{t.text}}"></circle>
+            </svg>
+            <div style="text-align: center">
+              <div style="font-family: Archivo, sans-serif; font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums">{{total}} h <span style="font-family: Inter, sans-serif; font-size: 13px; font-weight: 500; color: {{t.muted}}">por semana</span></div>
+              <div style="display: inline-flex; margin-top: 4px; font-size: 13px; font-weight: 600; padding: 3px 10px; border-radius: 999px; color: {{zoneText}}; background: {{zoneBg}}">{{zoneIcon}} {{zoneTitle}}</div>
+            </div>
+            <div style="width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+              <div style="background: {{t.soft}}; border-radius: 8px; padding: 10px"><div style="font-size: 11px; color: {{t.muted}}">Te cuesta al mes</div><div style="font-family: Archivo, sans-serif; font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums">{{monthCost}}</div></div>
+              <div style="background: {{t.soft}}; border-radius: 8px; padding: 10px"><div style="font-size: 11px; color: {{t.muted}}">Podrías liberar</div><div style="font-family: Archivo, sans-serif; font-size: 18px; font-weight: 700; color: {{t.accentText}}; font-variant-numeric: tabular-nums">~{{freed}} h/sem</div></div>
+            </div>
+            <a href="#contacto" style="align-self: stretch; text-align: center; height: 40px; line-height: 40px; border-radius: 10px; background: {{t.primary}}; color: #FFFFFF; font-weight: 600; font-size: 14px; text-decoration: none">Quiero recuperar ese tiempo</a>
+          </div>
+          <p style="flex-basis: 100%; margin: 0; font-size: 11px; color: {{t.muted}}">Cifras referenciales para ilustrar. Base: jornada de 45 h semanales y 4,3 semanas por mes. El ahorro real se calcula en el diagnóstico.</p>
+        </div>
+      </sc-if>
+    </div></section>
+
+  <section id="metodo" style="background: {{t.soft}}; border-top: 1px solid {{t.line}}; border-bottom: 1px solid {{t.line}}">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 110px 24px; display: flex; flex-direction: column; gap: 44px">
+      <div style="display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center">
+        <p class="kick" style="color: {{t.accentText}}">{{tx.k2}}</p>
+        <h2 class="h2 disp" style="font-size: 38px; line-height: 1.12">{{tx.t2}}</h2>
+      </div>
+      <div style="position: relative; padding: 0 24px">
+        <div style="position: absolute; left: 12.5%; right: 12.5%; top: 35px; height: 2px; background: {{t.line}}" aria-hidden="true"></div>
+        <div style="position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: start">
+          <sc-for list="{{steps}}" as="st" hint-placeholder-count="4">
+            <button onClick="{{st.open}}" style="background: none; border: 0; padding: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; font-family: Inter, sans-serif; color: {{t.text}}">
+              <span style="width: 72px; height: 72px; border-radius: 50%; background: {{st.color}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: Archivo, sans-serif; font-size: 26px; font-weight: 700; box-shadow: 0 0 0 6px {{t.soft}}, 0 10px 24px -10px {{st.color}}">{{st.n}}</span>
+              <span style="font-size: 16px; font-weight: 600">{{st.t}}</span>
+              <span style="font-size: 13px; color: {{t.muted}}; max-width: 180px; line-height: 1.5">{{st.short}}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center">
+        <sc-if value="{{revealClosed}}" hint-placeholder-val="{{ true }}">
+          <button class="pulse" onClick="{{openReveal}}" style="height: 48px; padding: 0 24px; border-radius: 12px; border: 0; background: {{t.primary}}; color: #FFFFFF; font: 600 15px Inter, sans-serif; cursor: pointer">Apriétame para ver cada paso en detalle</button>
+        </sc-if>
+      </div>
+      <sc-if value="{{revealOpen}}" hint-placeholder-val="{{ false }}">
+        <div class="fadein" style="display: flex; flex-wrap: wrap; border: 1px solid {{t.line}}; border-radius: 12px; overflow: hidden; background: {{t.surface}}">
+          <div class="noscroll" onScroll="{{onRevealScroll}}" style="flex: 1 1 380px; min-width: 0; height: 420px; overflow-y: auto; padding: 0 36px; box-sizing: border-box">
+            <sc-for list="{{steps}}" as="st" hint-placeholder-count="4">
+              <div style="height: 420px; display: flex; flex-direction: column; justify-content: center; gap: 14px; opacity: {{st.op}}; transition: opacity .4s ease">
+                <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: {{st.textColor}}">Paso {{st.n}} de 4</p>
+                <div class="{{st.titleClass}}" style="font-family: Archivo, sans-serif; font-size: 28px; font-weight: 600; display: inline-block; align-self: flex-start">{{st.t}}</div>
+                <p style="margin: 0; font-size: 16px; line-height: 1.7; color: {{t.muted}}"><span class="{{st.descClass}}">{{st.d}}</span></p>
+                <div style="display: flex; flex-direction: column; gap: 6px">
+                  <sc-for list="{{st.items}}" as="it" hint-placeholder-count="3"><div style="display: flex; gap: 10px; font-size: 15px"><span style="width: 8px; height: 8px; margin-top: 7px; flex-shrink: 0; border-radius: 2px; background: {{st.color}}"></span>{{it}}</div></sc-for>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span style="position: relative"><button class="egg" onClick="{{st.eggFn}}" style="color: {{t.muted}}">{{st.egg}}</button><sc-if value="{{st.isLast}}" hint-placeholder-val="{{ false }}"><sc-for list="{{stepBursts}}" as="bu" hint-placeholder-count="0"><div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none"><sc-for list="{{bits}}" as="b" hint-placeholder-count="40"><span class="bit" style="background: {{b.c}}; width: {{b.s}}; height: {{b.s}}; border-radius: {{b.rad}}; --dx: {{b.dx}}; --dy: {{b.dy}}"></span></sc-for></div></sc-for></sc-if></span><span style="font-size: 12px; color: {{t.muted}}">{{st.hint}}</span></div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="flex: 1 1 340px; min-width: 0; min-height: 420px; background: {{cur.tint}}; display: flex; align-items: center; justify-content: center; position: relative; transition: background .5s ease">
+            <button onClick="{{closeReveal}}" aria-label="Cerrar detalle" style="position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border-radius: 8px; border: 1px solid {{t.line}}; background: {{t.surface}}; color: {{t.text}}; cursor: pointer">✕</button>
+            <sc-if value="{{is1}}" hint-placeholder-val="{{ true }}">
+              <svg class="fadein" width="240" height="190" viewBox="0 0 220 180" role="img" aria-label="Ilustración: una conversación"><rect x="18" y="24" width="120" height="58" rx="10" fill="#FFFFFF" stroke="#1F4FE0" stroke-width="2"></rect><path d="M40 82 l-8 18 l24 -18" fill="#FFFFFF" stroke="#1F4FE0" stroke-width="2"></path><rect x="34" y="42" width="70" height="6" rx="3" fill="#C9D6F2"></rect><rect x="34" y="56" width="50" height="6" rx="3" fill="#C9D6F2"></rect><rect x="84" y="98" width="118" height="58" rx="10" fill="#1F4FE0"></rect><path d="M178 156 l8 18 l-24 -18" fill="#1F4FE0"></path><rect x="100" y="116" width="76" height="6" rx="3" fill="#FFFFFF" opacity=".8"></rect><rect x="100" y="130" width="52" height="6" rx="3" fill="#FFFFFF" opacity=".8"></rect></svg>
+            </sc-if>
+            <sc-if value="{{is2}}" hint-placeholder-val="{{ false }}">
+              <svg class="fadein" width="240" height="190" viewBox="0 0 220 180" role="img" aria-label="Ilustración: un diagnóstico"><rect x="40" y="16" width="112" height="148" rx="10" fill="#FFFFFF" stroke="#D9780A" stroke-width="2"></rect><rect x="70" y="8" width="52" height="18" rx="6" fill="#D9780A"></rect><path d="M58 54 l6 6 l12 -12" fill="none" stroke="#12A150" stroke-width="3" stroke-linecap="round"></path><rect x="84" y="50" width="52" height="6" rx="3" fill="#F3D3AE"></rect><path d="M58 84 l6 6 l12 -12" fill="none" stroke="#12A150" stroke-width="3" stroke-linecap="round"></path><rect x="84" y="80" width="44" height="6" rx="3" fill="#F3D3AE"></rect><rect x="60" y="110" width="12" height="12" rx="3" fill="none" stroke="#D9780A" stroke-width="2"></rect><rect x="84" y="112" width="40" height="6" rx="3" fill="#F3D3AE"></rect><circle cx="160" cy="126" r="24" fill="#FFFFFF" fill-opacity=".6" stroke="#0B1530" stroke-width="3"></circle><path d="M177 143 l18 18" stroke="#0B1530" stroke-width="5" stroke-linecap="round"></path></svg>
+            </sc-if>
+            <sc-if value="{{is3}}" hint-placeholder-val="{{ false }}">
+              <svg class="fadein" width="260" height="190" viewBox="0 0 240 180" role="img" aria-label="Ilustración: un flujo automatizado"><path d="M58 50 C 90 50, 90 90, 120 90 M58 130 C 90 130, 90 90, 120 90 M168 90 L 196 90" fill="none" stroke="#0E9F9A" stroke-width="2.5"></path><rect x="14" y="32" width="44" height="36" rx="8" fill="#FFFFFF" stroke="#0E9F9A" stroke-width="2"></rect><circle cx="36" cy="50" r="6" fill="#0E9F9A"></circle><rect x="14" y="112" width="44" height="36" rx="8" fill="#FFFFFF" stroke="#0E9F9A" stroke-width="2"></rect><rect x="26" y="124" width="20" height="12" rx="2" fill="#0E9F9A"></rect><rect x="120" y="66" width="48" height="48" rx="10" fill="#0E9F9A"></rect><path d="M136 90 l8 8 l12 -16" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"></path><rect x="196" y="72" width="36" height="36" rx="8" fill="#FFFFFF" stroke="#0E9F9A" stroke-width="2"></rect><path d="M206 90 h16 M214 82 v16" stroke="#0E9F9A" stroke-width="2.5"></path></svg>
+            </sc-if>
+            <sc-if value="{{is4}}" hint-placeholder-val="{{ false }}">
+              <svg class="fadein" width="200" height="180" viewBox="0 0 24 24" fill="none" stroke="#9B5DE5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ilustración: un apretón de manos"><path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path></svg>
+            </sc-if>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <section id="contacto" style="background: {{t.soft}}; border-top: 1px solid {{t.line}}">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 100px 24px 80px; display: flex; flex-direction: column; gap: 40px">
+      <div style="display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center">
+        <p class="kick" style="color: {{t.accentText}}">{{tx.k4}}</p>
+        <h2 class="h2 disp" style="font-size: 38px; line-height: 1.12">{{tx.h4}}</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.7; color: {{t.muted}}; max-width: 640px">{{tx.p4}}</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: stretch; justify-content: center">
+        <div style="flex: 1 1 520px; max-width: 640px; min-width: 0; perspective: 1000px">
+          <div onMouseMove="{{tiltMove}}" onMouseLeave="{{tiltReset}}" style="position: relative; height: 100%; box-sizing: border-box; background: {{t.surface}}; border: 1px solid {{t.line}}; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 16px; transform: rotateX({{tilt.rx}}deg) rotateY({{tilt.ry}}deg); transition: transform .15s ease-out; box-shadow: 0 30px 60px -30px rgba(11,21,48,.45); overflow: hidden">
+            <div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(400px circle at {{tilt.gx}} {{tilt.gy}}, rgba(143,176,255,{{tilt.ga}}), transparent 60%)"></div>
+            <div style="display: flex; align-items: center; gap: 12px; position: relative">
+              <div style="width: 40px; height: 40px; border-radius: 10px; background: {{t.primary}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m22 8-6 4 6 4V8z"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg></div>
+              <div><div style="font-family: Archivo, sans-serif; font-size: 19px; font-weight: 600">{{tx.bookT}}</div><div style="font-size: 13px; color: {{t.muted}}">{{tx.bookS}}</div></div>
+              <button class="egg" onClick="{{toggle3d}}" style="margin-left: auto; color: {{t.muted}}">{{label3d}}</button>
+            </div>
+            <sc-if value="{{bPick}}" hint-placeholder-val="{{ true }}">
+              <div style="display: flex; flex-direction: column; gap: 14px; position: relative">
+                <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px">
+                  <sc-for list="{{bDays}}" as="d" hint-placeholder-count="10">
+                    <button onClick="{{d.pick}}" style="height: 58px; border-radius: 10px; border: 1px solid {{d.border}}; background: {{d.bg}}; color: {{d.color}}; font: 500 12px Inter, sans-serif; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px">
+                      <span style="text-transform: uppercase; letter-spacing: .06em; font-size: 10px">{{d.wd}}</span><span style="font-family: Archivo, sans-serif; font-size: 18px; font-weight: 700">{{d.n}}</span>
+                    </button>
+                  </sc-for>
+                </div>
+                <div style="font-size: 13px; font-weight: 600">{{bDayLabel}}</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                  <sc-for list="{{bSlots}}" as="sl" hint-placeholder-count="5">
+                    <button onClick="{{sl.pick}}" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid {{sl.border}}; background: {{sl.bg}}; color: {{sl.color}}; font: 600 13px Inter, sans-serif; cursor: pointer">{{sl.h}}</button>
+                  </sc-for>
+                </div>
+                <button onClick="{{bNext}}" disabled="{{bNoSlot}}" style="height: 46px; border-radius: 12px; border: 0; background: {{bBtnBg}}; color: #FFFFFF; font: 600 15px Inter, sans-serif; cursor: pointer">{{bBtnLabel}}</button>
+              </div>
+            </sc-if>
+            <sc-if value="{{bData}}" hint-placeholder-val="{{ false }}">
+              <div class="fadein" style="display: flex; flex-direction: column; gap: 12px; position: relative">
+                <div style="font-size: 14px; padding: 10px 12px; border-radius: 10px; background: {{t.sel}}">{{bSummary}}</div>
+                <label for="bn" style="font-size: 13px; font-weight: 500">{{tx.name}}</label>
+                <input id="bn" onChange="{{bSetName}}" placeholder="Camila Muñoz" style="height: 44px; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.surface}}; color: {{t.text}}; padding: 0 14px; font: 400 15px Inter, sans-serif">
+                <label for="bm" style="font-size: 13px; font-weight: 500">{{tx.mail}}</label>
+                <input id="bm" type="email" onChange="{{bSetMail}}" placeholder="tu@negocio.cl" style="height: 44px; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.surface}}; color: {{t.text}}; padding: 0 14px; font: 400 15px Inter, sans-serif">
+                <div style="display: flex; gap: 10px">
+                  <button onClick="{{bBack}}" style="height: 46px; padding: 0 16px; border-radius: 12px; border: 1px solid {{t.line}}; background: {{t.surface}}; color: {{t.text}}; font: 600 14px Inter, sans-serif; cursor: pointer">{{tx.back}}</button>
+                  <button onClick="{{bConfirm}}" style="flex: 1; height: 46px; border-radius: 12px; border: 0; background: {{t.primary}}; color: #FFFFFF; font: 600 15px Inter, sans-serif; cursor: pointer">{{tx.confirm}}</button>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{bDone}}" hint-placeholder-val="{{ false }}">
+              <div class="fadein" style="display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center; padding: 24px 8px; position: relative">
+                <div style="width: 64px; height: 64px; border-radius: 50%; background: {{t.okBg}}; color: {{t.okText}}; display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></div>
+                <div style="font-family: Archivo, sans-serif; font-size: 22px; font-weight: 600">{{tx.doneT}}</div>
+                <div style="font-size: 15px; line-height: 1.6; color: {{t.muted}}">{{bSummary}}. {{tx.doneP}}</div>
+                <button onClick="{{bReset}}" style="height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid {{t.line}}; background: {{t.surface}}; color: {{t.text}}; font: 600 14px Inter, sans-serif; cursor: pointer">{{tx.again}}</button>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+        <div style="flex: 1 1 340px; max-width: 420px; min-width: 0; background: {{t.surface}}; border: 1px solid {{t.line}}; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px; justify-content: center">
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: {{t.sel}}; color: {{t.accentText}}; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg></div>
+          <div style="font-family: Archivo, sans-serif; font-size: 19px; font-weight: 600">{{tx.mailT}}</div>
+          <div style="font-size: 14px; line-height: 1.6; color: {{t.muted}}">{{tx.mailS}}</div>
+          <sc-if value="{{mailOpen}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <label for="mq" style="position: absolute; left: -9999px">{{tx.mail}}</label>
+              <div class="gooey" style="display: flex; align-items: center; gap: 6px; height: 52px; padding: 6px; box-sizing: border-box; border-radius: 999px; border: 1px solid {{t.line}}; background: {{t.soft}}">
+                <input id="mq" type="email" placeholder="tu@negocio.cl" style="flex: 1; min-width: 0; height: 100%; border: 0; background: transparent; color: {{t.text}}; padding: 0 12px; font: 400 15px Inter, sans-serif; outline: none">
+                <button onClick="{{sendMail}}" style="height: 40px; padding: 0 18px; border-radius: 999px; border: 0; background: {{t.primary}}; color: #FFFFFF; font: 600 14px Inter, sans-serif; cursor: pointer">{{tx.send}}</button>
+              </div>
+              <label for="mm" style="position: absolute; left: -9999px">{{tx.msg}}</label>
+              <textarea id="mm" rows="3" placeholder="{{tx.msgPh}}" style="border-radius: 12px; border: 1px solid {{t.line}}; background: {{t.soft}}; color: {{t.text}}; padding: 12px 14px; font: 400 14px Inter, sans-serif; resize: vertical"></textarea>
+            </div>
+          </sc-if>
+          <sc-if value="{{mailSent}}" hint-placeholder-val="{{ false }}">
+            <div class="blob" style="display: flex; align-items: center; gap: 10px; height: 52px; padding: 0 18px; border-radius: 999px; background: {{t.okBg}}; color: {{t.okText}}; font-size: 14px; font-weight: 600"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>{{tx.sent}}</div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1240px; margin: 0 auto; padding: 24px; border-top: 1px solid {{t.line}}; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 13px; color: {{t.muted}}">
+      <span class="wm" style="font-size: 16px; color: {{t.brand}}">MODERN<span class="ac">I<i></i></span>ZATE</span>
+      <span>agmodernizate.cl · [CORREO DE CONTACTO]</span>
+      <button class="egg" onClick="{{toggleNight}}" style="color: {{t.muted}}">☾ {{nightLabel}}</button>
+    </div>
+  </section>
+
+  <sc-if value="{{modal}}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; background: rgba(7,12,28,0.55); display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 50">
+      <div class="fadein" role="dialog" aria-modal="true" aria-label="Mensaje de Modernízate" style="max-width: 560px; width: 100%; background: {{t.surface}}; color: {{t.text}}; border: 1px solid {{t.line}}; border-radius: 14px; padding: 32px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 30px 80px -30px rgba(0,0,0,.5)">
+        <p class="kick" style="color: {{t.accentText}}">Detrás de cada solución</p>
+        <p style="margin: 0; font-family: Archivo, sans-serif; font-size: 24px; font-weight: 500; line-height: 1.45">
+          <sc-for list="{{words}}" as="w" hint-placeholder-count="20"><span class="word" style="animation-delay: {{w.d}}">{{w.w}}&nbsp;</span></sc-for>
+        </p>
+        <div style="display: flex; justify-content: flex-end"><button onClick="{{closeModal}}" style="height: 40px; padding: 0 18px; border-radius: 10px; border: 0; background: {{t.primary}}; color: #FFFFFF; font: 600 14px Inter, sans-serif; cursor: pointer">Entendido</button></div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{caseOpen}}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; background: rgba(7,12,28,0.62); display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 60">
+      <div class="fadein" role="dialog" aria-modal="true" aria-label="{{cs.t}}" style="max-width: 1000px; width: 100%; background: {{t.surface}}; color: {{t.text}}; border: 1px solid {{t.line}}; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 30px 80px -30px rgba(0,0,0,.55)">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid {{t.line}}">
+          <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; color: {{t.accentText}}; background: {{t.sel}}">Caso de uso</span>
+          <div style="font-family: Archivo, sans-serif; font-size: 18px; font-weight: 600">{{cs.t}}</div>
+          <div style="margin-left: auto; display: flex; gap: 4px" aria-hidden="true">
+            <sc-for list="{{chDots}}" as="cd" hint-placeholder-count="6"><span style="width: {{cd.w}}; height: 6px; border-radius: 999px; background: {{cd.bg}}; transition: width .3s ease"></span></sc-for>
+          </div>
+          <button onClick="{{closeCase}}" aria-label="Cerrar" style="width: 36px; height: 36px; border-radius: 8px; border: 1px solid {{t.line}}; background: {{t.surface}}; color: {{t.text}}; cursor: pointer">✕</button>
+        </div>
+        <div style="display: flex; flex-wrap: wrap">
+          <div class="noscroll" onScroll="{{onCaseScroll}}" style="flex: 1 1 420px; min-width: 0; height: 460px; overflow-y: auto; padding: 0 32px; box-sizing: border-box">
+            <sc-for list="{{chapters}}" as="ch" hint-placeholder-count="6">
+              <div style="height: 460px; display: flex; flex-direction: column; justify-content: center; gap: 12px; opacity: {{ch.op}}; transition: opacity .4s ease">
+                <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: {{t.accentText}}">{{ch.kick}}</p>
+                <div style="font-family: Archivo, sans-serif; font-size: 26px; font-weight: 600; line-height: 1.2">{{ch.h}}</div>
+                <p style="margin: 0; font-size: 16px; line-height: 1.75; color: {{t.muted}}">{{ch.p}}</p>
+                <sc-if value="{{ch.last}}" hint-placeholder-val="{{ false }}">
+                  <a href="#contacto" onClick="{{closeCase}}" style="align-self: flex-start; display: inline-flex; align-items: center; height: 44px; padding: 0 20px; border-radius: 10px; background: {{t.primary}}; color: #FFFFFF; font-weight: 600; font-size: 14px; text-decoration: none">Lo quiero para mi negocio →</a>
+                </sc-if>
+                <sc-if value="{{ch.notLast}}" hint-placeholder-val="{{ true }}">
+                  <span style="font-size: 12px; color: {{t.muted}}">Sigue bajando ↓</span>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <div style="flex: 1 1 380px; min-width: 0; min-height: 460px; background: {{vis.tint}}; transition: background .5s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding: 24px; box-sizing: border-box" class="dots">
+            <div class="fadein" style="width: 128px; height: 128px; border-radius: 28px; background: {{vis.color}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 24px 48px -20px {{vis.color}}">
+              <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{vis.icon}}"></path></svg>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 320px">
+              <sc-for list="{{vis.chips}}" as="cp" hint-placeholder-count="3"><span class="fadein" style="font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: {{t.surface}}; border: 1px solid {{t.line}}; color: {{t.text}}">{{cp}}</span></sc-for>
+            </div>
+            <div style="font-size: 12px; color: {{t.muted}}">{{vis.step}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;night&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:3900}}">
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    this.script = [
+      { who: 'bot', text: 'Hola, soy el asistente virtual de Clínica Dental Sonríe. Te ayudo con horas, precios y ubicación.' },
+      { who: 'user', text: 'Hola, quiero una hora para limpieza' },
+      { who: 'bot', text: 'Claro. Para limpieza tengo el jueves a las 15:00 o a las 16:30. ¿Cuál te acomoda?' },
+      { who: 'user', text: 'A las 16:30, por favor' },
+      { who: 'bot', text: 'Perfecto. ¿Me das tu nombre y un correo para enviarte la confirmación?' },
+      { who: 'user', text: 'Camila Muñoz, camila.m@correo.cl' },
+      { who: 'bot', text: 'Listo, Camila. Tu hora quedó agendada.' },
+      { who: 'card' },
+      { who: 'bot', text: 'Te envié la cita a tu correo. Revisa tu bandeja de entrada y, si no la ves, la carpeta de spam.' }
+    ];
+    this.state = {
+      night: null, lang: 'es', calc: false, reveal: false, active: 0, sq: false, modal: false, rate: 12000,
+      bursts: [], stepBursts: [], slide: 0, step: 0, typing: false, hold: 0,
+      caseIdx: -1, ch: 0, eggs: { hl: false, flip: 0, sq2: false },
+      bDay: 0, bSlot: -1, bStage: 0, bName: '', bMail: '', mailSent: false, tilt: { rx: 0, ry: 0, gx: '50%', gy: '50%', ga: 0 }, tilt3d: false,
+      tasks: [
+        { id: 't1', label: 'Responder WhatsApp y mensajes', h: 6, on: true, auto: 0.6 },
+        { id: 't2', label: 'Revisar y ordenar correos', h: 4, on: true, auto: 0.4 },
+        { id: 't3', label: 'Agendar y confirmar citas', h: 3, on: true, auto: 0.7 },
+        { id: 't4', label: 'Pasar datos a planillas', h: 3, on: false, auto: 0.8 },
+        { id: 't5', label: 'Cotizar y hacer seguimiento', h: 4, on: false, auto: 0.5 }
+      ]
+    };
+  }
+  componentDidMount() { this.iv = setInterval(() => this.tick(), 1200); }
+  componentWillUnmount() { clearInterval(this.iv); }
+  tick() {
+    const s = this.state, sc = this.script;
+    if (s.slide === 0) {
+      if (s.step < sc.length) {
+        const next = sc[s.step];
+        if (next.who === 'bot' && !s.typing) { this.setState({ typing: true }); return; }
+        this.setState({ typing: false, step: s.step + 1 });
+      } else if (s.hold < 3) this.setState({ hold: s.hold + 1 });
+      else this.setState({ slide: 1, hold: 0 });
+    } else if (s.slide === 1) {
+      if (s.hold < 5) this.setState({ hold: s.hold + 1 });
+      else this.setState({ slide: 2, hold: 0 });
+    } else {
+      if (s.hold < 6) this.setState({ hold: s.hold + 1 });
+      else this.setState({ slide: 0, step: 0, hold: 0, typing: false });
+    }
+  }
+  burst(key) {
+    const id = Date.now() + Math.random();
+    this.setState({ [key]: [...this.state[key], id] });
+    setTimeout(() => this.setState({ [key]: this.state[key].filter((x) => x !== id) }), 1500);
+  }
+  renderVals() {
+    const night = this.state.night === null ? !!this.props.night : this.state.night;
+    const en = this.state.lang === 'en';
+    const DAY = { bg: '#FFFFFF', surface: '#FFFFFF', soft: '#F4F7FC', line: '#E2E8F2', text: '#0B1530', muted: '#4A5468', primary: '#1F4FE0', accentText: '#1F4FE0', brand: '#1F4FE0', heroBg: '#F7F9FD', inBubble: '#E9F7EF', inBorder: '#CFEBDC', sel: '#EEF3FF', okBg: '#E5F6EC', okText: '#0E6B37', disabled: '#9DB0E8' };
+    const NIGHT = { bg: '#0A1022', surface: '#111A33', soft: '#0D1530', line: '#1F2A47', text: '#E8EDF7', muted: '#A3AEC5', primary: '#3D6BFF', accentText: '#8FB0FF', brand: '#8FB0FF', heroBg: '#070C1C', inBubble: '#0F2E22', inBorder: '#1C4A36', sel: '#16203D', okBg: '#0F2E22', okText: '#6EE7A8', disabled: '#2B3F7A' };
+    const t = night ? NIGHT : DAY;
+    const fmt = (n) => '$' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+    const ES = { n1: 'Calculadora', n2: 'Cómo trabajamos', n3: 'Soluciones', n4: 'Contacto', cta: 'Agenda una conversación', hk: 'Automatización e IA para pymes', ha: 'Tecnología que trabaja para tu negocio, ', hb: 'no al revés.', hp: 'Entendemos cómo funciona tu negocio, identificamos qué conviene mejorar e implementamos una solución a tu medida, con pruebas, puesta en marcha y acompañamiento.', hw: 'Ver cómo trabajamos', k1: '03 · Míralo tú mismo', t1: '¿Cuánto tiempo podrías recuperar?', p1: 'Ya viste cómo trabajamos y qué construimos. Si quieres llevarlo a tus números, marca las tareas que haces cada semana y mira cuánto podrías automatizar.', k2: '01 · Cómo trabajamos', t2: 'Cuatro pasos, sin letra chica.', k3: '02 · Soluciones', t3: 'Lo que construimos y cómo lo construimos contigo.', p3: 'Abre cada caso y míralo en tres pasos: dónde partimos, cómo lo armamos juntos y qué recibes al final. Tú conoces tu negocio; nosotros, la tecnología.', k4: '04 · Contacto', h4: 'Conversemos tu caso.', p4: 'Elige un horario y tengamos una videollamada de 20 minutos. Si prefieres, escríbenos y te respondemos dentro de un día hábil.', bookT: 'Agenda una videollamada', bookS: '20 minutos · sin costo · por Zoom', name: 'Tu nombre', mail: 'Tu correo', back: 'Volver', confirm: 'Confirmar reunión', doneT: '¡Reunión agendada!', doneP: 'Te enviamos el enlace de la videollamada a tu correo.', again: 'Agendar otra', mailT: '¿Prefieres escribirnos?', mailS: 'Déjanos tu correo y una línea sobre tu negocio. Te respondemos dentro de un día hábil.', send: 'Enviar', msg: 'Tu mensaje', msgPh: 'Cuéntanos en una línea qué te gustaría resolver', sent: '¡Recibido! Te escribimos pronto.', pick: 'Elige un horario', cont: 'Continuar con ', wd: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie'] };
+    const EN = { n1: 'Calculator', n2: 'How we work', n3: 'Solutions', n4: 'Contact', cta: 'Book a call', hk: 'Automation and AI for small businesses', ha: 'Technology that works for your business, ', hb: 'not the other way around.', hp: 'We learn how your business works, find what is worth improving and implement a solution that fits, with testing, launch and ongoing support.', hw: 'See how we work', k1: '03 · See it yourself', t1: 'How much time could you get back?', p1: 'You have seen how we work and what we build. To bring it to your own numbers, check the tasks you do every week and see how much you could automate.', k2: '01 · How we work', t2: 'Four steps, no fine print.', k3: '02 · Solutions', t3: 'What we build, and how we build it with you.', p3: 'Open each case and see it in three steps: where we start, how we build it together and what you get at the end. You know your business; we know the technology.', k4: '04 · Contact', h4: "Let's talk about your case.", p4: 'Pick a time for a 20-minute video call. Or write to us and we will reply within one business day.', bookT: 'Book a video call', bookS: '20 minutes · free · on Zoom', name: 'Your name', mail: 'Your email', back: 'Back', confirm: 'Confirm meeting', doneT: 'Meeting booked!', doneP: 'We sent the video call link to your email.', again: 'Book another', mailT: 'Prefer to write?', mailS: 'Leave your email and a line about your business. We reply within one business day.', send: 'Send', msg: 'Your message', msgPh: 'Tell us in one line what you would like to solve', sent: 'Got it! We will write soon.', pick: 'Pick a time', cont: 'Continue with ', wd: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] };
+    const tx = en ? EN : ES;
+
+    const tasks = this.state.tasks;
+    const upd = (i, patch) => this.setState({ tasks: this.state.tasks.map((x, j) => (j === i ? { ...x, ...patch } : x)) });
+    const total = tasks.reduce((s, x) => s + (x.on ? x.h : 0), 0);
+    const freed = tasks.reduce((s, x) => s + (x.on ? x.h * x.auto : 0), 0);
+    let z;
+    if (total < 12) z = { bg: night ? '#0F2E22' : '#E5F6EC', tx: night ? '#6EE7A8' : '#0E6B37', icon: '●', title: 'Manejable' };
+    else if (total < 22) z = { bg: night ? '#33280A' : '#FFF6DB', tx: night ? '#F5D27A' : '#7A5300', icon: '▲', title: 'Carga intermedia' };
+    else z = { bg: night ? '#3B1416' : '#FDECEC', tx: night ? '#FF9592' : '#A1251F', icon: '■', title: 'Riesgo de colapso' };
+    const cx = 110, cy = 110, r = 86, MAX = 45;
+    const pt = (h) => { const f = Math.min(h, MAX) / MAX; return (cx - r * Math.cos(Math.PI * f)).toFixed(1) + ' ' + (cy - r * Math.sin(Math.PI * f)).toFixed(1); };
+    const arc = (a, b) => 'M ' + pt(a) + ' A ' + r + ' ' + r + ' 0 0 1 ' + pt(b);
+
+    const colors = ['#1F4FE0', '#D9780A', '#0E9F9A', '#9B5DE5'];
+    const tints = night ? ['#1A2850', '#33230F', '#0D2E2D', '#2A1E44'] : ['#EAF0FF', '#FDF1E3', '#E3F5F4', '#F3ECFD'];
+    const texts = night ? ['#8FB0FF', '#F0A86A', '#5FD4CE', '#C4A6F5'] : ['#1639A8', '#9A4F00', '#0A6E6A', '#6B3BB0'];
+    const base = [
+      { t: 'Conversamos', short: 'Entendemos tu negocio', d: 'Una conversación de 20 minutos, sin costo y sin compromiso. Nos cuentas cómo funciona tu día a día y dónde sientes que se pierde el tiempo.', items: ['Qué vendes y cómo te contactan', 'Qué tareas se repiten todos los días', 'Qué herramientas usas hoy'], egg: '✎ Resalta lo importante' },
+      { t: 'Diagnóstico y propuesta', short: 'Qué conviene y cuánto cuesta', d: 'Te entregamos por escrito qué conviene automatizar, qué no, cuánto cuesta y en qué plazo. Si algo no vale la pena, también te lo decimos.', items: ['Alcance claro: qué incluye y qué no', 'Implementación y mensualidad', 'Plazos y responsables'], egg: '↻ Dale la vuelta' },
+      { t: 'Implementamos', short: 'Construimos y probamos contigo', d: 'Configuramos la solución con tu información real, la probamos con tu equipo y la dejamos funcionando en tu operación.', items: ['Configuración con tus datos y reglas', 'Pruebas antes de salir en vivo', 'Capacitación breve para tu equipo'], egg: '⚡ No toques esto' },
+      { t: 'Acompañamos', short: 'Soporte y mejora continua', d: 'No desaparecemos después de entregar. Damos soporte, ajustamos lo necesario y te asesoramos cuando aparecen nuevas necesidades.', items: ['Soporte por un canal definido', 'Ajustes y mejoras', 'Asesoría para crecer contigo'], egg: '✦ Celebremos' }
+    ];
+    const a = this.state.active, eg = this.state.eggs;
+    const eggFns = [
+      () => this.setState({ eggs: { ...this.state.eggs, hl: !this.state.eggs.hl } }),
+      () => this.setState({ eggs: { ...this.state.eggs, flip: this.state.eggs.flip + 1 } }),
+      () => this.setState({ eggs: { ...this.state.eggs, sq2: !this.state.eggs.sq2 } }),
+      () => this.burst('stepBursts')
+    ];
+    const steps = base.map((b, i) => ({
+      ...b, n: String(i + 1), color: colors[i], textColor: texts[i], op: i === a ? 1 : 0.3,
+      hint: i < 3 ? 'Sigue bajando ↓' : '¡Eso es todo! Ahora conversemos.',
+      open: () => this.setState({ reveal: true, active: i }),
+      eggFn: eggFns[i], isLast: i === 3,
+      titleClass: i === 1 && eg.flip ? (eg.flip % 2 ? 'flipA' : 'flipB') : i === 2 && eg.sq2 ? 'sq' : '',
+      descClass: i === 0 && eg.hl ? 'hl on' : 'hl'
+    }));
+
+    const confetti = ['#1F4FE0', '#D9780A', '#0E9F9A', '#9B5DE5', '#12A150', '#E8B10C', '#D9446C'];
+    const bits = Array.from({ length: 40 }, (_, i) => {
+      const ang = (i / 40) * Math.PI * 2 + (i % 3) * 0.2, dist = 120 + ((i * 47) % 180);
+      return { c: confetti[i % 7], dx: Math.round(Math.cos(ang) * dist) + 'px', dy: Math.round(Math.sin(ang) * dist * 0.8 - 40) + 'px', s: (8 + (i % 4) * 2) + 'px', rad: i % 3 === 0 ? '50%' : '2px' };
+    });
+    const msg = 'Cada solución que ves aquí la diseñamos, probamos y acompañamos personas reales. La inteligencia artificial hace el trabajo repetitivo; las decisiones importantes siguen siendo tuyas.';
+
+    const shown = this.script.slice(0, this.state.step).map((m) => ({
+      ...m, isText: m.who === 'bot' || m.who === 'user', isBot: m.who === 'bot', isCard: m.who === 'card', isSys: false,
+      align: m.who === 'user' ? 'flex-start' : 'flex-end',
+      bg: m.who === 'user' ? t.inBubble : t.surface, border: m.who === 'user' ? t.inBorder : t.line, color: t.text
+    }));
+    const slide = this.state.slide;
+    const goSlide = (i) => () => this.setState({ slide: i, step: i === 0 ? 0 : this.state.step, hold: 0, typing: false });
+    const lastTxt = this.script.slice(0, this.state.step).filter((m) => m.text).pop();
+    const lastMsg = this.state.typing ? 'Escribiendo…' : lastTxt ? lastTxt.text : 'Nueva conversación';
+    const done = this.state.step >= this.script.length;
+    const chats = [
+      { ini: 'CM', name: 'Camila Muñoz', last: lastMsg, bg: t.sel, bar: t.primary, av: '#D9446C', dot: done ? '#12A150' : '#D9780A', stage: done ? 'Cliente' : 'Interesado' },
+      { ini: 'JR', name: 'Jorge R.', last: '¿Atienden los sábados?', bg: 'transparent', bar: 'transparent', av: '#B8860B', dot: '#8A94A6', stage: 'Nuevo' },
+      { ini: 'PA', name: 'Paula A.', last: 'Gracias, quedó clarísimo', bg: 'transparent', bar: 'transparent', av: '#0E9F9A', dot: '#12A150', stage: 'Cliente' },
+      { ini: 'LT', name: 'Luis T.', last: 'Necesito hablar con alguien', bg: 'transparent', bar: 'transparent', av: '#7C5CFF', dot: '#1F4FE0', stage: 'En conversación' }
+    ];
+
+    const I = {
+      bot: 'M12 8V4H8 M4 8h16v12H4z M2 14h2 M20 14h2 M9 13v2 M15 13v2',
+      book: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z',
+      phone: 'M6 2h12v20H6z M12 18h.01',
+      cpu: 'M5 5h14v14H5z M9 9h6v6H9z M9 2v3 M15 2v3 M9 19v3 M15 19v3 M19 9h3 M19 15h3 M2 9h3 M2 15h3',
+      plug: 'M12 22v-5 M9 8V2 M15 8V2 M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8z',
+      check: 'M22 11.08V12a10 10 0 1 1-5.93-9.14 M22 4 12 14.01l-3-3',
+      bag: 'M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z M3 6h18 M16 10a4 4 0 0 1-8 0',
+      card: 'M2 5h20v14H2z M2 10h20',
+      truck: 'M1 3h15v13H1z M16 8h4l3 3v5h-7z M5.5 21a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z M18.5 21a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z',
+      layout: 'M3 3h7v9H3z M14 3h7v5h-7z M14 12h7v9h-7z M3 16h7v5H3z',
+      clip: 'M9 2h6v4H9z M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2 M9 12h6 M9 16h6',
+      users: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75',
+      sheet: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M8 13h8 M8 17h8 M12 13v8',
+      zap: 'M13 2 3 14h9l-1 8 10-12h-9l1-8z',
+      branch: 'M6 3v12 M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z M18 9a9 9 0 0 1-9 9',
+      pulse: 'M22 12h-4l-3 9L9 3l-3 9H2',
+      search: 'M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16z M21 21l-4.35-4.35'
+    };
+    const C = (kick, h, p, you, icon, chips) => ({ kick, h, p, you, icon, chips });
+    const caseData = [
+      { t: 'Asistente de atención', short: 'Responde consultas, agenda horas y te avisa lo importante. Una persona siempre puede tomar la conversación.', chapters: [
+        C('Dónde partimos', 'Conversemos de tus clientes', 'Partimos por lo que más te preguntan y lo que más tiempo te quita. Con eso definimos lo importante para ti: responder preguntas frecuentes, agendar citas, enviar documentos o avisarte cuando alguien necesita a una persona.', '', I.bot, ['Preguntas frecuentes', 'Agenda', 'Avisos']),
+        C('Cómo lo armamos', 'Le enseñamos tu negocio', 'Ajustamos el asistente con la información de tu negocio: servicios, precios, horarios y tu forma de hablarle a los clientes. Lo conectamos a tu WhatsApp y a tu agenda, y lo probamos juntos hasta que responda como tú lo harías.', '', I.book, ['Tu información', 'WhatsApp', 'Pruebas']),
+        C('Qué recibes', 'Un asistente atendiendo por ti', 'Un asistente que responde a cualquier hora, agenda y confirma por correo, y te deja las conversaciones que necesitan criterio humano. Si quieres profundizar en tu caso, lo vemos en una videollamada.', '', I.check, ['Responde 24/7', 'Agenda sola', 'Tú decides'])
+      ] },
+      { t: 'Tienda en línea', short: 'Tu catálogo, pagos y pedidos en un panel que tu equipo maneja sin depender de nadie.', chapters: [
+        C('Dónde partimos', 'Cómo vendes hoy', 'Vemos cómo te compran hoy, por mensajes, redes o en persona, y qué se te complica: confirmar pagos, ordenar pedidos o responder por stock.', '', I.bag, ['Ventas', 'Pagos', 'Pedidos']),
+        C('Cómo lo armamos', 'Tu tienda con tus productos', 'Ordenamos tu catálogo con tus fotos y precios, conectamos un medio de pago a nombre de tu negocio y definimos contigo el despacho o retiro.', '', I.layout, ['Catálogo', 'Pago en línea', 'Despacho']),
+        C('Qué recibes', 'Una tienda que vende sola', 'Tus clientes compran y pagan sin intermediarios, y tú ves cada pedido ordenado por estado en un panel simple. Te enseñamos a manejarlo para que no dependas de nadie.', '', I.check, ['Ventas 24/7', 'Panel simple', 'Capacitación'])
+      ] },
+      { t: 'Sistema a medida', short: 'Cuando tu proceso es único: registros, folios, permisos y reportes hechos para cómo trabajas.', chapters: [
+        C('Dónde partimos', 'Tu proceso tal como es', 'Nos muestras cómo lo haces hoy, con tus planillas y formularios reales, incluidos los casos raros. Así entendemos qué se repite y qué se puede ordenar.', '', I.search, ['Planillas', 'Formularios', 'Excepciones']),
+        C('Cómo lo armamos', 'Un sistema con tu lógica', 'Convertimos tu proceso en un sistema: quién registra, qué datos, quién ve qué y qué documentos salen al final. Lanzamos un piloto con tu equipo y lo ajustamos con su uso real.', '', I.clip, ['Registros', 'Permisos', 'Piloto']),
+        C('Qué recibes', 'Todo ordenado en un solo lugar', 'Registros numerados, documentos en PDF y reportes listos en el formato que ya usas, con alojamiento y soporte incluidos.', '', I.check, ['PDF', 'Reportes', 'Soporte'])
+      ] },
+      { t: 'Automatización de procesos', short: 'Flujos que mueven la información solos: de un formulario a tu ficha, de un pedido a tu equipo.', chapters: [
+        C('Dónde partimos', 'La tarea que más se repite', 'Buscamos juntos la tarea que más tiempo te quita: copiar datos, responder solicitudes o avisar a tu equipo de algo que llegó.', '', I.zap, ['Datos', 'Solicitudes', 'Avisos']),
+        C('Cómo lo armamos', 'Tus criterios, convertidos en pasos', 'Definimos qué inicia el flujo, qué decisiones toma y con qué herramientas se conecta, siguiendo la forma en que tú decides cada caso.', '', I.branch, ['Inicio', 'Reglas', 'Conexiones']),
+        C('Qué recibes', 'Información que llega sola', 'Un flujo que trabaja por ti, registra todo lo que hace y te avisa si algo falla. Tu equipo deja de copiar y pegar, y se dedica a lo importante.', '', I.check, ['Sin copiar y pegar', 'Registro', 'Alertas'])
+      ] }
+    ];
+    const thumbBg = night ? '#0D1530' : '#F4F7FC';
+    const ci = this.state.caseIdx, chi = this.state.ch;
+    const curCase = caseData[ci >= 0 ? ci : 0];
+    const vcolor = colors[(ci >= 0 ? ci : 0) % 4];
+    const vch = curCase.chapters[Math.min(chi, curCase.chapters.length - 1)];
+
+    const dayNums = ['23', '24', '25', '26', '27', '30', '1', '2', '3', '4'];
+    const slotsBy = [['10:00', '11:30', '16:00'], ['09:30', '15:00'], ['10:00', '12:00', '17:00'], ['11:00', '16:30'], ['09:00', '10:30', '15:30'], ['10:00', '16:00'], ['12:00', '17:30'], ['09:30', '11:00', '15:00'], ['10:30', '16:00'], ['09:00', '14:00']];
+    const bd = this.state.bDay, bs = this.state.bSlot;
+    const monthOf = (i) => (i < 6 ? (en ? 'Nov' : 'nov') : (en ? 'Dec' : 'dic'));
+    const dayLabel = tx.wd[bd % 5] + ' ' + dayNums[bd] + ' ' + monthOf(bd);
+    const summary = (en ? 'Video call · ' : 'Videollamada · ') + dayLabel + ' · ' + (bs >= 0 ? slotsBy[bd][bs] : '');
+
+    return {
+      t, tx, day: !night, night,
+      nightLabel: night ? (en ? 'Day mode' : 'Modo día') : (en ? 'Night mode' : 'Modo noche'),
+      nightIcon: night ? 'M12 3v2 M12 19v2 M4.2 4.2l1.4 1.4 M18.4 18.4l1.4 1.4 M3 12h2 M19 12h2 M4.2 19.8l1.4-1.4 M18.4 5.6l1.4-1.4 M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z' : 'M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z',
+      nightGlow: night ? '0 0 0 1px rgba(220,230,255,.35), 0 0 22px 6px rgba(190,210,255,.45)' : '0 8px 18px -6px rgba(11,21,48,.45)',
+      toggleNight: () => this.setState({ night: !night }),
+      langs: ['es', 'en'].map((l) => ({ label: l.toUpperCase(), pick: () => this.setState({ lang: l }), bg: this.state.lang === l ? t.primary : 'transparent', color: this.state.lang === l ? '#FFFFFF' : t.muted })),
+      stars: Array.from({ length: 60 }, (_, i) => ({ x: ((i * 37) % 100) + '%', y: ((i * 53) % 100) + '%', d: (i % 7) * 0.4 + 's' })),
+      meteors: Array.from({ length: 16 }, (_, i) => ({ x: (((i * 29) % 110) - 5) + '%', y: (-8 + (i % 4) * 7) + '%', d: (i * 0.9).toFixed(1) + 's', dur: (4 + (i % 4) * 1.2).toFixed(1) + 's' })),
+      bursts: this.state.bursts.map((id) => ({ id })), stepBursts: this.state.stepBursts.map((id) => ({ id })), bits,
+      boom: () => this.burst('bursts'),
+      sqClass: this.state.sq ? 'sq' : '',
+      toggleSq: () => this.setState({ sq: !this.state.sq }),
+      calcClosed: !this.state.calc, calcOpen: this.state.calc,
+      openCalc: () => this.setState({ calc: true }),
+      tasks: tasks.map((x, i) => ({ ...x, bg: x.on ? t.sel : 'transparent', color: x.on ? t.text : t.muted, toggle: () => upd(i, { on: !x.on }), dec: () => upd(i, { h: Math.max(0, x.h - 1), on: true }), inc: () => upd(i, { h: Math.min(20, x.h + 1), on: true }) })),
+      rate: this.state.rate, rateLabel: fmt(this.state.rate),
+      setRate: (e) => this.setState({ rate: Number(e.target.value) }),
+      total, freed: Math.round(freed), monthCost: fmt(total * 4.3 * this.state.rate),
+      arcG: arc(0.3, 11.7), arcY: arc(12.3, 21.7), arcR: arc(22.3, 44.7),
+      deg: (-90 + 180 * Math.min(total, MAX) / MAX).toFixed(1),
+      seg: { wG: total < 12 ? 24 : 12, wY: total >= 12 && total < 22 ? 24 : 12, wR: total >= 22 ? 24 : 12, oG: total < 12 ? 1 : 0.4, oY: total >= 12 && total < 22 ? 1 : 0.4, oR: total >= 22 ? 1 : 0.4 },
+      zoneBg: z.bg, zoneText: z.tx, zoneIcon: z.icon, zoneTitle: z.title,
+      meterLabel: 'Carga semanal de ' + total + ' horas: ' + z.title,
+      steps, cur: { tint: tints[a] },
+      is1: a === 0, is2: a === 1, is3: a === 2, is4: a === 3,
+      revealClosed: !this.state.reveal, revealOpen: this.state.reveal,
+      openReveal: () => this.setState({ reveal: true, active: 0 }),
+      closeReveal: () => this.setState({ reveal: false }),
+      onRevealScroll: (e) => { const i = Math.min(3, Math.round(e.target.scrollTop / 420)); if (i !== this.state.active) this.setState({ active: i }); },
+      modal: this.state.modal,
+      openModal: () => this.setState({ modal: true }),
+      closeModal: () => this.setState({ modal: false }),
+      words: msg.split(' ').map((w, i) => ({ w, d: (i * 0.09).toFixed(2) + 's' })),
+      slide0: slide === 0, slide1: slide === 1, slide2: slide === 2,
+      heroTexts: (en ? [
+        { a: 'Customer service that answers ', b: 'even when you are busy.', p: 'An assistant handles your WhatsApp, books appointments and confirms by email. You step in only when needed.' },
+        { a: 'Processes that move ', b: 'without anyone pushing.', p: 'We automate repetitive tasks: information travels on its own and your team focuses on what matters.' },
+        { a: 'Your business, clear ', b: 'in a single dashboard.', p: 'Appointments, orders and customers in one simple dashboard, so you decide with information, not in the dark.' }
+      ] : [
+        { a: 'Atención que responde ', b: 'aunque estés ocupado.', p: 'Un asistente atiende tu WhatsApp, agenda horas y confirma por correo. Tú intervienes solo cuando hace falta.' },
+        { a: 'Procesos que avanzan ', b: 'sin que nadie los empuje.', p: 'Automatizamos las tareas repetitivas: la información viaja sola de un lugar a otro y tu equipo se enfoca en lo importante.' },
+        { a: 'Tu negocio, claro ', b: 'en un solo panel.', p: 'Citas, pedidos y clientes ordenados en un panel simple, para decidir con información y no a ciegas.' }
+      ]).map((h, i) => ({ ...h, on: i === slide })),
+      miniKpis: [{ l: 'Citas esta semana', v: '38', c: t.primary, w: '70%' }, { l: 'Pedidos', v: '24', c: '#D9780A', w: '50%' }, { l: 'Clientes nuevos', v: '14', c: '#0E9F9A', w: '40%' }],
+      miniBars: [9, 12, 11, 14, 10, 5, 2].map((v, i) => ({ h: (v / 14 * 100) + '%', c: i === 3 ? t.primary : (night ? '#2B3F7A' : '#BFCEF5') })),
+      miniRows: [{ n: 'Ferretería El Roble', s: 'Pagado', c: '#12A150', av: '#B8860B' }, { n: 'Clínica Sonríe', s: 'Agendado', c: t.primary, av: '#D9446C' }, { n: 'Vivero Las Hojas', s: 'En preparación', c: '#D9780A', av: '#2F8F46' }],
+      slideTitle: ['Bandeja · Clínica Dental Sonríe', 'Flujo de automatización', 'Panel de tu negocio'][slide],
+      slideTag: ['Demostración', 'Imagen referencial', 'Demostración'][slide],
+      chats, msgs: shown, typing: slide === 0 && this.state.typing,
+      dots: [0, 1, 2].map((i) => ({ go: goSlide(i), label: ['Ver la conversación', 'Ver el flujo de automatización', 'Ver el panel'][i], w: i === slide ? '28px' : '8px', bg: i === slide ? t.primary : t.line })),
+      cases: caseData.map((c, i) => ({ ...c, thumbBg, k0: i === 0, k1: i === 1, k2: i === 2, k3: i === 3, tag: c.chapters.length + ' pasos', tagColor: t.accentText, tagBg: t.sel, open: () => this.setState({ caseIdx: i, ch: 0 }) })),
+      caseOpen: ci >= 0, cs: curCase,
+      chapters: curCase.chapters.map((c, i) => ({ ...c, op: i === chi ? 1 : 0.3, last: i === curCase.chapters.length - 1, notLast: i < curCase.chapters.length - 1 })),
+      chDots: curCase.chapters.map((_, i) => ({ w: i === chi ? '20px' : '6px', bg: i === chi ? vcolor : t.line })),
+      vis: { tint: tints[(ci >= 0 ? ci : 0) % 4], color: vcolor, icon: vch.icon, chips: vch.chips, step: (chi + 1) + ' / ' + curCase.chapters.length },
+      onCaseScroll: (e) => { const i = Math.min(curCase.chapters.length - 1, Math.round(e.target.scrollTop / 460)); if (i !== this.state.ch) this.setState({ ch: i }); },
+      closeCase: () => this.setState({ caseIdx: -1 }),
+      tilt: this.state.tilt,
+      toggle3d: () => this.setState({ tilt3d: !this.state.tilt3d, tilt: { rx: 0, ry: 0, gx: '50%', gy: '50%', ga: 0 } }),
+      label3d: this.state.tilt3d ? '✦ Modo 3D: ON' : '✦ Actívame',
+      tiltMove: (e) => { if (!this.state.tilt3d) return; const r2 = e.currentTarget.getBoundingClientRect(); const px = (e.clientX - r2.left) / r2.width, py = (e.clientY - r2.top) / r2.height; this.setState({ tilt: { rx: ((0.5 - py) * 8).toFixed(2), ry: ((px - 0.5) * 10).toFixed(2), gx: (px * 100).toFixed(0) + '%', gy: (py * 100).toFixed(0) + '%', ga: night ? 0.22 : 0.18 } }); },
+      tiltReset: () => this.setState({ tilt: { rx: 0, ry: 0, gx: '50%', gy: '50%', ga: 0 } }),
+      bPick: this.state.bStage === 0, bData: this.state.bStage === 1, bDone: this.state.bStage === 2,
+      bDays: dayNums.map((n, i) => ({ n, wd: tx.wd[i % 5], pick: () => this.setState({ bDay: i, bSlot: -1 }), bg: i === bd ? t.primary : t.surface, color: i === bd ? '#FFFFFF' : t.text, border: i === bd ? t.primary : t.line })),
+      bDayLabel: dayLabel,
+      bSlots: slotsBy[bd].map((h, i) => ({ h, pick: () => this.setState({ bSlot: i }), bg: i === bs ? t.sel : t.surface, color: i === bs ? t.accentText : t.text, border: i === bs ? t.primary : t.line })),
+      bNoSlot: bs < 0, bBtnBg: bs < 0 ? t.disabled : t.primary,
+      bBtnLabel: bs < 0 ? tx.pick : tx.cont + slotsBy[bd][bs] + ' →',
+      bNext: () => { if (this.state.bSlot >= 0) this.setState({ bStage: 1 }); },
+      bBack: () => this.setState({ bStage: 0 }),
+      bConfirm: () => this.setState({ bStage: 2 }),
+      bReset: () => this.setState({ bStage: 0, bSlot: -1 }),
+      bSetName: (e) => this.setState({ bName: e.target.value }),
+      bSetMail: (e) => this.setState({ bMail: e.target.value }),
+      bSummary: summary,
+      mailOpen: !this.state.mailSent, mailSent: this.state.mailSent,
+      sendMail: () => this.setState({ mailSent: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

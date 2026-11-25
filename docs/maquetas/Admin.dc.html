@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Modernízate — Panel de administración</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F4FE0}a:hover{color:#1639A8}
+.wm{font-family:'Archivo',sans-serif;font-stretch:125%;font-variation-settings:'wdth' 125;font-weight:800;line-height:1}
+.ac{position:relative;display:inline-block}
+.ac i{position:absolute;left:50%;top:-0.34em;width:0.13em;height:0.30em;margin-left:-0.02em;background:#DCE6FF;transform:skewX(-38deg);border-radius:0.02em}
+.num{font-variant-numeric:tabular-nums}
+.mono{font-family:Inter,sans-serif;font-variant-numeric:tabular-nums}
+.cap{font-family:Inter,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase}
+.bar{transition:height .4s ease}
+</style>
+</helmet>
+<div style="font-family: Inter, sans-serif; background: {{t.bg}}; color: {{t.text}}; min-height: 980px; display: flex; flex-wrap: wrap">
+
+  <aside style="flex: 1 1 232px; max-width: 248px; min-width: 220px; box-sizing: border-box; background: {{t.side}}; color: #FFFFFF; padding: 22px 12px 16px; display: flex; flex-direction: column; gap: 22px">
+    <div style="padding: 0 10px; display: flex; flex-direction: column; gap: 8px">
+      <div class="wm" style="font-size: 18px">MODERN<span class="ac">I<i></i></span>ZATE</div>
+      <div class="cap" style="color: #C9D6F2">Intranet · Clientes</div>
+    </div>
+    <nav aria-label="Principal" style="display: flex; flex-direction: column; gap: 2px">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="7">
+        <a href="#" style="display: flex; align-items: center; gap: 12px; height: 40px; padding: 0 12px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: {{n.weight}}; color: #FFFFFF; background: {{n.bg}}; opacity: {{n.op}}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{n.icon}}"></path></svg>
+          {{n.label}}
+          <sc-if value="{{n.hasCount}}" hint-placeholder-val="{{ false }}"><span class="num" style="margin-left: auto; min-width: 20px; height: 20px; padding: 0 6px; box-sizing: border-box; border-radius: 999px; background: #FFFFFF; color: #1639A8; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{n.count}}</span></sc-if>
+        </a>
+      </sc-for>
+    </nav>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px">
+      <a href="#" style="display: flex; align-items: center; gap: 12px; height: 40px; padding: 0 12px; border-radius: 6px; color: #FFFFFF; text-decoration: none; font-size: 14px; opacity: 0.85"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>Ajustes</a>
+      <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-top: 1px solid rgba(255,255,255,0.18)">
+        <div style="width: 32px; height: 32px; border-radius: 50%; background: #FFFFFF; color: #1639A8; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">PA</div>
+        <div style="font-size: 13px; line-height: 1.3"><div style="font-weight: 600">Pablo Arenas</div><div style="color: #C9D6F2">Administrador</div></div>
+      </div>
+      <div class="mono" style="font-size: 11px; color: #C9D6F2; padding: 0 12px">v0.1.0</div>
+    </div>
+  </aside>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 22px 28px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px">
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap">
+      <div>
+        <p class="cap" style="margin: 0; color: {{t.muted}}">Operación / Resumen</p>
+        <h1 style="margin: 4px 0 0; font-family: Archivo, sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Resumen de atención</h1>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap">
+        <div style="display: flex; border: 1px solid {{t.line}}; border-radius: 6px; overflow: hidden; background: {{t.surface}}">
+          <sc-for list="{{ranges}}" as="r" hint-placeholder-count="3">
+            <button onClick="{{r.pick}}" style="height: 36px; padding: 0 14px; border: 0; border-right: 1px solid {{t.line}}; background: {{r.bg}}; color: {{r.color}}; font: 500 13px Inter, sans-serif; cursor: pointer">{{r.label}}</button>
+          </sc-for>
+        </div>
+        <button onClick="{{toggleTheme}}" aria-label="Cambiar modo claro u oscuro" style="height: 36px; padding: 0 12px; border-radius: 6px; border: 1px solid {{t.line}}; background: {{t.surface}}; color: {{t.text}}; font: 500 13px Inter, sans-serif; display: inline-flex; align-items: center; gap: 8px; cursor: pointer">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>{{themeLabel}}
+        </button>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px">
+      <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+        <div style="background: {{t.surface}}; border: 1px solid {{t.line}}; border-radius: 8px; padding: 16px; display: flex; gap: 14px; align-items: flex-start">
+          <div style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 6px; background: {{k.tint}}; color: {{k.color}}; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{k.icon}}"></path></svg></div>
+          <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+            <div style="font-size: 12px; color: {{t.muted}}">{{k.label}}</div>
+            <div class="num" style="font-family: Archivo, sans-serif; font-size: 26px; font-weight: 600">{{k.value}}</div>
+            <div style="align-self: flex-start; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 4px; color: {{k.fg}}; background: {{k.bgc}}">{{k.delta}}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 14px">
+      <div style="background: {{t.surface}}; border: 1px solid {{t.line}}; border-radius: 8px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px">
+          <div><h2 style="margin: 0; font-size: 15px; font-weight: 600">Conversaciones por día</h2><p style="margin: 2px 0 0; font-size: 12px; color: {{t.muted}}">Últimos 14 días · datos de ejemplo</p></div>
+          <div style="display: flex; gap: 14px; font-size: 12px; color: {{t.muted}}">
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 14px; height: 2px; background: {{t.c1}}"></span>Asistente</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 14px; height: 2px; background: {{t.c2}}"></span>Persona</span>
+          </div>
+        </div>
+        <div style="position: relative; height: 190px">
+          <svg viewBox="0 0 1000 190" preserveAspectRatio="none" role="img" aria-label="Gráfico de líneas de conversaciones resueltas por el asistente y derivadas a una persona" style="position: absolute; inset: 0; width: 100%; height: 100%">
+            <line x1="0" y1="10" x2="1000" y2="10" stroke="{{t.grid}}" vector-effect="non-scaling-stroke"></line>
+            <line x1="0" y1="70" x2="1000" y2="70" stroke="{{t.grid}}" vector-effect="non-scaling-stroke"></line>
+            <line x1="0" y1="130" x2="1000" y2="130" stroke="{{t.grid}}" vector-effect="non-scaling-stroke"></line>
+            <line x1="0" y1="189" x2="1000" y2="189" stroke="{{t.line}}" vector-effect="non-scaling-stroke"></line>
+            <path d="{{pathA}}" fill="none" stroke="{{t.c1}}" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+            <path d="{{pathB}}" fill="none" stroke="{{t.c2}}" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+          </svg>
+          <sc-if value="{{hasHi}}" hint-placeholder-val="{{ false }}">
+            <div style="position: absolute; top: 0; bottom: 0; width: 1px; background: {{t.muted}}; opacity: 0.5; left: {{hi.left}}" aria-hidden="true"></div>
+            <div style="position: absolute; top: {{hi.ya}}; left: {{hi.left}}; width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px; border-radius: 50%; background: {{t.c1}}; box-shadow: 0 0 0 2px {{t.surface}}"></div>
+            <div style="position: absolute; top: {{hi.yb}}; left: {{hi.left}}; width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px; border-radius: 50%; background: {{t.c2}}; box-shadow: 0 0 0 2px {{t.surface}}"></div>
+            <div style="position: absolute; top: 6px; left: {{hi.tipLeft}}; width: 160px; background: {{t.surface}}; border: 1px solid {{t.line}}; border-radius: 6px; padding: 8px 10px; box-shadow: 0 8px 24px -12px rgba(0,0,0,0.35); font-size: 12px; display: flex; flex-direction: column; gap: 3px; pointer-events: none">
+              <div style="font-weight: 600">{{hi.label}}</div>
+              <div style="display: flex; justify-content: space-between"><span>Asistente</span><span class="num" style="font-weight: 600">{{hi.a}}</span></div>
+              <div style="display: flex; justify-content: space-between"><span>Persona</span><span class="num" style="font-weight: 600">{{hi.b}}</span></div>
+            </div>
+          </sc-if>
+          <div style="position: absolute; inset: 0; display: grid; grid-template-columns: repeat(14, minmax(0, 1fr))" onMouseLeave="{{clearHi}}">
+            <sc-for list="{{cols}}" as="c" hint-placeholder-count="14"><div onMouseEnter="{{c.enter}}"></div></sc-for>
+          </div>
+        </div>
+        <div class="mono" style="display: flex; justify-content: space-between; font-size: 11px; color: {{t.muted}}"><span>8 nov</span><span>14 nov</span><span>21 nov</span></div>
+      </div>
+
+      <div style="background: {{t.surface}}; border: 1px solid {{t.line}}; border-radius: 8px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px">
+        <div><h2 style="margin: 0; font-size: 15px; font-weight: 600">Citas por día de la semana</h2><p style="margin: 2px 0 0; font-size: 12px; color: {{t.muted}}">Agendadas por el asistente · {{barHint}}</p></div>
+        <div style="height: 190px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 14px; align-items: end; border-bottom: 1px solid {{t.line}}; position: relative" onMouseLeave="{{clearBar}}">
+          <sc-for list="{{bars}}" as="b" hint-placeholder-count="7">
+            <div onMouseEnter="{{b.enter}}" style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; cursor: default">
+              <span class="num" style="font-size: 12px; font-weight: 600; color: {{t.text}}; opacity: {{b.labelOp}}">{{b.v}}</span>
+              <div class="bar" style="width: 100%; max-width: 40px; height: {{b.h}}; border-radius: 4px 4px 0 0; background: {{b.color}}"></div>
+            </div>
+          </sc-for>
+        </div>
+        <div class="mono" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 14px; font-size: 11px; color: {{t.muted}}; text-align: center">
+          <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 14px">
+      <div style="background: {{t.surface}}; border: 1px solid {{t.line}}; border-radius: 8px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px">
+          <div><h2 style="margin: 0; font-size: 15px; font-weight: 600">Agenda de la semana</h2><p style="margin: 2px 0 0; font-size: 12px; color: {{t.muted}}">17 – 21 nov</p></div>
+          <div style="display: flex; gap: 12px; font-size: 12px; color: {{t.muted}}; flex-wrap: wrap">
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{t.c1}}"></span>Agendada por IA</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{t.c3}}"></span>Personal</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{t.c4}}"></span>Bloqueo</span>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 44px repeat(5, minmax(0, 1fr)); gap: 0">
+          <div></div>
+          <sc-for list="{{days}}" as="d" hint-placeholder-count="5">
+            <div class="mono" style="font-size: 11px; color: {{d.color}}; text-align: center; padding-bottom: 8px; font-weight: {{d.weight}}">{{d.label}}</div>
+          </sc-for>
+          <div style="position: relative; height: 252px">
+            <sc-for list="{{hours}}" as="h" hint-placeholder-count="5"><div class="mono" style="position: absolute; left: 0; top: {{h.top}}; font-size: 10px; color: {{t.muted}}; transform: translateY(-50%)">{{h.label}}</div></sc-for>
+          </div>
+          <sc-for list="{{calCols}}" as="col" hint-placeholder-count="5">
+            <div style="position: relative; height: 252px; border-left: 1px solid {{t.grid}}; background: {{col.bg}}">
+              <sc-for list="{{hours}}" as="h" hint-placeholder-count="5"><div style="position: absolute; left: 0; right: 0; top: {{h.top}}; border-top: 1px solid {{t.grid}}"></div></sc-for>
+              <sc-for list="{{col.ev}}" as="e" hint-placeholder-count="2">
+                <div style="position: absolute; left: 4px; right: 4px; top: {{e.top}}; height: {{e.h}}; border-radius: 4px; background: {{e.bg}}; border-left: 3px solid {{e.c}}; padding: 4px 6px; box-sizing: border-box; overflow: hidden">
+                  <div style="font-size: 11px; font-weight: 600; color: {{t.text}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{e.t}}</div>
+                  <div class="mono" style="font-size: 10px; color: {{t.muted}}">{{e.time}}</div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="background: {{t.surface}}; border: 1px solid {{t.line}}; border-radius: 8px; padding: 16px 18px; display: flex; flex-direction: column; gap: 16px">
+        <div><h2 style="margin: 0; font-size: 15px; font-weight: 600">Etapas del pipeline</h2><p style="margin: 2px 0 0; font-size: 12px; color: {{t.muted}}">64 contactos activos · 7 perdidos este mes</p></div>
+        <div style="display: flex; height: 14px; gap: 2px" role="img" aria-label="Distribución de contactos por etapa">
+          <sc-for list="{{stages}}" as="s" hint-placeholder-count="4"><div style="width: {{s.w}}; background: {{s.c}}; border-radius: {{s.r}}"></div></sc-for>
+        </div>
+        <div style="display: flex; flex-direction: column">
+          <sc-for list="{{stages}}" as="s" hint-placeholder-count="4">
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid {{t.grid}}">
+              <span style="width: 10px; height: 10px; border-radius: 2px; background: {{s.c}}"></span>
+              <span style="flex: 1; font-size: 14px">{{s.label}}</span>
+              <span class="num" style="font-size: 14px; font-weight: 600">{{s.n}}</span>
+              <span class="num mono" style="width: 44px; text-align: right; font-size: 12px; color: {{t.muted}}">{{s.p}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; align-items: center; gap: 14px; padding: 12px; border-radius: 6px; background: {{t.soft}}">
+          <svg width="44" height="44" viewBox="0 0 36 36" role="img" aria-label="Tasa de conversión 28 por ciento"><circle cx="18" cy="18" r="15" fill="none" stroke="{{t.grid}}" stroke-width="4"></circle><circle cx="18" cy="18" r="15" fill="none" stroke="{{t.c3}}" stroke-width="4" stroke-dasharray="26.4 94.2" stroke-linecap="round" transform="rotate(-90 18 18)"></circle></svg>
+          <div style="font-size: 13px; line-height: 1.5"><b>28% de conversión</b> de conversación a cliente en los últimos 30 días.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: {{t.surface}}; border: 1px solid {{t.line}}; border-radius: 8px; overflow: hidden">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 12px 18px; border-bottom: 1px solid {{t.line}}">
+        <div style="display: flex; gap: 6px; flex-wrap: wrap">
+          <sc-for list="{{filters}}" as="f" hint-placeholder-count="5">
+            <button onClick="{{f.pick}}" style="height: 30px; padding: 0 12px; border-radius: 6px; border: 1px solid {{f.border}}; background: {{f.bg}}; color: {{f.color}}; font: 500 13px Inter, sans-serif; cursor: pointer">{{f.label}} <span class="num" style="opacity: 0.7">{{f.n}}</span></button>
+          </sc-for>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center">
+          <span style="font-size: 13px; color: {{t.muted}}">{{selLabel}}</span>
+          <button style="height: 34px; padding: 0 14px; border-radius: 6px; border: 0; background: {{t.primary}}; color: #FFFFFF; font: 600 13px Inter, sans-serif">+ Nuevo registro</button>
+        </div>
+      </div>
+      <div style="overflow-x: auto">
+        <table style="width: 100%; min-width: 700px; border-collapse: collapse; font-size: 14px">
+          <thead>
+            <tr style="text-align: left; background: {{t.soft}}">
+              <th style="padding: 9px 18px; width: 20px"><span style="position: absolute; left: -9999px">Seleccionar</span></th>
+              <sc-for list="{{heads}}" as="h" hint-placeholder-count="5">
+                <th style="padding: 9px 12px; text-align: {{h.align}}"><button onClick="{{h.sort}}" class="cap" style="background: none; border: 0; padding: 0; color: {{h.color}}; cursor: pointer">{{h.label}} {{h.arrow}}</button></th>
+              </sc-for>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+              <tr style="border-top: 1px solid {{t.line}}; background: {{r.rowBg}}; box-shadow: inset 3px 0 0 {{r.bar}}">
+                <td style="padding: 10px 18px"><input type="checkbox" checked="{{r.checked}}" onChange="{{r.toggle}}" aria-label="Seleccionar {{r.name}}" style="accent-color: {{t.primary}}; width: 16px; height: 16px"></td>
+                <td style="padding: 10px 12px"><div style="display: flex; align-items: center; gap: 10px"><span style="width: 30px; height: 30px; border-radius: 50%; background: {{r.av}}; color: #FFFFFF; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{r.ini}}</span><span style="font-weight: 500">{{r.name}}</span></div></td>
+                <td style="padding: 10px 12px; color: {{t.muted}}">{{r.channel}}</td>
+                <td style="padding: 10px 12px"><span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; padding: 2px 9px; border-radius: 999px; border: 1px solid {{t.line}}"><span style="width: 7px; height: 7px; border-radius: 50%; background: {{r.dot}}"></span>{{r.stage}}</span></td>
+                <td class="mono" style="padding: 10px 12px; color: {{t.muted}}; font-size: 12px">{{r.last}}</td>
+                <td class="num" style="padding: 10px 18px 10px 12px; text-align: right">{{r.valueLabel}}</td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    this.state = { dark: null, hi: -1, hb: -1, range: '14 días', filter: 'Todos', sortKey: 'last', sortDir: 1, sel: {} };
+  }
+  renderVals() {
+    const dark = this.state.dark === null ? !!this.props.dark : this.state.dark;
+    const L = { bg: '#F4F7FC', side: '#14287A', surface: '#FFFFFF', soft: '#F7F9FD', line: '#E2E8F2', grid: '#EEF2F8', text: '#0B1530', muted: '#4A5468', primary: '#1F4FE0', primarySoft: '#EAF0FF', primaryText: '#1639A8', c1: '#1F4FE0', c2: '#D9780A', c3: '#0E9F9A', c4: '#9B5DE5', okF: '#0E7A3E', okB: '#E5F6EC', badF: '#B42318', badB: '#FDECEC', sel: '#EEF3FF', t1: '#EAF0FF', t2: '#FDF1E3', t3: '#E3F5F4', t4: '#F3ECFD', today: '#F7F9FD' };
+    const D = { bg: '#0A1022', side: '#14287A', surface: '#111A33', soft: '#0D1530', line: '#1F2A47', grid: '#1A2440', text: '#E8EDF7', muted: '#9AA6BF', primary: '#3D6BFF', primarySoft: '#1A2850', primaryText: '#B8CBFF', c1: '#5C8BFF', c2: '#D07A2A', c3: '#119E97', c4: '#A37BEB', okF: '#6EE7A8', okB: '#0F2E22', badF: '#FF9592', badB: '#3B1416', sel: '#16203D', t1: '#1A2850', t2: '#33230F', t3: '#0D2E2D', t4: '#2A1E44', today: '#0D1530' };
+    const t = dark ? D : L;
+
+    const A = [42, 48, 45, 51, 58, 39, 36, 55, 61, 59, 66, 70, 52, 49];
+    const B = [14, 12, 15, 11, 13, 9, 8, 12, 10, 11, 9, 8, 7, 9];
+    const n = A.length, max = 80;
+    const x = (i) => (i / (n - 1)) * 1000, y = (v) => 189 - (v / max) * 179;
+    const path = (arr) => arr.map((v, i) => (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1)).join(' ');
+    const hiI = this.state.hi;
+    const hi = hiI >= 0 ? { left: (hiI / (n - 1) * 100) + '%', tipLeft: hiI > n / 2 ? 'calc(' + (hiI / (n - 1) * 100) + '% - 172px)' : 'calc(' + (hiI / (n - 1) * 100) + '% + 12px)', ya: (y(A[hiI]) / 190 * 100) + '%', yb: (y(B[hiI]) / 190 * 100) + '%', label: (8 + hiI) + ' nov', a: A[hiI], b: B[hiI] } : {};
+
+    const W = [9, 12, 11, 14, 10, 5, 0];
+    const hb = this.state.hb;
+    const bars = W.map((v, i) => ({ v, h: (v / 16 * 150) + 'px', color: hb === -1 || hb === i ? t.c1 : (dark ? '#2B3F7A' : '#BFCEF5'), labelOp: hb === -1 || hb === i ? 1 : 0.35, enter: () => this.setState({ hb: i }) }));
+
+    const today = 3;
+    const dayNames = ['Lun 17', 'Mar 18', 'Mié 19', 'Jue 20', 'Vie 21'];
+    const ev = (start, dur, title, kind) => {
+      const c = { ia: t.c1, per: t.c3, blk: t.c4 }[kind], bg = { ia: t.t1, per: t.t3, blk: t.t4 }[kind];
+      const hh = (h) => Math.floor(h) + ':' + (h % 1 ? '30' : '00');
+      return { top: ((start - 9) / 9 * 252) + 'px', h: (dur / 9 * 252 - 2) + 'px', t: title, time: hh(start) + '–' + hh(start + dur), c, bg };
+    };
+    const E = [
+      [ev(9.5, 1, 'Camila M. · evaluación', 'ia'), ev(13, 1, 'Almuerzo', 'blk'), ev(15, 1.5, 'Jorge R. · visita', 'ia')],
+      [ev(10, 1, 'Reunión proveedor', 'per'), ev(16, 1, 'Paula A.', 'ia')],
+      [ev(9, 2, 'Trámite banco', 'per'), ev(12, 1, 'Luis T.', 'ia'), ev(13, 1, 'Almuerzo', 'blk'), ev(16.5, 1, 'Ana S.', 'ia')],
+      [ev(11, 1, 'Carlos R.', 'ia'), ev(14, 1, 'Marta V.', 'ia'), ev(16.5, 1, 'Camila M.', 'ia')],
+      [ev(10, 1.5, 'Planificación', 'per'), ev(15, 2, 'Bloqueado', 'blk')]
+    ];
+
+    const st = [['En conversación', 26, t.c1], ['Interesado', 18, t.c2], ['Cliente', 14, t.c3], ['Nuevo', 6, t.c4]];
+    const tot = st.reduce((s, r) => s + r[1], 0);
+    const stages = st.map((r, i) => ({ label: r[0], n: r[1], c: r[2], w: (r[1] / tot * 100).toFixed(1) + '%', p: Math.round(r[1] / tot * 100) + '%', r: i === 0 ? '4px 0 0 4px' : i === st.length - 1 ? '0 4px 4px 0' : '0' }));
+
+    const fmt = (v) => '$' + v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const stageDot = { Nuevo: '#8A94A6', 'En conversación': t.c1, Interesado: t.c2, Cliente: '#12A150', Perdido: '#D93036' };
+    const data = [
+      { id: 1, ini: 'FR', av: '#B8860B', name: 'Ferretería El Roble', channel: 'WhatsApp', stage: 'Cliente', last: 1, lastL: 'hoy 11:20', value: 70000 },
+      { id: 2, ini: 'CD', av: '#D9446C', name: 'Clínica Dental Sonríe', channel: 'WhatsApp', stage: 'Interesado', last: 2, lastL: 'ayer', value: 95000 },
+      { id: 3, ini: 'BS', av: '#7C5CFF', name: 'Banquetería Sabores', channel: 'Formulario web', stage: 'Nuevo', last: 3, lastL: 'hace 2 d', value: 0 },
+      { id: 4, ini: 'TN', av: '#0E9F9A', name: 'Taller Neumáticos Sur', channel: 'Correo', stage: 'En conversación', last: 4, lastL: 'hace 3 d', value: 50000 },
+      { id: 5, ini: 'EJ', av: '#1F4FE0', name: 'Estudio Jurídico Pérez', channel: 'Formulario web', stage: 'Interesado', last: 5, lastL: 'hace 5 d', value: 120000 },
+      { id: 6, ini: 'VH', av: '#2F8F46', name: 'Vivero Las Hojas', channel: 'WhatsApp', stage: 'Perdido', last: 6, lastL: 'hace 1 sem', value: 60000 }
+    ];
+    const f = this.state.filter, sk = this.state.sortKey, sd = this.state.sortDir, sel = this.state.sel;
+    const rowsRaw = data.filter((d) => f === 'Todos' || d.stage === f).sort((a, b) => (a[sk] > b[sk] ? 1 : a[sk] < b[sk] ? -1 : 0) * sd);
+    const nSel = Object.keys(sel).filter((k) => sel[k]).length;
+    const sortBy = (k) => () => this.setState({ sortKey: k, sortDir: this.state.sortKey === k ? -this.state.sortDir : 1 });
+    const head = (label, k, align) => ({ label, align, color: sk === k ? t.text : t.muted, arrow: sk === k ? (sd > 0 ? '↑' : '↓') : '', sort: sortBy(k) });
+    const I = {
+      inbox: 'M22 12h-6l-2 3h-4l-2-3H2 M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z',
+      home: 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z M9 22V12h6v10',
+      cal: 'M8 2v4 M16 2v4 M3 10h18 M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z',
+      users: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75',
+      cart: 'M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z M3 6h18 M16 10a4 4 0 0 1-8 0',
+      chart: 'M3 3v18h18 M8 17V9 M13 17V5 M18 17v-6',
+      flow: 'M6 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6z M18 15a3 3 0 1 0 0 6 3 3 0 0 0 0-6z M9 6h6a3 3 0 0 1 3 3v6',
+      msg: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z',
+      clock: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M12 6v6l4 2'
+    };
+    return {
+      t,
+      themeLabel: dark ? 'Claro' : 'Oscuro',
+      toggleTheme: () => this.setState({ dark: !dark }),
+      ranges: ['7 días', '14 días', '30 días'].map((label) => ({ label, pick: () => this.setState({ range: label }), bg: this.state.range === label ? t.primarySoft : t.surface, color: this.state.range === label ? t.primaryText : t.muted })),
+      nav: [['Resumen', '', true, I.home], ['Bandeja', '3', false, I.inbox], ['Agenda', '', false, I.cal], ['Contactos', '', false, I.users], ['Pedidos', '2', false, I.cart], ['Automatizaciones', '', false, I.flow], ['Reportes', '', false, I.chart]].map(([label, count, on, icon]) => ({ label, count, icon, hasCount: !!count, weight: on ? 600 : 500, bg: on ? 'rgba(255,255,255,0.16)' : 'transparent', op: on ? 1 : 0.85 })),
+      kpis: [
+        { label: 'Conversaciones', value: '412', delta: '▲ 12% vs período anterior', fg: t.okF, bgc: t.okB, color: t.c1, tint: t.t1, icon: I.msg },
+        { label: 'Citas agendadas', value: '38', delta: '▲ 5 más', fg: t.okF, bgc: t.okB, color: t.c2, tint: t.t2, icon: I.cal },
+        { label: 'Nuevos clientes', value: '14', delta: '▲ 3 más', fg: t.okF, bgc: t.okB, color: t.c3, tint: t.t3, icon: I.users },
+        { label: 'Tiempo de respuesta', value: '1m 40s', delta: '▼ 20 s más lento', fg: t.badF, bgc: t.badB, color: t.c4, tint: t.t4, icon: I.clock }
+      ],
+      pathA: path(A), pathB: path(B), hasHi: hiI >= 0, hi,
+      cols: A.map((_, i) => ({ enter: () => this.setState({ hi: i }) })),
+      clearHi: () => this.setState({ hi: -1 }),
+      bars, clearBar: () => this.setState({ hb: -1 }),
+      barHint: hb >= 0 ? ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'][hb] + ': ' + W[hb] + ' citas' : 'pasa el mouse sobre una barra',
+      days: dayNames.map((label, i) => ({ label, color: i === today ? t.primaryText : t.muted, weight: i === today ? 600 : 400 })),
+      hours: [9, 11, 13, 15, 17].map((h) => ({ label: h + ':00', top: ((h - 9) / 9 * 252) + 'px' })),
+      calCols: E.map((evs, i) => ({ ev: evs, bg: i === today ? t.today : 'transparent' })),
+      stages,
+      filters: ['Todos', 'En conversación', 'Interesado', 'Cliente', 'Perdido'].map((label) => ({ label, n: label === 'Todos' ? data.length : data.filter((d) => d.stage === label).length, pick: () => this.setState({ filter: label }), bg: f === label ? t.primarySoft : t.surface, color: f === label ? t.primaryText : t.muted, border: f === label ? t.primarySoft : t.line })),
+      selLabel: nSel ? nSel + ' seleccionados' : '',
+      heads: [head('Cliente', 'name', 'left'), head('Canal', 'channel', 'left'), head('Etapa', 'stage', 'left'), head('Último contacto', 'last', 'left'), head('Mensualidad', 'value', 'right')],
+      rows: rowsRaw.map((d) => ({ ...d, last: d.lastL, valueLabel: d.value ? fmt(d.value) : '—', dot: stageDot[d.stage], checked: !!sel[d.id], rowBg: sel[d.id] ? t.sel : 'transparent', bar: sel[d.id] ? t.primary : 'transparent', toggle: () => this.setState({ sel: { ...this.state.sel, [d.id]: !this.state.sel[d.id] } }) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

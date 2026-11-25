@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Identidad Modernízate — Dirección A</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F4FE0}a:hover{color:#1639A8}
+.wm{font-family:'Archivo',sans-serif;font-stretch:125%;font-variation-settings:'wdth' 125;font-weight:800;letter-spacing:-0.01em;line-height:1}
+.ac{position:relative;display:inline-block}
+.ac i{position:absolute;left:50%;top:-0.34em;width:0.13em;height:0.30em;margin-left:-0.02em;background:#1F4FE0;transform:skewX(-38deg);border-radius:0.02em}
+.dots{background-image:radial-gradient(#C9D6F2 1.2px,transparent 1.2px);background-size:18px 18px}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1080px; box-sizing: border-box; padding: 64px 72px; background: #FFFFFF; font-family: Inter, sans-serif; color: #0B1530; display: flex; flex-direction: column; gap: 40px">
+
+  <div style="display: flex; justify-content: space-between; align-items: baseline">
+    <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #4A5468">Dirección A · Precisión cercana</p>
+    <p style="margin: 0; font-size: 13px; color: #4A5468">Corporativo con vida · azul cobalto · fino y ordenado</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+    <div class="dots" style="grid-column: span 2; height: 300px; border: 1px solid #E2E8F2; border-radius: 20px; background-color: #F7F9FD; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px">
+      <div class="wm" style="font-size: 96px; color: #1F4FE0">MODERN<span class="ac">I<i></i></span>ZATE</div>
+      <p style="margin: 0; font-size: 15px; color: #4A5468">Logotipo principal en cobalto, un solo color · versión blanca sobre cobalto · celeste tenue como marca de agua en documentos</p>
+    </div>
+    <div style="display: grid; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 24px">
+      <div style="border-radius: 20px; display: flex; align-items: center; justify-content: center; background-color: #1F4FE0E3">
+        <div class="wm" style="font-size: 40px; color: #FFFFFF">MODERN<span class="ac">I<i style="background: #DCE6FF"></i></span>ZATE</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+        <div style="border-radius: 20px; background: {{accent}}; display: flex; align-items: center; justify-content: center">
+          <div style="width: 22px; height: 52px; background: #FFFFFF; transform: skewX(-38deg); border-radius: 3px"></div>
+        </div>
+        <div style="border-radius: 20px; background: #FFFFFF; border: 1px solid #E2E8F2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 8px">
+          <div class="wm" style="font-size: 15px; color: #C9D6F2">MODERN<span class="ac">I<i style="background: #DCE6FF"></i></span>ZATE</div>
+          <div style="font-size: 11px; color: #4A5468">Marca de agua</div>
+        </div>
+        <div style="border-radius: 20px; background: #DCE6FF; display: flex; align-items: center; justify-content: center">
+          <div style="width: 22px; height: 52px; background: {{accent}}; transform: skewX(-38deg); border-radius: 3px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px">
+    <div style="grid-column: span 7; display: flex; flex-direction: column; gap: 14px">
+      <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4A5468">Color</p>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px">
+        <sc-for list="{{swatches}}" as="s" hint-placeholder-count="6">
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <div style="height: 84px; border-radius: 14px; background: {{s.hex}}; border: 1px solid #E2E8F2"></div>
+            <div style="font-size: 13px; font-weight: 600">{{s.name}}</div>
+            <div style="font-size: 12px; color: #4A5468">{{s.hex}} · {{s.use}}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: center; margin-top: 6px; flex-wrap: wrap">
+        <span style="font-size: 12px; color: #4A5468">Datos:</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px"><span style="width: 18px; height: 3px; border-radius: 2px; background: #1F4FE0"></span>Serie 1 #1F4FE0</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px"><span style="width: 18px; height: 3px; border-radius: 2px; background: #D9780A"></span>Serie 2 #D9780A</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #0E7A3E; background: #E5F6EC; padding: 4px 8px; border-radius: 999px">▲ Bien #12A150</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #B42318; background: #FDECEC; padding: 4px 8px; border-radius: 999px">▼ Alerta #D93036</span>
+      </div>
+    </div>
+    <div style="grid-column: span 5; display: flex; flex-direction: column; gap: 14px">
+      <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4A5468">Tipografía</p>
+      <div style="border: 1px solid #E2E8F2; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <div class="wm" style="font-size: 30px; font-weight: 700; font-family: &quot;Archivo&quot;">TU NEGOCIO, MÁS CLARO.</div>
+        <div style="font-family: &quot;Archivo&quot;; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Automatización que se entiende</div>
+        <div style="font-size: 15px; line-height: 1.6; color: #4A5468; font-family: Arial, sans-serif">Inter para textos y datos. Archivo Expandida solo para la marca y titulares cortos; Archivo normal para títulos.</div>
+        <div style="display: flex; gap: 16px; font-size: 12px; color: #4A5468"><span>Archivo Expanded 800</span><span>Archivo 600</span><span>Inter 400 / 600</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px">
+    <div style="grid-column: span 7; display: flex; flex-direction: column; gap: 14px">
+      <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4A5468">Componentes</p>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center">
+        <button style="font: 600 15px Inter, sans-serif; color: #FFFFFF; background: {{accent}}; border: 0; border-radius: 12px; padding: 0 22px; height: 46px">Agenda una conversación</button>
+        <button style="font: 600 15px Inter, sans-serif; color: #0B1530; background: #FFFFFF; border: 1px solid #D5DDEB; border-radius: 12px; padding: 0 22px; height: 46px">Ver cómo trabajamos</button>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: #1639A8; background: #EAF0FF; padding: 6px 12px; border-radius: 999px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Cita confirmada</span>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="demo-mail" style="font-size: 13px; font-weight: 500">Correo</label>
+          <input id="demo-mail" placeholder="tu@negocio.cl" style="font: 400 15px Inter, sans-serif; width: 260px; height: 44px; box-sizing: border-box; padding: 0 14px; border: 1px solid #D5DDEB; border-radius: 12px; color: #0B1530">
+        </div>
+        <div style="border: 1px solid #E2E8F2; border-radius: 16px; padding: 16px 18px; display: flex; gap: 14px; align-items: center; width: 300px; box-sizing: border-box">
+          <div style="width: 40px; height: 40px; border-radius: 12px; background: #EAF0FF; display: flex; align-items: center; justify-content: center; color: #1F4FE0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
+          <div><div style="font-size: 14px; font-weight: 600">Atención y agenda</div><div style="font-size: 13px; color: #4A5468">Responde, agenda y deriva</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="grid-column: span 5; display: flex; flex-direction: column; gap: 14px">
+      <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4A5468">Fondo y forma</p>
+      <div class="dots" style="flex-grow: 1; min-height: 150px; border-radius: 16px; border: 1px solid #E2E8F2; position: relative; overflow: hidden">
+        <div style="position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: #C9D6F2"></div>
+        <div style="position: absolute; left: 30%; top: 0; bottom: 0; width: 1px; background: #C9D6F2"></div>
+        <div style="position: absolute; left: calc(30% - 5px); top: calc(50% - 5px); width: 10px; height: 10px; border-radius: 50%; background: {{accent}}"></div>
+        <p style="position: absolute; right: 16px; bottom: 12px; margin: 0; font-size: 12px; color: #4A5468">Retícula de puntos + líneas finas · radios 12–20 px</p>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#1F4FE0","options":["#1F4FE0","#2563EB","#3B5BDB","#0B1530"]},"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      accent: this.props.accent ?? '#1F4FE0',
+      swatches: [
+        { name: 'Cobalto', hex: '#1F4FE0', use: 'marca, acción' },
+        { name: 'Tinta', hex: '#0B1530', use: 'texto, fondos oscuros' },
+        { name: 'Grafito', hex: '#4A5468', use: 'texto secundario' },
+        { name: 'Celeste', hex: '#DCE6FF', use: 'superficies de acento' },
+        { name: 'Niebla', hex: '#F4F7FC', use: 'fondos de sección' },
+        { name: 'Línea', hex: '#E2E8F2', use: 'bordes y divisores' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
