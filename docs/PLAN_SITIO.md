@@ -5,7 +5,7 @@ Archivo de estado. Una sesión nueva retoma desde aquí y desde `git log`, no de
 ## Forma de trabajo
 - **Una aprobación por etapa.** Claude muestra el plan de la etapa una vez; con el "dale" de Pablo la ejecuta completa. Solo se detiene si algo contradice el plan, si hay riesgo de perder trabajo o si necesita una decisión de Pablo.
 - Al cerrar cada etapa: `npm run lint`, `npm run build`, casillas actualizadas aquí y reporte.
-- **Commits** pequeños en español. **Push** a `origin` (github.com/pabloarenaso/modernizate-web) autorizado al cerrar cada etapa, solo si lint y build pasan.
+- **Commits** pequeños en español, y **cada commit compila por sí solo** (lint y build antes de cada uno). **Push** a `origin` (github.com/pabloarenaso/modernizate-web) autorizado al cerrar cada etapa, solo si lint y build pasan.
 - **Sin despliegues** al servidor hasta que Pablo lo pida (Etapa 7).
 - Rigen `CLAUDE.md` (incluida "Decisiones de plataforma") y `~/modernizate/herramientas/docs/principios.md`.
 
@@ -33,10 +33,14 @@ Cerrada el 25 nov 2026. Comprobado con lint, build y curl sobre `next start`. No
 - [x] `.env.example` sin valores; `.gitignore` con `.env*` salvo `.env.example`
 - [x] Lint y build en verde; commit y push
 
+**Decisiones aprobadas por Pablo (25 nov 2026)**
+- Celeste de noche = #16203D (selección de Landing.dc.html).
+- Logo en noche con el color de acento de texto (#8FB0FF); marca de agua #1F2A47 con tilde #16203D.
+- Se mantiene `AGENTS.md` (lo recrea `next dev`), la página 404 general (`app/global-not-found.tsx`) y el ayudante `ok()` para textos aprobados.
+- Primario separado por uso: `--primario-relleno` (noche #3563F7) para botones con texto blanco, `--acento-texto` para texto y enlaces, `--primario` solo para elementos no textuales. Ver `docs/marca.md`.
+- Series de gráficos solo en trazos y rellenos; valores, etiquetas y leyendas con colores de texto.
+
 **Notas para etapas siguientes**
-- Contraste en noche: `--primario` (#3D6BFF) como texto sobre `--fondo` da 4,27:1 y el blanco sobre `--primario` da 4,43:1, ambos bajo AA para texto normal. Los botones de la Etapa 2 necesitan texto grande o una decisión de Pablo.
-- Gráficos de día: `--graf-2` (3,16:1) y `--graf-3` (3,26:1) sirven para trazos (≥ 3:1), no para texto.
-- `--celeste` de noche = #16203D (tomado de `sel` en Landing.dc.html; marca.md no lo define).
 - `/ingresar` necesitará su propio layout raíz (no hay `app/layout.tsx` común).
 
 ## Etapa 2 · Cabecera, hero y portal
