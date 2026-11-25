@@ -1,29 +1,27 @@
 "use client";
 
-import { useTheme } from "next-themes";
-import { useSyncExternalStore } from "react";
-
-const suscribir = () => () => {};
+import { useTema } from "@/hooks/useTema";
 
 type Props = { etiquetaNoche: string; etiquetaDia: string };
 
+/** Botón de modo noche: halo de luz en noche, sombra en día. */
 export function BotonTema({ etiquetaNoche, etiquetaDia }: Props) {
-  const { resolvedTheme, setTheme } = useTheme();
-  const montado = useSyncExternalStore(suscribir, () => true, () => false);
-  const esNoche = montado && resolvedTheme === "dark";
+  const { tema, cambiar } = useTema();
+  const montado = tema !== null;
+  const esNoche = tema === "dark";
   const etiqueta = esNoche ? etiquetaDia : etiquetaNoche;
 
   return (
     <button
       type="button"
-      onClick={() => setTheme(esNoche ? "light" : "dark")}
+      onClick={() => cambiar(esNoche ? "light" : "dark")}
       aria-label={montado ? etiqueta : undefined}
       title={montado ? etiqueta : undefined}
       disabled={!montado}
-      className="inline-flex size-10 items-center justify-center rounded-full border border-linea bg-superficie text-texto transition-colors hover:bg-suave"
+      className="boton-tema inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-linea bg-superficie text-texto"
     >
       {montado && (
-        <svg aria-hidden="true" viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+        <svg aria-hidden="true" viewBox="0 0 24 24" className="size-[18px]" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
           {esNoche ? (
             <>
               <circle cx="12" cy="12" r="4.2" />
