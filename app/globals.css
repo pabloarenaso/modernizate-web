@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/* Los valores viven en lib/paleta.ts (inyectados en <head>); aquí se exponen a Tailwind. */
+@theme inline {
+  --color-fondo: var(--fondo);
+  --color-superficie: var(--superficie);
+  --color-suave: var(--suave);
+  --color-linea: var(--linea);
+  --color-texto: var(--texto);
+  --color-texto-sec: var(--texto-sec);
+  --color-primario: var(--primario);
+  --color-acento-texto: var(--acento-texto);
+  --color-celeste: var(--celeste);
+  --color-graf-1: var(--graf-1);
+  --color-graf-2: var(--graf-2);
+  --color-graf-3: var(--graf-3);
+  --color-graf-4: var(--graf-4);
+  --color-lateral: var(--lateral);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--font-sans);
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-variation-settings: "wdth" 125;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.disp {
+  font-family: var(--font-display);
+  font-stretch: 110%;
+  font-variation-settings: "wdth" 110;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+}
+
+/* Logo: la I lleva la tilde inclinada, medida en em para escalar con el tamaño. */
+.logo-i {
+  position: relative;
+  display: inline-block;
+}
+.logo-i > i {
+  position: absolute;
+  left: 50%;
+  top: -0.34em;
+  width: 0.13em;
+  height: 0.3em;
+  margin-left: -0.02em;
+  background: var(--logo-tilde);
+  transform: skewX(-38deg);
+  border-radius: 0.02em;
+}
+.logo-principal { color: var(--acento-texto); --logo-tilde: var(--acento-texto); }
+.logo-invertido { color: #ffffff; --logo-tilde: #dce6ff; }
+.logo-agua { color: var(--agua-texto); --logo-tilde: var(--agua-tilde); }
+
+:focus-visible {
+  outline: 2px solid var(--primario);
+  outline-offset: 2px;
+}
+
+/* Modo revisión (?revision=1): textos en borrador con contorno ámbar y etiqueta. */
+html[data-revision] [data-estado="borrador"] {
+  position: relative;
+  outline: 2px dashed var(--revision);
+  outline-offset: 2px;
+}
+html[data-revision] [data-estado="borrador"]::after {
+  content: var(--etiqueta-borrador);
+  position: absolute;
+  inset-inline-end: 0;
+  top: -2px;
+  transform: translateY(-100%);
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: var(--revision);
+  color: var(--revision-texto);
+  font: 600 10px/1.3 var(--font-sans);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
