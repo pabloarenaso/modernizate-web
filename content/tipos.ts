@@ -21,6 +21,7 @@ export const tokensColor = [
   "texto",
   "texto-sec",
   "primario",
+  "primario-relleno",
   "acento-texto",
   "celeste",
   "graf-1",
@@ -53,6 +54,7 @@ export type Contenido = {
       aa: Texto;
       aaGrande: Texto;
       noAa: Texto;
+      noTextual: Texto;
       tokens: Record<TokenColor, Texto>;
     };
     tipografia: {

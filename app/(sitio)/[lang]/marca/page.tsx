@@ -8,7 +8,7 @@ import { SelectorIdioma } from "@/components/SelectorIdioma";
 import { Texto } from "@/components/Texto";
 import { obtenerContenido } from "@/content";
 import { esIdioma, tokensColor, type Contenido, type TokenColor } from "@/content/tipos";
-import { contraste, nivelAA } from "@/lib/contraste";
+import { contraste, nivelAA, nivelNoTexto } from "@/lib/contraste";
 import { dia, noche } from "@/lib/paleta";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/marca">): Promise<Metadata> {
@@ -17,13 +17,18 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/marca">): 
   return { title: obtenerContenido(lang).marca.meta.titulo.texto, robots: { index: false, follow: false } };
 }
 
+type Pareja = { frente: TokenColor | "blanco"; base: TokenColor; noTexto?: boolean };
+
 /** Con qué se mide el contraste de cada token: texto sobre fondos, el resto sobre --fondo. */
-const pareja = (t: TokenColor): { frente: TokenColor | "blanco"; base: TokenColor } | null => {
+const pareja = (t: TokenColor): Pareja | null => {
   if (t === "fondo" || t === "linea") return null;
   if (t === "superficie" || t === "suave" || t === "celeste") return { frente: "texto", base: t };
-  if (t === "lateral") return { frente: "blanco", base: t };
+  if (t === "lateral" || t === "primario-relleno") return { frente: "blanco", base: t };
+  if (t === "primario" || t.startsWith("graf-")) return { frente: t, base: "fondo", noTexto: true };
   return { frente: t, base: "fondo" };
 };
+
+const nivel = (p: Pareja, ratio: number) => (p.noTexto ? nivelNoTexto(ratio) : nivelAA(ratio));
 
 function TablaColores({ paleta, titulo, c }: { paleta: Record<TokenColor, string>; titulo: Contenido["marca"]["colores"]["dia"]; c: Contenido["marca"]["colores"] }) {
   return (
@@ -51,7 +56,7 @@ function TablaColores({ paleta, titulo, c }: { paleta: Record<TokenColor, string
                     <Texto valor={c.contraste} /> {ratio.toFixed(1)}:1 ·{" "}
                     <code>{p.frente === "blanco" ? "#FFFFFF" : `--${p.frente}`}</code> <Texto valor={c.sobre} />{" "}
                     <code>--{p.base}</code> ·{" "}
-                    <Texto valor={c[nivelAA(ratio)]} className={nivelAA(ratio) === "aa" ? "font-semibold" : "font-semibold underline decoration-wavy"} />
+                    <Texto valor={c[nivel(p, ratio)]} className={nivel(p, ratio) === "noAa" || nivel(p, ratio) === "aaGrande" ? "font-semibold underline decoration-wavy" : "font-semibold"} />
                   </p>
                 )}
               </div>
@@ -127,7 +132,7 @@ export default async function PaginaMarca({ params }: PageProps<"/[lang]/marca">
             <Logo nombre={c.marcaNombre.texto} className="text-2xl" />
             <Texto as="figcaption" valor={m.logo.principal} className="text-sm text-texto-sec" />
           </figure>
-          <figure className="flex flex-col items-center justify-center gap-4 rounded-2xl bg-[#1F4FE0] p-8">
+          <figure className="flex flex-col items-center justify-center gap-4 rounded-2xl bg-primario-relleno p-8">
             <Logo nombre={c.marcaNombre.texto} variante="invertido" className="text-2xl" />
             <Texto as="figcaption" valor={m.logo.invertido} className="text-sm text-white" />
           </figure>

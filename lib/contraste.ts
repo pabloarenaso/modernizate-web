@@ -14,3 +14,7 @@ export const contraste = (a: string, b: string) => {
 
 export type NivelAA = "aa" | "aaGrande" | "noAa";
 export const nivelAA = (ratio: number): NivelAA => (ratio >= 4.5 ? "aa" : ratio >= 3 ? "aaGrande" : "noAa");
+
+/** Elementos no textuales (bordes, íconos, trazos): WCAG 1.4.11 pide 3:1. */
+export type NivelNoTexto = "noTextual" | "noAa";
+export const nivelNoTexto = (ratio: number): NivelNoTexto => (ratio >= 3 ? "noTextual" : "noAa");
