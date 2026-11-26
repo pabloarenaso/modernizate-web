@@ -506,6 +506,54 @@ html[data-revision] [data-estado="borrador"]::after {
 @keyframes mp-voz { from { height: 3px; } to { height: 13px; } }
 .mp-rec { animation: hablar 1.4s ease-in-out infinite; }
 
+/* Qué hacemos · "Del desorden al orden" (bucle de 10 s). Estilo base = estado final (orden). */
+.do-caos { opacity: 0; animation: do-caos 10s cubic-bezier(0.55, 0, 0.3, 1) infinite; transform-origin: center; }
+@keyframes do-caos {
+  0%, 38% { opacity: 1; transform: rotate(var(--r)); }
+  52% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.3) rotate(0deg); }
+  95% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.3); }
+  100% { opacity: 1; transform: rotate(var(--r)); }
+}
+.do-orden { animation: do-orden 10s ease-out infinite; }
+@keyframes do-orden { 0%, 44% { opacity: 0; transform: scale(0.97); } 54%, 93% { opacity: 1; transform: none; } 100% { opacity: 0; transform: scale(0.97); } }
+.do-o1, .do-o2, .do-o3 { animation: 10s ease-out infinite; }
+.do-o1 { animation-name: do-o1; } .do-o2 { animation-name: do-o2; } .do-o3 { animation-name: do-o3; }
+@keyframes do-o1 { 0%, 52% { opacity: 0; transform: translateY(6px); } 58%, 100% { opacity: 1; transform: none; } }
+@keyframes do-o2 { 0%, 57% { opacity: 0; transform: translateY(6px); } 63%, 100% { opacity: 1; transform: none; } }
+@keyframes do-o3 { 0%, 62% { opacity: 0; transform: translateY(6px); } 68%, 100% { opacity: 1; transform: none; } }
+.do-check { color: var(--chat-leido); animation: do-check 10s linear infinite; }
+@keyframes do-check { 0%, 70% { color: var(--texto-sec); } 74%, 100% { color: var(--chat-leido); } }
+.do-b1, .do-b2, .do-b3 { animation: 10s ease-out infinite; }
+.do-b1 { animation-name: do-b1; } .do-b2 { animation-name: do-b2; } .do-b3 { animation-name: do-b3; }
+@keyframes do-b1 { 0%, 3% { opacity: 0; transform: translateY(6px); } 7%, 100% { opacity: 1; transform: none; } }
+@keyframes do-b2 { 0%, 11% { opacity: 0; transform: translateY(6px); } 15%, 100% { opacity: 1; transform: none; } }
+@keyframes do-b3 { 0%, 19% { opacity: 0; transform: translateY(6px); } 23%, 100% { opacity: 1; transform: none; } }
+.do-n1, .do-n2 { opacity: 0; }
+.do-n1 { animation: do-n1 10s linear infinite; } .do-n2 { animation: do-n2 10s linear infinite; } .do-n3 { animation: do-n3 10s linear infinite; }
+@keyframes do-n1 { 0%, 11.9% { opacity: 1; } 12%, 100% { opacity: 0; } }
+@keyframes do-n2 { 0%, 11.9% { opacity: 0; } 12%, 23.9% { opacity: 1; } 24%, 100% { opacity: 0; } }
+@keyframes do-n3 { 0%, 23.9% { opacity: 0; } 24%, 100% { opacity: 1; } }
+.do-onda { animation: do-onda 1.2s ease-out infinite; }
+@keyframes do-onda { from { transform: scale(0.8); opacity: 0.9; } to { transform: scale(1.7); opacity: 0; } }
+.do-timbre { animation: do-timbre 1.2s ease-in-out infinite; }
+@keyframes do-timbre { 0%, 40%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(-12deg); } 20% { transform: rotate(12deg); } }
+.do-flecha { animation: do-flecha 0.8s linear infinite; }
+@keyframes do-flecha { to { stroke-dashoffset: -6; } }
+/* Etiqueta de servicio enfocada: su zona se ilumina y el resto se atenúa. */
+.orden .zona { transition: filter 0.3s, box-shadow 0.3s; }
+.orden[data-foco="sitio"] .zona:not([data-zona~="sitio"]) { filter: grayscale(1) opacity(0.35); }
+.orden[data-foco="sitio"] .zona[data-zona~="sitio"] { box-shadow: 0 0 0 3px var(--primario), 0 0 26px rgba(31, 79, 224, 0.35); }
+.orden[data-foco="tienda"] .zona:not([data-zona~="tienda"]) { filter: grayscale(1) opacity(0.35); }
+.orden[data-foco="tienda"] .zona[data-zona~="tienda"] { box-shadow: 0 0 0 3px var(--primario), 0 0 26px rgba(31, 79, 224, 0.35); }
+.orden[data-foco="asistente"] .zona:not([data-zona~="asistente"]) { filter: grayscale(1) opacity(0.35); }
+.orden[data-foco="asistente"] .zona[data-zona~="asistente"] { box-shadow: 0 0 0 3px var(--primario), 0 0 26px rgba(31, 79, 224, 0.35); }
+.orden[data-foco="agenda"] .zona:not([data-zona~="agenda"]) { filter: grayscale(1) opacity(0.35); }
+.orden[data-foco="agenda"] .zona[data-zona~="agenda"] { box-shadow: 0 0 0 3px var(--primario), 0 0 26px rgba(31, 79, 224, 0.35); }
+.orden[data-foco="automatizaciones"] .zona:not([data-zona~="automatizaciones"]) { filter: grayscale(1) opacity(0.35); }
+.orden[data-foco="automatizaciones"] .zona[data-zona~="automatizaciones"] { box-shadow: 0 0 0 3px var(--primario), 0 0 26px rgba(31, 79, 224, 0.35); }
+.orden[data-foco="medida"] .zona:not([data-zona~="medida"]) { filter: grayscale(1) opacity(0.35); }
+.orden[data-foco="medida"] .zona[data-zona~="medida"] { box-shadow: 0 0 0 3px var(--primario), 0 0 26px rgba(31, 79, 224, 0.35); }
+
 /* Escenas (estándar): todo se congela fuera de pantalla. */
 [data-pausado] .escena-anim, [data-pausado] .escena-anim * { animation-play-state: paused !important; }
 .cursor-clic { animation: cursor-clic 1.6s ease-out infinite; }

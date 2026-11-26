@@ -116,13 +116,35 @@ export type FlujoC = { nombre: Texto; nodos: Texto[] };
 
 export type Servicio = { nombre: Texto; que: Texto; para: Texto; plazo: Texto };
 export type PasoTrabajo = { titulo: Texto; linea: Texto; puntos: Texto[]; escena: [Texto, Texto, Texto] };
+export type EscenaOrdenC = {
+  etiqueta: Texto;
+  chat: Texto;
+  burbujas: [Texto, Texto, Texto];
+  cuaderno: Texto;
+  reservas: [Texto, Texto, Texto, Texto];
+  planilla: Texto;
+  notas: [Texto, Texto];
+  llamada: Texto;
+  dominio: Texto;
+  panel: Texto;
+  mensajes: Texto;
+  clientes: [Texto, Texto, Texto, Texto];
+  respondido: Texto;
+  agenda: Texto;
+  citas: [Texto, Texto, Texto, Texto];
+  pedidos: Texto;
+  estados: [Texto, Texto, Texto, Texto];
+  alDia: Texto;
+};
 export type Servicios = {
   kicker: Texto;
   titulo: Texto;
-  intro: Texto;
+  parrafo: Texto;
+  verCasos: Texto;
+  /** Los plazos y "para quién" se guardan pero no se muestran (los da Pablo en la conversación). */
   etiquetas: { para: Texto; plazo: Texto };
   items: [Servicio, Servicio, Servicio, Servicio, Servicio, Servicio];
-  nota: Texto;
+  escena: EscenaOrdenC;
 };
 export type ComoTrabajamos = {
   kicker: Texto;
