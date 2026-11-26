@@ -20,3 +20,4 @@
 | 2026-11-26 17:47 | main | 9e81b63 → 39861fc | OK; Cómo trabajamos: escenas robustas y corrección pb-* |
 | 2026-11-26 17:55 | main | 39861fc → a55a851 | OK; sorpresas: 12 efectos distintos |
 | 2026-11-26 18:30 | main | a55a851 → b9c81d8 | OK; hero sin recorte, un gesto = una escena; listas de Cómo trabajamos |
+| 2026-11-26 19:02 | main | b9c81d8 → e191b5e | OK; hero: el carrusel sigue avanzando tras deslizar |
