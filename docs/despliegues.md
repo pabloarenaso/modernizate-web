@@ -13,3 +13,4 @@
 | 2026-11-25 21:23 | main | 4934d74 → 7d161d0 | OK; bloque C |
 | 2026-11-25 21:26 | main | 7d161d0 → 657d6f9 | OK; bloque D |
 | 2026-11-25 21:27 | main | 657d6f9 → 29975aa | OK; contorno del correo |
+| 2026-11-26 16:39 | main | 29975aa → b7f24fe | OK; ajustes 1 y 2: carrusel y botón sorpresa |
