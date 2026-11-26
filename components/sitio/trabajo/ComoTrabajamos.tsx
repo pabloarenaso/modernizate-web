@@ -67,7 +67,7 @@ export function ComoTrabajamos({ c }: { c: ComoTrabajamosC }) {
                       </li>
                     ))}
                   </ul>
-                  <EscenaViva className="flex min-h-[190px] items-center justify-center rounded-xl bg-suave p-4">
+                  <EscenaViva className="flex min-h-[260px] items-center justify-center rounded-xl bg-suave p-4">
                     <MiniPaso i={abierto} e={p.escena} />
                   </EscenaViva>
                 </div>

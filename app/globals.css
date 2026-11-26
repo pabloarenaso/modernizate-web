@@ -500,32 +500,6 @@ html[data-revision] [data-estado="borrador"]::after {
 @keyframes mp-2 { 0%, 24% { opacity: 0; transform: translateY(6px) scale(0.9); } 30%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
 @keyframes mp-3 { 0%, 40% { opacity: 0; transform: translateY(6px) scale(0.9); } 46%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
 @keyframes mp-4 { 0%, 58% { opacity: 0; transform: translateY(6px) scale(0.9); } 64%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
-.mp-5 { animation: mp-5 8s ease-out infinite; }
-@keyframes mp-5 { 0%, 72% { opacity: 0; transform: translateY(6px) scale(0.9); } 78%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
-@keyframes fase-1 { 0%, 8% { transform: scaleX(0); } 24%, 94% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
-.fase-1 { animation: fase-1 8s ease-in-out infinite; }
-@keyframes fase-2 { 0%, 26% { transform: scaleX(0); } 42%, 94% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
-.fase-2 { animation: fase-2 8s ease-in-out infinite; }
-@keyframes fase-3 { 0%, 44% { transform: scaleX(0); } 58%, 94% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
-.fase-3 { animation: fase-3 8s ease-in-out infinite; }
-/* Paso 4: dos flujos que se alternan cada 8 s (soporte y solicitud de cambio). */
-.flujo-a { animation: flujo-a 16s ease-in-out infinite; } .flujo-b { animation: flujo-b 16s ease-in-out infinite; }
-@keyframes flujo-a { 0%, 45% { opacity: 1; transform: none; } 49%, 97% { opacity: 0; transform: translateY(-6px); } 100% { opacity: 1; } }
-@keyframes flujo-b { 0%, 47% { opacity: 0; transform: translateY(6px); } 51%, 95% { opacity: 1; transform: none; } 99%, 100% { opacity: 0; } }
-@keyframes pa-1 { 0%, 8% { opacity: 0.25; } 11%, 100% { opacity: 1; } }
-.pa-1 { animation: pa-1 16s ease-out infinite; }
-@keyframes pa-2 { 0%, 18% { opacity: 0.25; } 21%, 100% { opacity: 1; } }
-.pa-2 { animation: pa-2 16s ease-out infinite; }
-@keyframes pa-3 { 0%, 28% { opacity: 0.25; } 31%, 100% { opacity: 1; } }
-.pa-3 { animation: pa-3 16s ease-out infinite; }
-@keyframes pb-1 { 0%, 56% { opacity: 0.25; } 59%, 100% { opacity: 1; } }
-.pb-1 { animation: pb-1 16s ease-out infinite; }
-@keyframes pb-2 { 0%, 64% { opacity: 0.25; } 67%, 100% { opacity: 1; } }
-.pb-2 { animation: pb-2 16s ease-out infinite; }
-@keyframes pb-3 { 0%, 72% { opacity: 0.25; } 75%, 100% { opacity: 1; } }
-.pb-3 { animation: pb-3 16s ease-out infinite; }
-@keyframes pb-4 { 0%, 80% { opacity: 0.25; } 83%, 100% { opacity: 1; } }
-.pb-4 { animation: pb-4 16s ease-out infinite; }
 .mp-barra { animation: mp-barra 8s ease-in-out infinite; }
 @keyframes mp-barra { 0%, 6% { transform: scaleX(0.04); } 56%, 94% { transform: scaleX(1); } 100% { transform: scaleX(0.04); } }
 .mp-voz { height: 12px; animation: mp-voz 0.9s ease-in-out infinite alternate; }
@@ -663,7 +637,6 @@ html { scroll-behavior: smooth; }
   .meteoro, .chispa, .destello { display: none; }
   .particula { animation: none; opacity: 0.6; }
   .checks { color: var(--chat-leido); }
-  .flujos-alternos { display: flex; flex-direction: column; gap: 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
