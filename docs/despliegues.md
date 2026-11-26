@@ -15,3 +15,4 @@
 | 2026-11-25 21:27 | main | 657d6f9 → 29975aa | OK; contorno del correo |
 | 2026-11-26 16:39 | main | 29975aa → b7f24fe | OK; ajustes 1 y 2: carrusel y botón sorpresa |
 | 2026-11-26 17:11 | main | b7f24fe → e8e9d87 | OK; ajustes 3 y 4: Qué hacemos y Soluciones en celular |
+| 2026-11-26 17:15 | main | e8e9d87 → 94bd04c | OK; ajustes 5 y 6: pasos y vista previa del reporte |
