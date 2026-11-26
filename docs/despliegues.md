@@ -19,3 +19,4 @@
 | 2026-11-26 17:43 | main | 94bd04c → 9e81b63 | OK; carrusel suave y workflows |
 | 2026-11-26 17:47 | main | 9e81b63 → 39861fc | OK; Cómo trabajamos: escenas robustas y corrección pb-* |
 | 2026-11-26 17:55 | main | 39861fc → a55a851 | OK; sorpresas: 12 efectos distintos |
+| 2026-11-26 18:30 | main | a55a851 → b9c81d8 | OK; hero sin recorte, un gesto = una escena; listas de Cómo trabajamos |
