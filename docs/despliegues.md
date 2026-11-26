@@ -12,3 +12,4 @@
 | 2026-11-25 21:14 | main | 1cb899d → 4934d74 | OK; bloque B |
 | 2026-11-25 21:23 | main | 4934d74 → 7d161d0 | OK; bloque C |
 | 2026-11-25 21:26 | main | 7d161d0 → 657d6f9 | OK; bloque D |
+| 2026-11-25 21:27 | main | 657d6f9 → 29975aa | OK; contorno del correo |
