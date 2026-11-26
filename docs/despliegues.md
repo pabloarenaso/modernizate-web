@@ -8,3 +8,4 @@
 | 2026-11-25 19:35 | main | 64cccdd → 64cccdd (build con variables de contacto) | OK; formulario y WhatsApp probados |
 | 2026-11-25 19:46 | main | 64cccdd → 64cccdd (build con nueva clave de Web3Forms) | OK; formulario probado |
 | 2026-11-25 19:58 | main | 64cccdd → af4a691 | OK; formulario probado (FormData) |
+| 2026-11-25 21:09 | main | af4a691 → 1cb899d | OK; bloque A |
