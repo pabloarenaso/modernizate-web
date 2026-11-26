@@ -634,6 +634,32 @@ html { scroll-behavior: smooth; }
 .check-trazo path { stroke-dasharray: 30; animation: check-trazo 0.45s ease-out both; animation-delay: var(--d, 0s); }
 @keyframes check-trazo { from { stroke-dashoffset: 30; } }
 
+/* BotonContacto: líneas de luz que sobrepasan las esquinas (adaptado de Uiverse, MIT; ver components/BotonContacto.tsx). */
+.boton-luz { --luz: var(--primario); position: relative; isolation: isolate; border-radius: 12px; transition: transform 0.25s ease, box-shadow 0.3s ease; }
+[data-theme="dark"] .boton-luz { --luz: #8FB0FF; }
+.boton-luz:hover { transform: translateY(-1px); box-shadow: 0 12px 28px -12px color-mix(in srgb, var(--primario) 80%, transparent); }
+.boton-luz::before { content: ""; position: absolute; inset: 0; border-radius: inherit; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  background: radial-gradient(circle at 50% 50%, #0000 0, #0000 20%, rgb(18 48 143 / 0.7) 50%), radial-gradient(ellipse 100% 100%, #fff, #fff0);
+  background-size: 3px 3px, auto auto; }
+.boton-luz:hover::before, .boton-luz:focus-visible::before { opacity: 0.35; }
+.bl-texto { position: relative; z-index: 1; }
+.bl { pointer-events: none; position: absolute; --w: 2px; --t: -14px; --s: calc(var(--t) * -1); --e: calc(100% + var(--t));
+  --g: transparent, color-mix(in srgb, var(--luz) 20%, transparent) var(--s), color-mix(in srgb, var(--luz) 70%, transparent) var(--s), var(--luz), color-mix(in srgb, var(--luz) 70%, transparent) var(--e), color-mix(in srgb, var(--luz) 20%, transparent) var(--e), transparent;
+  transition: opacity 0.35s ease, transform 0.35s ease; }
+.bl::before, .bl::after { content: ""; position: absolute; inset: 0; background: inherit; z-index: -2; }
+.bl::before { filter: blur(3px); opacity: 0.9; }
+.bl::after { filter: blur(9px); opacity: 0; transition: opacity 0.3s; }
+.boton-luz:hover .bl::after, .boton-luz:focus-visible .bl::after { opacity: 1; }
+.bl-l { left: -2px; } .bl-r { right: -2px; } .bl-t { top: -2px; } .bl-b { bottom: -2px; }
+.bl-l, .bl-r { background: linear-gradient(var(--g)); top: var(--t); bottom: var(--t); width: var(--w); }
+.bl-t, .bl-b { background: linear-gradient(90deg, var(--g)); left: var(--t); right: var(--t); height: var(--w); }
+.boton-luz:hover .bl-l, .boton-luz:hover .bl-r { transform: scaleY(1.12); }
+.boton-luz:hover .bl-t, .boton-luz:hover .bl-b { transform: scaleX(1.08); }
+/* Sutil: las líneas aparecen al pasar el mouse o con foco. */
+.boton-luz-destacado .bl { --t: -20px; }
+.boton-luz-sutil .bl { opacity: 0; }
+.boton-luz-sutil:hover .bl, .boton-luz-sutil:focus-visible .bl { opacity: 1; }
+
 /* Escenas (estándar): todo se congela fuera de pantalla. */
 [data-pausado] .escena-anim, [data-pausado] .escena-anim * { animation-play-state: paused !important; }
 .cursor-clic { animation: cursor-clic 1.6s ease-out infinite; }

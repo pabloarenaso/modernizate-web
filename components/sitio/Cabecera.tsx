@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BotonContacto } from "@/components/BotonContacto";
 import { BotonTema } from "@/components/BotonTema";
 import { Logo } from "@/components/Logo";
 import { SelectorIdioma } from "@/components/SelectorIdioma";
@@ -10,8 +11,6 @@ import { MenuMovil } from "./MenuMovil";
 
 type Props = { lang: Idioma; ruta: string; c: Contenido };
 
-export const claseBotonPrincipal =
-  "inline-flex h-11 items-center justify-center whitespace-nowrap rounded-[10px] bg-primario-relleno px-[18px] text-[15px] font-semibold text-white transition-[filter] hover:brightness-110";
 export const claseBotonSecundario =
   "inline-flex h-11 items-center justify-center whitespace-nowrap rounded-[10px] border border-linea px-4 text-[15px] font-semibold text-texto transition-colors hover:bg-suave";
 
@@ -52,9 +51,9 @@ export function Cabecera({ lang, ruta, c }: Props) {
               <Link href="/ingresar" className={claseBotonSecundario}>
                 <Texto valor={k.ingresar} />
               </Link>
-              <a href={`${inicio}#contacto`} className={claseBotonPrincipal}>
+              <BotonContacto href={`${inicio}#contacto`} tam="chico">
                 <Texto valor={k.cta} />
-              </a>
+              </BotonContacto>
             </div>
             <MenuMovil etiquetaAbrir={k.menuAbrir.texto} etiquetaCerrar={k.menuCerrar.texto}>
               <nav aria-label={k.navegacion.texto}>
@@ -75,9 +74,9 @@ export function Cabecera({ lang, ruta, c }: Props) {
                 <Link href="/ingresar" className={claseBotonSecundario}>
                   <Texto valor={k.ingresar} />
                 </Link>
-                <a href={`${inicio}#contacto`} className={claseBotonPrincipal}>
+                <BotonContacto href={`${inicio}#contacto`} tam="chico">
                   <Texto valor={k.cta} />
-                </a>
+                </BotonContacto>
               </div>
             </MenuMovil>
           </div>

@@ -4,6 +4,7 @@ import { useRef, useState, type ReactNode } from "react";
 import { Texto } from "@/components/Texto";
 import type { Caso, Soluciones } from "@/content/tipos";
 import { Disparo } from "./disparo";
+import { BotonContacto } from "@/components/BotonContacto";
 import { Sorpresa } from "@/components/Sorpresa";
 import type { Efecto } from "@/lib/sorpresas";
 
@@ -88,9 +89,9 @@ export function TarjetaCaso({ caso, c, efecto, hrefContacto, id, mini, grande }:
             ))}
           </ol>
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <a href={hrefContacto} className="inline-flex h-12 items-center rounded-[10px] bg-primario-relleno px-6 font-semibold text-white hover:brightness-110">
+            <BotonContacto href={hrefContacto} destacado>
               <Texto valor={caso.cta} />
-            </a>
+            </BotonContacto>
             <Sorpresa efecto={efecto} className="relative ml-auto" />
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { BotonContacto } from "@/components/BotonContacto";
 import { Sorpresa } from "@/components/Sorpresa";
 import { Texto } from "@/components/Texto";
 import type { Contenido, Texto as TextoC } from "@/content/tipos";
@@ -148,9 +149,9 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
             })}
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <a href={hrefContacto} className="inline-flex h-12 items-center rounded-[10px] bg-primario-relleno px-6 font-semibold text-white transition-[filter] hover:brightness-110">
+            <BotonContacto href={hrefContacto} destacado>
               <Texto valor={cta} />
-            </a>
+            </BotonContacto>
             <a href={hrefMetodo} className="inline-flex h-12 items-center rounded-[10px] border border-linea bg-superficie px-6 font-semibold text-texto transition-colors hover:bg-suave">
               <Texto valor={c.secundario} />
             </a>
