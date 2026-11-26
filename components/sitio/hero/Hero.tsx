@@ -69,26 +69,32 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
     setE((s) =>
       s.escena === i ? s : { escena: i, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0, prev: s.escena, dir: dir ?? (i > s.escena ? 1 : -1) },
     );
-  const mover = (d: 1 | -1) => setE((s) => ({ escena: (s.escena + d + 3) % 3, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0, prev: s.escena, dir: d }));
+  // Mientras dura la transición no se acepta otro cambio.
+  const mover = (d: 1 | -1) => setE((s) => s.prev !== null ? s : ({ escena: (s.escena + d + 3) % 3, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0, prev: s.escena, dir: d }));
 
   // Deslizar con dos dedos en el touchpad (deltaX): umbral y espera para no saltar varias escenas. El scroll vertical no se toca.
   useEffect(() => {
     const el = escenaRef.current;
     if (!el) return;
+    // Un gesto (incluida la inercia del touchpad) avanza una sola escena: tras moverse, se ignoran los eventos
+    // hasta que el touchpad quede quieto 350 ms.
     let acumulado = 0;
-    let ultimo = 0;
+    let bloqueado = false;
     let quieto: ReturnType<typeof setTimeout> | undefined;
     const alGirar = (ev: WheelEvent) => {
       if (Math.abs(ev.deltaX) <= Math.abs(ev.deltaY)) return;
       ev.preventDefault();
-      acumulado += ev.deltaX;
       clearTimeout(quieto);
-      quieto = setTimeout(() => (acumulado = 0), 250);
-      const ahora = Date.now();
-      if (Math.abs(acumulado) > 60 && ahora - ultimo > 900) {
-        mover(acumulado > 0 ? 1 : -1);
+      quieto = setTimeout(() => {
+        bloqueado = false;
         acumulado = 0;
-        ultimo = ahora;
+      }, 350);
+      if (bloqueado) return;
+      acumulado += ev.deltaX;
+      if (Math.abs(acumulado) > 40) {
+        mover(acumulado > 0 ? 1 : -1);
+        bloqueado = true;
+        acumulado = 0;
       }
     };
     el.addEventListener("wheel", alGirar, { passive: false });
@@ -165,7 +171,7 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
               if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) mover(dx < 0 ? 1 : -1);
             }}
             onPointerCancel={() => (arrastre.current = null)}
-            className="relative h-[470px] touch-pan-y overflow-hidden sm:h-[490px]"
+            className="relative h-[470px] touch-pan-y [overflow-x:clip] sm:h-[490px]"
           >
             {e.prev !== null && (
               <div

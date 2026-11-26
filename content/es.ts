@@ -134,6 +134,7 @@ export const es = {
       },
     ],
     verDetalle: b("Ver detalle del paso"),
+    paso: b("Paso"),
   },
   contacto: {
     kicker: b("Contacto"),

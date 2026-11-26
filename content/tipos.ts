@@ -152,6 +152,8 @@ export type ComoTrabajamos = {
   titulo: Texto;
   pasos: [PasoTrabajo, PasoTrabajo, PasoTrabajo, PasoTrabajo];
   verDetalle: Texto;
+  /** "Paso" (antes del número en el detalle). */
+  paso: Texto;
 };
 export type ContactoC = {
   kicker: Texto;

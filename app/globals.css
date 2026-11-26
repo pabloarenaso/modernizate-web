@@ -608,10 +608,10 @@ html { scroll-behavior: smooth; }
 @keyframes vista-sale { 60% { opacity: 1; } to { opacity: 0; transform: translateY(10px) scale(0.96); } }
 
 /* Carrusel del hero: la escena sale hacia un lado mientras la siguiente entra por el otro (600 ms). */
-.escena-entra-der { animation: escena-entra-der 0.6s cubic-bezier(0.65, 0, 0.35, 1) both; }
-.escena-entra-izq { animation: escena-entra-izq 0.6s cubic-bezier(0.65, 0, 0.35, 1) both; }
-.escena-sale-izq { animation: escena-sale-izq 0.6s cubic-bezier(0.65, 0, 0.35, 1) both; }
-.escena-sale-der { animation: escena-sale-der 0.6s cubic-bezier(0.65, 0, 0.35, 1) both; }
+.escena-entra-der { animation: escena-entra-der 0.8s cubic-bezier(0.65, 0, 0.35, 1) both; }
+.escena-entra-izq { animation: escena-entra-izq 0.8s cubic-bezier(0.65, 0, 0.35, 1) both; }
+.escena-sale-izq { animation: escena-sale-izq 0.8s cubic-bezier(0.65, 0, 0.35, 1) both; }
+.escena-sale-der { animation: escena-sale-der 0.8s cubic-bezier(0.65, 0, 0.35, 1) both; }
 @keyframes escena-entra-der { from { transform: translateX(104%); } to { transform: none; } }
 @keyframes escena-entra-izq { from { transform: translateX(-104%); } to { transform: none; } }
 @keyframes escena-sale-izq { to { transform: translateX(-104%); } }
@@ -627,6 +627,12 @@ html { scroll-behavior: smooth; }
 .sorpresa-reverso { position: absolute; inset: 0; z-index: 30; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 28px; border-radius: inherit; background: var(--primario-relleno); color: #fff; text-align: center; font-family: var(--font-display), sans-serif; font-size: clamp(18px, 2.2vw, 26px); font-weight: 700; line-height: 1.25; }
 .sorpresa-reverso p { max-width: 520px; }
 .sorpresa-reverso-ico svg { height: 34px; width: auto; color: #fff; }
+
+/* Cómo trabajamos: la lista del paso entra desde la izquierda y cada check se dibuja. */
+.entra-izq { animation: entra-izq 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes entra-izq { from { opacity: 0; transform: translateX(-28px); } }
+.check-trazo path { stroke-dasharray: 30; animation: check-trazo 0.45s ease-out both; animation-delay: var(--d, 0s); }
+@keyframes check-trazo { from { stroke-dashoffset: 30; } }
 
 /* Escenas (estándar): todo se congela fuera de pantalla. */
 [data-pausado] .escena-anim, [data-pausado] .escena-anim * { animation-play-state: paused !important; }

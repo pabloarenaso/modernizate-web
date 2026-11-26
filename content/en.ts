@@ -134,6 +134,7 @@ export const en = {
       },
     ],
     verDetalle: b("See step details"),
+    paso: b("Step"),
   },
   contacto: {
     kicker: b("Contact"),

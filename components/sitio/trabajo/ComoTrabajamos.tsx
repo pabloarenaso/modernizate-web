@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { EscenaViva } from "@/components/escenas/base/EscenaViva";
 import { Ico, TRAZOS } from "@/components/escenas/base/Ico";
 import { Sorpresa } from "@/components/Sorpresa";
@@ -64,14 +64,28 @@ export function ComoTrabajamos({ c }: { c: ComoTrabajamosC }) {
             >
               <div className="overflow-hidden">
                 <div data-sorpresa-ambito className="relative grid items-center gap-6 rounded-2xl border border-linea bg-superficie p-6 pb-14 md:grid-cols-[1fr_1.1fr] md:p-8">
-                  <ul className="flex flex-col gap-2.5">
-                    {p.puntos.map((pt, j) => (
-                      <li key={j} className="flex gap-2.5 text-[15px] leading-snug">
-                        <Ico d={TRAZOS.check} className="mt-0.5 size-4 shrink-0 text-ok-texto" />
-                        <Texto valor={pt} />
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="flex flex-col gap-4">
+                    <div className="entra-izq flex flex-col gap-1">
+                      <span className="kicker text-acento-texto">
+                        <Texto valor={c.paso} /> {abierto + 1} / {c.pasos.length}
+                      </span>
+                      <Texto as="h3" valor={p.titulo} className="font-display text-[24px] font-bold leading-tight sm:text-[28px]" />
+                    </div>
+                    <ul className="flex flex-col gap-2.5">
+                      {p.puntos.map((pt, j) => (
+                        <li
+                          key={j}
+                          className="entra-izq group/punto flex items-center gap-3.5 rounded-xl border border-linea bg-suave/60 px-4 py-3 text-[15px] font-medium leading-snug transition-colors hover:border-primario hover:bg-seleccion/40"
+                          style={{ animationDelay: `${200 + j * 160}ms` }}
+                        >
+                          <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primario-relleno text-white shadow-[0_6px_14px_-6px_var(--primario)]" style={{ "--d": `${450 + j * 160}ms` } as CSSProperties}>
+                            <Ico d={TRAZOS.check} className="check-trazo size-4" />
+                          </span>
+                          <Texto valor={pt} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                   <EscenaViva className="flex min-h-[260px] items-center justify-center rounded-xl bg-suave p-4">
                     <MiniPaso i={abierto} e={p.escena} />
                   </EscenaViva>
