@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useConfeti } from "@/components/Confeti";
 import { Texto } from "@/components/Texto";
 import type { ContactoC } from "@/content/tipos";
 
@@ -30,6 +31,7 @@ const correoValido = (s: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s);
 export function FormularioContacto({ c }: { c: ContactoC }) {
   const [estado, setEstado] = useState<Estado>("listo");
   const [errores, setErrores] = useState<Record<string, boolean>>({});
+  const { disparar, confeti } = useConfeti();
 
   async function enviar(ev: FormEvent<HTMLFormElement>) {
     ev.preventDefault();
@@ -64,7 +66,7 @@ export function FormularioContacto({ c }: { c: ContactoC }) {
       const campos: Record<string, string> = {
         access_key: CLAVE,
         subject: c.asunto.texto,
-        from_name: "agmodernizate.cl",
+        from_name: c.remitente.texto,
         name: valor("nombre"),
         email: valor("correo"),
         telefono: valor("telefono") || "—",
@@ -77,6 +79,7 @@ export function FormularioContacto({ c }: { c: ContactoC }) {
       if (r.ok && j.success) {
         form.reset();
         setEstado("recibido");
+        disparar();
       } else {
         console.warn("Formulario de contacto: Web3Forms respondió", r.status, j.message ?? "");
         setEstado("error");
@@ -87,15 +90,32 @@ export function FormularioContacto({ c }: { c: ContactoC }) {
     }
   }
 
+  const tarjeta = "relative flex flex-col gap-5 rounded-2xl border border-linea bg-superficie p-6 shadow-[0_30px_60px_-30px_rgba(11,21,48,0.45)] sm:p-8";
+  const cabecera = (
+    <div className="flex items-center gap-3">
+      <span aria-hidden="true" className="flex size-10 shrink-0 items-center justify-center rounded-[10px] bg-primario-relleno text-white">
+        <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18v12H3zM3 7l9 6 9-6" /></svg>
+      </span>
+      <span className="flex flex-col">
+        <Texto valor={c.formTitulo} className="font-display text-[19px] font-semibold" />
+        <Texto valor={c.formSub} className="text-[13px] text-texto-sec" />
+      </span>
+    </div>
+  );
+
   if (estado === "recibido") {
     return (
-      <div role="status" className="aparecer flex flex-col items-start gap-3 rounded-2xl border border-linea bg-superficie p-8">
-        <span aria-hidden="true" className="flex size-12 items-center justify-center rounded-full bg-ok-fondo text-ok-texto">
-          <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+      <div role="status" className={`${tarjeta} min-h-[420px] items-center justify-center text-center`}>
+        <span className="relative flex size-20 items-center justify-center">
+          <span aria-hidden="true" className="recibido-fondo absolute inset-0 rounded-full bg-ok-fondo" />
+          <svg aria-hidden="true" viewBox="0 0 24 24" className="relative size-10 text-ok-texto" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
+            <path className="recibido-check" d="M5 12.5l4.5 4.5L19 7.5" pathLength={1} />
+          </svg>
+          {confeti}
         </span>
-        <Texto as="p" valor={c.recibidoTitulo} className="font-display text-2xl font-bold" />
-        <Texto as="p" valor={c.recibido} className="text-texto-sec" />
-        <button type="button" onClick={() => setEstado("listo")} className="mt-2 text-sm font-semibold text-acento-texto underline-offset-4 hover:underline">
+        <Texto as="p" valor={c.recibidoTitulo} className="aparecer font-display text-[28px] font-bold [animation-delay:.25s]" />
+        <Texto as="p" valor={c.recibido} className="aparecer max-w-[320px] text-texto-sec [animation-delay:.4s]" />
+        <button type="button" onClick={() => setEstado("listo")} className="mt-2 rounded-[10px] border border-linea px-4 py-2 text-sm font-semibold transition-colors hover:bg-suave">
           <Texto valor={c.otro} />
         </button>
       </div>
@@ -107,7 +127,8 @@ export function FormularioContacto({ c }: { c: ContactoC }) {
   const aviso = estado === "error" ? c.error : estado === "limite" ? c.limite : estado === "incompleto" ? c.incompleto : null;
 
   return (
-    <form onSubmit={enviar} noValidate className="flex flex-col gap-4 rounded-2xl border border-linea bg-superficie p-6 sm:p-8">
+    <form onSubmit={enviar} noValidate className={tarjeta}>
+      {cabecera}
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-1.5 text-sm font-medium">
           <Texto valor={c.nombre} />
@@ -115,7 +136,10 @@ export function FormularioContacto({ c }: { c: ContactoC }) {
         </label>
         <label className="flex flex-col gap-1.5 text-sm font-medium">
           <Texto valor={c.correo} />
-          <input name="correo" type="email" autoComplete="email" required aria-invalid={errores.correo || undefined} className={`${campo} ${borde("correo")}`} />
+          <span className={`gooey flex h-12 items-center gap-2 rounded-full border bg-suave pl-4 pr-1.5 ${borde("correo")}`}>
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="size-4 shrink-0 text-texto-sec" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM16 12v1.5a2.5 2.5 0 0 0 5 0V12a9 9 0 1 0-3.5 7.1" /></svg>
+            <input name="correo" type="email" autoComplete="email" required placeholder="tu@negocio.cl" aria-invalid={errores.correo || undefined} className="h-full min-w-0 flex-1 bg-transparent text-base text-texto outline-none focus-visible:outline-none" />
+          </span>
         </label>
         <label className="flex flex-col gap-1.5 text-sm font-medium">
           <span>

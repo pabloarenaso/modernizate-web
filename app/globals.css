@@ -573,6 +573,14 @@ html[data-revision] [data-estado="borrador"]::after {
 .cursor-viaje { animation: cursor-viaje 1.4s ease-out both; }
 @keyframes cursor-viaje { from { transform: translate(-120px, 90px); opacity: 0; } 30% { opacity: 1; } }
 
+/* Contacto: campo de correo "gooey" (de la maqueta) y confirmación animada. */
+.gooey { transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s; }
+.gooey:focus-within { box-shadow: 0 0 0 4px var(--seleccion); transform: scale(1.02); border-color: var(--primario); }
+.recibido-fondo { animation: recibido-fondo 0.5s cubic-bezier(0.3, 1.5, 0.5, 1) both; }
+@keyframes recibido-fondo { from { transform: scale(0.2); opacity: 0; } }
+.recibido-check { stroke-dasharray: 1; animation: recibido-check 0.45s ease-out 0.25s both; }
+@keyframes recibido-check { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
 /* Escenas (estándar): todo se congela fuera de pantalla. */
 [data-pausado] .escena-anim, [data-pausado] .escena-anim * { animation-play-state: paused !important; }
 .cursor-clic { animation: cursor-clic 1.6s ease-out infinite; }

@@ -177,8 +177,23 @@ export type ContactoC = {
   whatsapp: Texto;
   whatsappMensaje: Texto;
   privacidad: Texto;
+  formTitulo: Texto;
+  formSub: Texto;
+  respondo: Texto;
+  remitente: Texto;
 };
-export type PieC = { lema: Texto; derechos: Texto; ingresar: Texto; correo: Texto; whatsapp: Texto; hecho: Texto };
+export type PieC = {
+  lema: Texto;
+  frase: Texto;
+  derechos: Texto;
+  ingresar: Texto;
+  correo: Texto;
+  whatsapp: Texto;
+  hecho: Texto;
+  secciones: Texto;
+  contacto: Texto;
+  clientes: Texto;
+};
 
 export type Contenido = {
   meta: { titulo: Texto; descripcion: Texto };
