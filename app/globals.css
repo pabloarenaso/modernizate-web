@@ -635,6 +635,22 @@ html { scroll-behavior: smooth; }
 .vista-sale { animation: vista-sale 0.9s ease-in forwards; }
 @keyframes vista-sale { 60% { opacity: 1; } to { opacity: 0; transform: translateY(10px) scale(0.96); } }
 
+/* Carrusel del hero: la escena sale hacia un lado mientras la siguiente entra por el otro (600 ms). */
+.escena-entra-der { animation: escena-entra-der 0.6s cubic-bezier(0.65, 0, 0.35, 1) both; }
+.escena-entra-izq { animation: escena-entra-izq 0.6s cubic-bezier(0.65, 0, 0.35, 1) both; }
+.escena-sale-izq { animation: escena-sale-izq 0.6s cubic-bezier(0.65, 0, 0.35, 1) both; }
+.escena-sale-der { animation: escena-sale-der 0.6s cubic-bezier(0.65, 0, 0.35, 1) both; }
+@keyframes escena-entra-der { from { transform: translateX(104%); } to { transform: none; } }
+@keyframes escena-entra-izq { from { transform: translateX(-104%); } to { transform: none; } }
+@keyframes escena-sale-izq { to { transform: translateX(-104%); } }
+@keyframes escena-sale-der { to { transform: translateX(104%); } }
+.escena-funde-entra { animation: escena-funde-entra 0.5s ease both; }
+.escena-funde-sale { animation: escena-funde-sale 0.5s ease both; }
+@keyframes escena-funde-entra { from { opacity: 0; } }
+@keyframes escena-funde-sale { to { opacity: 0; } }
+.titulo-flujo { animation: titulo-flujo 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes titulo-flujo { from { opacity: 0; transform: translateX(-40px); } }
+
 /* Escenas (estándar): todo se congela fuera de pantalla. */
 [data-pausado] .escena-anim, [data-pausado] .escena-anim * { animation-play-state: paused !important; }
 .cursor-clic { animation: cursor-clic 1.6s ease-out infinite; }

@@ -14,10 +14,21 @@ import { FondoHero } from "./FondoHero";
 
 type Props = { c: Contenido["hero"]; cta: TextoC; hrefContacto: string; hrefMetodo: string };
 
-type Estado = { escena: number; paso: number; escribiendo: boolean; redactando: boolean; espera: number; t: number };
+type Estado = {
+  escena: number;
+  paso: number;
+  escribiendo: boolean;
+  redactando: boolean;
+  espera: number;
+  t: number;
+  /** Escena que sale (mientras dura la transición) y hacia dónde: 1 = la nueva entra por la derecha. */
+  prev: number | null;
+  dir: 1 | -1;
+};
 const TIC = 1200;
 /** Tics de espera al final de cada escena (la 2 y la 3 usan esos tics para su propia secuencia). */
-const ESPERAS = [3, 12, 15];
+/** Escena 2: tres flujos de 7 tics cada uno (ver EscenaFlujo). */
+const ESPERAS = [3, 21, 15];
 
 /** Hero con carrusel de 3 escenas y título sincronizado (tiempos de Landing.dc.html). */
 export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
@@ -26,7 +37,8 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
   const reducido = useMovimientoReducido();
   const [encima, setEncima] = useState(false);
   const arrastre = useRef<{ x: number; y: number } | null>(null);
-  const [e, setE] = useState<Estado>({ escena: 0, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0 });
+  const escenaRef = useRef<HTMLDivElement>(null);
+  const [e, setE] = useState<Estado>({ escena: 0, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0, prev: null, dir: 1 });
   const { disparar, confeti } = useConfetiPantalla();
   const guion = c.conversacion.guion;
   // Duración de cada escena en tics, para la barra de progreso de los indicadores.
@@ -48,14 +60,45 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
         }
         if (s.espera < ESPERAS[s.escena]) return { ...s, espera: s.espera + 1 };
         const escena = (s.escena + 1) % 3;
-        return { escena, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0 };
+        return { escena, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0, prev: s.escena, dir: 1 };
       });
     }, TIC);
     return () => clearInterval(id);
   }, [avanza, guion]);
 
   // Elegir una escena salta a ella y el carrusel sigue avanzando. Solo se detiene con el mouse encima (WCAG 2.2.2).
-  const ir = (i: number) => setE({ escena: i, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0 });
+  const ir = (i: number, dir?: 1 | -1) =>
+    setE((s) =>
+      s.escena === i ? s : { escena: i, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0, prev: s.escena, dir: dir ?? (i > s.escena ? 1 : -1) },
+    );
+  const mover = (d: 1 | -1) => setE((s) => ({ escena: (s.escena + d + 3) % 3, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0, prev: s.escena, dir: d }));
+
+  // Deslizar con dos dedos en el touchpad (deltaX): umbral y espera para no saltar varias escenas. El scroll vertical no se toca.
+  useEffect(() => {
+    const el = escenaRef.current;
+    if (!el) return;
+    let acumulado = 0;
+    let ultimo = 0;
+    let quieto: ReturnType<typeof setTimeout> | undefined;
+    const alGirar = (ev: WheelEvent) => {
+      if (Math.abs(ev.deltaX) <= Math.abs(ev.deltaY)) return;
+      ev.preventDefault();
+      acumulado += ev.deltaX;
+      clearTimeout(quieto);
+      quieto = setTimeout(() => (acumulado = 0), 250);
+      const ahora = Date.now();
+      if (Math.abs(acumulado) > 60 && ahora - ultimo > 900) {
+        mover(acumulado > 0 ? 1 : -1);
+        acumulado = 0;
+        ultimo = ahora;
+      }
+    };
+    el.addEventListener("wheel", alGirar, { passive: false });
+    return () => {
+      el.removeEventListener("wheel", alGirar);
+      clearTimeout(quieto);
+    };
+  }, []);
   const pausado = encima;
   const esc = c.escenas[e.escena];
   // Con movimiento reducido la conversación se muestra completa.
@@ -107,13 +150,14 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
         <div role="region" aria-roledescription="carrusel" aria-label={c.carrusel.region.texto} className="flex min-w-0 flex-col gap-2">
           {/* Solo la escena pausa con el mouse encima (no los indicadores). Se arrastra o desliza para cambiar. */}
           <div
+            ref={escenaRef}
             role="group"
             aria-roledescription="diapositiva"
             aria-label={`${c.carrusel.diapositiva.texto} ${e.escena + 1} ${c.carrusel.de.texto} 3: ${esc.marco.texto}`}
             onPointerEnter={(ev) => ev.pointerType === "mouse" && setEncima(true)}
             onPointerLeave={(ev) => ev.pointerType === "mouse" && setEncima(false)}
             onPointerDown={(ev) => {
-              arrastre.current = { x: ev.clientX, y: ev.clientY };
+              if (ev.pointerType !== "mouse") arrastre.current = { x: ev.clientX, y: ev.clientY };
             }}
             onPointerUp={(ev) => {
               const a = arrastre.current;
@@ -121,15 +165,31 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
               if (!a) return;
               const dx = ev.clientX - a.x;
               const dy = ev.clientY - a.y;
-              if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) ir((e.escena + (dx < 0 ? 1 : 2)) % 3);
+              if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) mover(dx < 0 ? 1 : -1);
             }}
             onPointerCancel={() => (arrastre.current = null)}
-            onDragStart={(ev) => ev.preventDefault()}
-            className="h-[470px] cursor-grab touch-pan-y select-none active:cursor-grabbing sm:h-[490px]"
+            className="relative h-[470px] touch-pan-y overflow-hidden sm:h-[490px]"
           >
-            {e.escena === 0 && <EscenaConversacion c={c.conversacion} paso={paso} escribiendo={!reducido && e.escribiendo} redactando={!reducido && e.redactando} />}
-            {e.escena === 1 && <EscenaFlujo c={c.flujo} tic={e.espera} reducido={reducido} />}
-            {e.escena === 2 && <EscenaPanel c={c.panel} titulo={esc.marco} tic={reducido ? 99 : e.espera} />}
+            {e.prev !== null && (
+              <div
+                key={`s${e.prev}-${e.escena}`}
+                aria-hidden="true"
+                className={`absolute inset-0 ${reducido ? "escena-funde-sale" : e.dir === 1 ? "escena-sale-izq" : "escena-sale-der"}`}
+                onAnimationEnd={(ev) => ev.target === ev.currentTarget && setE((s) => ({ ...s, prev: null }))}
+              >
+                {e.prev === 0 && <EscenaConversacion c={c.conversacion} paso={guion.length} escribiendo={false} redactando={false} />}
+                {e.prev === 1 && <EscenaFlujo c={c.flujo} tic={ESPERAS[1]} reducido />}
+                {e.prev === 2 && <EscenaPanel c={c.panel} titulo={c.escenas[2].marco} tic={10} />}
+              </div>
+            )}
+            <div
+              key={`a${e.escena}`}
+              className={`absolute inset-0 ${e.prev === null ? "" : reducido ? "escena-funde-entra" : e.dir === 1 ? "escena-entra-der" : "escena-entra-izq"}`}
+            >
+              {e.escena === 0 && <EscenaConversacion c={c.conversacion} paso={paso} escribiendo={!reducido && e.escribiendo} redactando={!reducido && e.redactando} />}
+              {e.escena === 1 && <EscenaFlujo c={c.flujo} tic={e.espera} reducido={reducido} />}
+              {e.escena === 2 && <EscenaPanel c={c.panel} titulo={esc.marco} tic={reducido ? 99 : e.espera} />}
+            </div>
           </div>
           {/* Indicadores: barra que se llena con el avance de cada escena. */}
           <div className="flex items-center justify-center gap-1.5">
