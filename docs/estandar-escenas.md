@@ -56,5 +56,15 @@ animadas hechas en código**, nunca con tarjetas genéricas de ícono y texto. R
 | `Escalar` | Dibuja a un ancho fijo y escala al contenedor (miniaturas) |
 | `EscenaViva` | Contenedor que pausa las animaciones fuera de pantalla |
 
+## 9. Easter eggs: `BotonSorpresa`
+- Un solo disparador para todas las sorpresas: botón circular pequeño (36 px) con la tilde de Modernízate
+  (`components/BotonSorpresa.tsx`).
+- Siempre en la **esquina inferior derecha** de la sección (o del panel) que tiene sorpresa; la sección es `relative`.
+- Discreto pero visible: fondo de superficie, borde fino, tilde en color primario. La primera vez que entra en
+  pantalla hace una **pulsación suave** (dos ondas) y no vuelve a llamar la atención.
+- Nombre accesible desde `content/`: "Sorpresa" / "Surprise" (también como `title`).
+- La sorpresa del hero es `useConfetiPantalla` (`components/ConfetiPantalla.tsx`): capa fija sobre toda la
+  ventana, 180 piezas grandes que caen, repetible; **con movimiento reducido no se muestra**.
+
 Para una escena nueva: elegir marco → escribir el guion en `content/` (4 a 6 momentos) → componer con las
 piezas base → animar con clases CSS en bucle → probar en 1440 y 390 px, día y noche y movimiento reducido.

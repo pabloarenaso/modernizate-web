@@ -163,7 +163,7 @@ export const es = {
     intro: b("Abre cada caso y míralo en tres pasos: dónde partimos, cómo lo armamos juntos y qué recibes al final. Tú conoces tu negocio; nosotros, la tecnología."),
     abrir: b("Recorrer el caso"),
     cerrar: b("Cerrar"),
-    huevo: b("¿Qué hay detrás de esto?"),
+    huevo: b("Sorpresa"),
     huevoFrase: b("Personas que escuchan, tecnología que trabaja."),
     asistente: {
       titulo: b("Asistente de atención"),
@@ -360,7 +360,7 @@ export const es = {
       },
     ],
     secundario: b("Ver cómo trabajamos"),
-    huevo: b("✦ No me hagas clic"),
+    huevo: b("Sorpresa"),
     nota: b("Escenas ilustrativas"),
     carrusel: {
       region: b("Ejemplos de lo que construimos"),

@@ -163,7 +163,7 @@ export const en = {
     intro: b("Open each case and see it in three steps: where we start, how we build it together and what you get in the end. You know your business; we know the technology."),
     abrir: b("Walk through the case"),
     cerrar: b("Close"),
-    huevo: b("What is behind this?"),
+    huevo: b("Surprise"),
     huevoFrase: b("People who listen, technology that works."),
     asistente: {
       titulo: b("Customer service assistant"),
@@ -360,7 +360,7 @@ export const en = {
       },
     ],
     secundario: b("See how we work"),
-    huevo: b("✦ Don't click me"),
+    huevo: b("Surprise"),
     nota: b("Illustrative scenes"),
     carrusel: {
       region: b("Examples of what we build"),

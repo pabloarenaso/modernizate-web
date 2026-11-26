@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useConfeti } from "@/components/Confeti";
+import { BotonSorpresa } from "@/components/BotonSorpresa";
+import { useConfetiPantalla } from "@/components/ConfetiPantalla";
 import { Texto } from "@/components/Texto";
 import type { Contenido, Texto as TextoC } from "@/content/tipos";
 import { useEnPantalla } from "@/hooks/useEnPantalla";
 import { useMovimientoReducido } from "@/hooks/useMovimientoReducido";
-import { BotonEstrellas } from "./BotonEstrellas";
 import { EscenaConversacion } from "./EscenaConversacion";
 import { EscenaFlujo } from "./EscenaFlujo";
 import { EscenaPanel } from "./EscenaPanel";
@@ -25,8 +25,9 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
   const enPantalla = useEnPantalla(raiz);
   const reducido = useMovimientoReducido();
   const [encima, setEncima] = useState(false);
+  const arrastre = useRef<{ x: number; y: number } | null>(null);
   const [e, setE] = useState<Estado>({ escena: 0, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0 });
-  const { disparar, confeti } = useConfeti();
+  const { disparar, confeti } = useConfetiPantalla();
   const guion = c.conversacion.guion;
   // Duración de cada escena en tics, para la barra de progreso de los indicadores.
   const totales = [guion.reduce((n, m) => n + (m.quien === "tarjeta" ? 1 : 2), 0) + ESPERAS[0] + 1, ESPERAS[1] + 1, ESPERAS[2] + 1];
@@ -68,6 +69,8 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
       className="hero-puntos relative overflow-hidden border-b border-linea"
     >
       <FondoHero />
+      <BotonSorpresa etiqueta={c.huevo} onClick={disparar} className="absolute bottom-4 right-4 z-10" />
+      {confeti}
       <div className="relative mx-auto grid max-w-[1240px] items-center gap-8 px-6 pb-10 pt-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 lg:pb-12 lg:pt-10">
         <div className="flex min-w-0 flex-col gap-5">
           <Texto as="p" valor={c.kicker} className="kicker text-acento-texto" />
@@ -98,28 +101,31 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
             <a href={hrefMetodo} className="inline-flex h-12 items-center rounded-[10px] border border-linea bg-superficie px-6 font-semibold text-texto transition-colors hover:bg-suave">
               <Texto valor={c.secundario} />
             </a>
-            <span className="relative basis-full">
-              <BotonEstrellas onClick={disparar}>
-                <Texto valor={c.huevo} />
-              </BotonEstrellas>
-              {confeti}
-            </span>
           </div>
         </div>
 
-        <div
-          role="region"
-          aria-roledescription="carrusel"
-          aria-label={c.carrusel.region.texto}
-          className="flex min-w-0 flex-col gap-2"
-          onMouseEnter={() => setEncima(true)}
-          onMouseLeave={() => setEncima(false)}
-        >
+        <div role="region" aria-roledescription="carrusel" aria-label={c.carrusel.region.texto} className="flex min-w-0 flex-col gap-2">
+          {/* Solo la escena pausa con el mouse encima (no los indicadores). Se arrastra o desliza para cambiar. */}
           <div
             role="group"
             aria-roledescription="diapositiva"
             aria-label={`${c.carrusel.diapositiva.texto} ${e.escena + 1} ${c.carrusel.de.texto} 3: ${esc.marco.texto}`}
-            className="h-[470px] sm:h-[490px]"
+            onPointerEnter={(ev) => ev.pointerType === "mouse" && setEncima(true)}
+            onPointerLeave={(ev) => ev.pointerType === "mouse" && setEncima(false)}
+            onPointerDown={(ev) => {
+              arrastre.current = { x: ev.clientX, y: ev.clientY };
+            }}
+            onPointerUp={(ev) => {
+              const a = arrastre.current;
+              arrastre.current = null;
+              if (!a) return;
+              const dx = ev.clientX - a.x;
+              const dy = ev.clientY - a.y;
+              if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) ir((e.escena + (dx < 0 ? 1 : 2)) % 3);
+            }}
+            onPointerCancel={() => (arrastre.current = null)}
+            onDragStart={(ev) => ev.preventDefault()}
+            className="h-[470px] cursor-grab touch-pan-y select-none active:cursor-grabbing sm:h-[490px]"
           >
             {e.escena === 0 && <EscenaConversacion c={c.conversacion} paso={paso} escribiendo={!reducido && e.escribiendo} redactando={!reducido && e.redactando} />}
             {e.escena === 1 && <EscenaFlujo c={c.flujo} tic={e.espera} reducido={reducido} />}
