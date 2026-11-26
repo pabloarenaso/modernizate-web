@@ -10,3 +10,4 @@
 | 2026-11-25 19:58 | main | 64cccdd → af4a691 | OK; formulario probado (FormData) |
 | 2026-11-25 21:09 | main | af4a691 → 1cb899d | OK; bloque A |
 | 2026-11-25 21:14 | main | 1cb899d → 4934d74 | OK; bloque B |
+| 2026-11-25 21:23 | main | 4934d74 → 7d161d0 | OK; bloque C |
