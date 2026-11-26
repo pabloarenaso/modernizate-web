@@ -68,12 +68,32 @@ export const es = {
     kicker: b("Cómo trabajamos"),
     titulo: b("Cuatro pasos, sin letra chica."),
     pasos: [
-      { titulo: b("Conversamos"), corto: b("Entendemos tu negocio"), texto: b("Una conversación breve, sin costo y sin compromiso. Nos cuentas cómo funciona tu día a día y dónde sientes que se pierde el tiempo."), puntos: [b("Qué vendes y cómo te contactan"), b("Qué tareas se repiten todos los días"), b("Qué herramientas usas hoy")] },
-      { titulo: b("Diagnóstico y propuesta"), corto: b("Qué conviene hacer primero"), texto: b("Te entregamos por escrito qué conviene automatizar, qué no, la mensualidad y en qué plazo. Si algo no vale la pena, también te lo decimos."), puntos: [b("Alcance claro: qué incluye y qué no"), b("Mensualidad y consumo con tope"), b("Plazos y responsables")] },
-      { titulo: b("Implementamos"), corto: b("Construimos y probamos contigo"), texto: b("Configuramos la solución con tu información real, la probamos con tu equipo y la dejamos funcionando en tu operación."), puntos: [b("Configuración con tus datos y reglas"), b("Pruebas antes de salir en vivo"), b("Capacitación breve para tu equipo")] },
-      { titulo: b("Acompañamos"), corto: b("Soporte y mejora continua"), texto: b("No desaparecemos después de entregar. Damos soporte, ajustamos lo necesario y te asesoramos cuando aparecen nuevas necesidades."), puntos: [b("Soporte por un canal definido"), b("Ajustes y mejoras"), b("Asesoría para crecer contigo")] },
+      {
+        titulo: b("Conversamos"),
+        linea: b("Nos cuentas cómo funciona tu negocio."),
+        puntos: [b("Una conversación breve, sin costo ni compromiso"), b("Qué vendes y cómo te contactan tus clientes"), b("Qué tareas se repiten todos los días"), b("Qué herramientas usas hoy")],
+        escena: [b("Videollamada · 20 min"), b("Tú"), b("Tareas que se repiten: 3")],
+      },
+      {
+        titulo: b("Diagnóstico y propuesta"),
+        linea: b("Te decimos por escrito qué conviene hacer."),
+        puntos: [b("Qué conviene automatizar y qué no"), b("Alcance claro: qué incluye y qué no"), b("Plazos y responsables")],
+        escena: [b("Propuesta.pdf"), b("Alcance · Plazos · Responsables"), b("Lista para revisar")],
+      },
+      {
+        titulo: b("Implementamos"),
+        linea: b("Lo construimos y probamos contigo."),
+        puntos: [b("Configuración con tus datos y reglas"), b("Pruebas antes de salir en vivo"), b("Capacitación breve para tu equipo")],
+        escena: [b("Construcción"), b("Pruebas"), b("En vivo")],
+      },
+      {
+        titulo: b("Acompañamos"),
+        linea: b("Soporte y mejoras después de entregar."),
+        puntos: [b("Soporte por un canal definido"), b("Ajustes y mejoras"), b("Asesoría cuando aparecen nuevas necesidades")],
+        escena: [b("¿Podemos agregar un producto nuevo?"), b("Listo, ya está publicado."), b("Resuelto")],
+      },
     ],
-    modelo: { titulo: b("Cómo cobramos"), texto: b("No cobramos el desarrollo ni la implementación: trabajamos por suscripción mensual. Lo construimos, lo dejamos funcionando y lo vamos afinando contigo. Todo documentado. Si tu solución usa IA o WhatsApp, ese consumo se cobra aparte y con un tope mensual conocido."), puntos: [b("Sin costo de desarrollo"), b("Suscripción mensual"), b("Consumo de IA o WhatsApp con tope")] },
+    verDetalle: b("Ver detalle del paso"),
   },
   contacto: {
     kicker: b("Contacto"),
@@ -318,8 +338,6 @@ export const es = {
       region: b("Ejemplos de lo que construimos"),
       diapositiva: b("Ejemplo"),
       de: b("de"),
-      pausar: b("Pausar animación"),
-      reanudar: b("Reanudar animación"),
     },
     conversacion: {
       contactos: [

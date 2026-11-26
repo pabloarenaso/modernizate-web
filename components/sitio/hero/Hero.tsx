@@ -25,15 +25,14 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
   const enPantalla = useEnPantalla(raiz);
   const reducido = useMovimientoReducido();
   const [encima, setEncima] = useState(false);
-  const [detenido, setDetenido] = useState(false);
   const [e, setE] = useState<Estado>({ escena: 0, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0 });
   const { disparar, confeti } = useConfeti();
   const guion = c.conversacion.guion;
   // Duración de cada escena en tics, para la barra de progreso de los indicadores.
   const totales = [guion.reduce((n, m) => n + (m.quien === "tarjeta" ? 1 : 2), 0) + ESPERAS[0] + 1, ESPERAS[1] + 1, ESPERAS[2] + 1];
 
-  const avanza = enPantalla && !reducido && !detenido && !encima;
-  const enMovimiento = enPantalla && !reducido && !detenido;
+  const avanza = enPantalla && !reducido && !encima;
+  const enMovimiento = enPantalla && !reducido;
 
   useEffect(() => {
     if (!avanza) return;
@@ -54,12 +53,9 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
     return () => clearInterval(id);
   }, [avanza, guion]);
 
-  const ir = (i: number) => {
-    // Clic en la escena activa: pausa o reanuda (WCAG 2.2.2). En otra: va a esa escena.
-    if (i === e.escena) setDetenido((d) => !d);
-    else setE({ escena: i, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0 });
-  };
-  const pausado = detenido || encima;
+  // Elegir una escena salta a ella y el carrusel sigue avanzando. Solo se detiene con el mouse encima (WCAG 2.2.2).
+  const ir = (i: number) => setE({ escena: i, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0 });
+  const pausado = encima;
   const esc = c.escenas[e.escena];
   // Con movimiento reducido la conversación se muestra completa.
   const paso = reducido ? guion.length : e.paso;
@@ -118,10 +114,6 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
           className="flex min-w-0 flex-col gap-2"
           onMouseEnter={() => setEncima(true)}
           onMouseLeave={() => setEncima(false)}
-          onFocus={() => setEncima(true)}
-          onBlur={(ev) => {
-            if (!ev.currentTarget.contains(ev.relatedTarget as Node)) setEncima(false);
-          }}
         >
           <div
             role="group"
@@ -138,7 +130,7 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
             {c.escenas.map((s, i) => {
               const activo = i === e.escena;
               const lleno = reducido ? (activo ? 100 : 0) : activo ? Math.min(100, (e.t / totales[i]) * 100) : 0;
-              const etiqueta = activo && !reducido ? `${s.punto.texto}. ${detenido ? c.carrusel.reanudar.texto : c.carrusel.pausar.texto}` : s.punto.texto;
+              const etiqueta = s.punto.texto;
               return (
                 <button
                   key={i}
@@ -158,11 +150,6 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
                 </button>
               );
             })}
-            {detenido && !reducido && (
-              <svg aria-hidden="true" viewBox="0 0 24 24" className="ml-1 size-3.5 text-texto-sec" fill="currentColor">
-                <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" />
-              </svg>
-            )}
           </div>
           <Texto as="p" valor={c.nota} className="text-center text-xs text-texto-sec" />
         </div>

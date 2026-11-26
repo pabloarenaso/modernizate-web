@@ -8,6 +8,7 @@ Agencia chilena de automatización e IA. Este repositorio contiene el sitio púb
 - Datos con fuente: `docs/datos-tendencia.md`
 - Ilustraciones de los casos: `docs/casos-visuales.md`
 - Efectos elegidos: `docs/catalogo-efectos.md`
+- Estándar de escenas animadas (rige toda ilustración): `docs/estandar-escenas.md`
 - Plan y estado del sitio por etapas: `docs/PLAN_SITIO.md`. Una sesión nueva retoma desde ese archivo y desde git.
 - Maquetas de referencia: `docs/maquetas/*.dc.html`. Son prototipos de Claude Design: sirven como referencia de diseño, textos y comportamiento. No copiar su código ni su formato.
 

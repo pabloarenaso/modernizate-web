@@ -68,12 +68,32 @@ export const en = {
     kicker: b("How we work"),
     titulo: b("Four steps, no fine print."),
     pasos: [
-      { titulo: b("We talk"), corto: b("We understand your business"), texto: b("A short conversation, free and with no commitment. You tell us how your day works and where time gets lost."), puntos: [b("What you sell and how customers reach you"), b("Which tasks repeat every day"), b("Which tools you use today")] },
-      { titulo: b("Diagnosis and proposal"), corto: b("What to do first"), texto: b("We tell you in writing what is worth automating, what is not, the monthly fee and the timeline. If something is not worth it, we say so too."), puntos: [b("Clear scope: what is included and what is not"), b("Monthly fee and capped usage"), b("Timelines and owners")] },
-      { titulo: b("We implement"), corto: b("We build and test with you"), texto: b("We set up the solution with your real information, test it with your team and leave it running in your operation."), puntos: [b("Setup with your data and rules"), b("Testing before going live"), b("Short training for your team")] },
-      { titulo: b("We stay with you"), corto: b("Support and continuous improvement"), texto: b("We do not disappear after delivery. We provide support, adjust what is needed and advise you when new needs come up."), puntos: [b("Support through a defined channel"), b("Adjustments and improvements"), b("Advice as you grow")] },
+      {
+        titulo: b("We talk"),
+        linea: b("You tell us how your business works."),
+        puntos: [b("A short conversation, free and with no commitment"), b("What you sell and how customers reach you"), b("Which tasks repeat every day"), b("Which tools you use today")],
+        escena: [b("Video call · 20 min"), b("You"), b("Repeated tasks: 3")],
+      },
+      {
+        titulo: b("Diagnosis and proposal"),
+        linea: b("We tell you in writing what is worth doing."),
+        puntos: [b("What is worth automating and what is not"), b("Clear scope: what is included and what is not"), b("Timelines and owners")],
+        escena: [b("Proposal.pdf"), b("Scope · Timeline · Owners"), b("Ready to review")],
+      },
+      {
+        titulo: b("We implement"),
+        linea: b("We build it and test it with you."),
+        puntos: [b("Setup with your data and rules"), b("Testing before going live"), b("Short training for your team")],
+        escena: [b("Building"), b("Testing"), b("Live")],
+      },
+      {
+        titulo: b("We stay with you"),
+        linea: b("Support and improvements after delivery."),
+        puntos: [b("Support through a defined channel"), b("Adjustments and improvements"), b("Advice when new needs come up")],
+        escena: [b("Can we add a new product?"), b("Done, it is live now."), b("Solved")],
+      },
     ],
-    modelo: { titulo: b("How we charge"), texto: b("We do not charge for development or implementation: we work on a monthly subscription. We build it, leave it running and keep fine-tuning it with you. Everything documented. If your solution uses AI or WhatsApp, that usage is billed separately, with a known monthly cap."), puntos: [b("No development fee"), b("Monthly subscription"), b("AI or WhatsApp usage with a cap")] },
+    verDetalle: b("See step details"),
   },
   contacto: {
     kicker: b("Contact"),
@@ -318,8 +338,6 @@ export const en = {
       region: b("Examples of what we build"),
       diapositiva: b("Example"),
       de: b("of"),
-      pausar: b("Pause animation"),
-      reanudar: b("Resume animation"),
     },
     conversacion: {
       contactos: [

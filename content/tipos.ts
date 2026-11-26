@@ -115,7 +115,7 @@ export type Soluciones = {
 export type FlujoC = { nombre: Texto; nodos: Texto[] };
 
 export type Servicio = { nombre: Texto; que: Texto; para: Texto; plazo: Texto };
-export type PasoTrabajo = { titulo: Texto; corto: Texto; texto: Texto; puntos: [Texto, Texto, Texto] };
+export type PasoTrabajo = { titulo: Texto; linea: Texto; puntos: Texto[]; escena: [Texto, Texto, Texto] };
 export type Servicios = {
   kicker: Texto;
   titulo: Texto;
@@ -128,7 +128,7 @@ export type ComoTrabajamos = {
   kicker: Texto;
   titulo: Texto;
   pasos: [PasoTrabajo, PasoTrabajo, PasoTrabajo, PasoTrabajo];
-  modelo: { titulo: Texto; texto: Texto; puntos: [Texto, Texto, Texto] };
+  verDetalle: Texto;
 };
 export type ContactoC = {
   kicker: Texto;
@@ -246,7 +246,7 @@ export type Contenido = {
     secundario: Texto;
     huevo: Texto;
     nota: Texto;
-    carrusel: { region: Texto; diapositiva: Texto; de: Texto; pausar: Texto; reanudar: Texto };
+    carrusel: { region: Texto; diapositiva: Texto; de: Texto };
     conversacion: {
       contactos: [Contacto, Contacto, Contacto, Contacto];
       nueva: Texto;

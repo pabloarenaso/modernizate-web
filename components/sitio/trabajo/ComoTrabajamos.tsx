@@ -1,48 +1,79 @@
+"use client";
+
+import { useState } from "react";
+import { EscenaViva } from "@/components/escenas/base/EscenaViva";
+import { Ico, TRAZOS } from "@/components/escenas/base/Ico";
 import { Texto } from "@/components/Texto";
 import type { ComoTrabajamos as ComoTrabajamosC } from "@/content/tipos";
+import { MiniPaso } from "./MiniPaso";
 
-/** "Cómo trabajamos": cuatro pasos y el modelo de cobro. */
+/** "Cómo trabajamos": cuatro pasos en una fila; al elegir uno se despliega su detalle con una mini-escena. */
 export function ComoTrabajamos({ c }: { c: ComoTrabajamosC }) {
+  const [abierto, setAbierto] = useState<number | null>(0);
+  const p = abierto === null ? null : c.pasos[abierto];
+
   return (
     <section id="como-trabajamos" aria-labelledby="como-trabajamos-titulo" className="border-y border-linea bg-suave">
-      <div className="mx-auto flex max-w-[1240px] flex-col gap-10 px-6 py-20 lg:py-28">
-        <div className="flex max-w-[720px] flex-col gap-4">
+      <div className="mx-auto flex max-w-[1240px] flex-col gap-8 px-6 py-16 lg:py-20">
+        <div className="flex max-w-[720px] flex-col gap-3">
           <Texto as="p" valor={c.kicker} className="kicker text-acento-texto" />
           <h2 id="como-trabajamos-titulo" className="disp text-[30px] leading-[1.1] sm:text-[38px]">
             <Texto valor={c.titulo} />
           </h2>
         </div>
-        <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {c.pasos.map((p, i) => (
-            <li key={i} className="flex flex-col gap-3 rounded-2xl border border-linea bg-superficie p-6">
-              <span className="font-display text-sm font-bold text-acento-texto">{String(i + 1).padStart(2, "0")}</span>
-              <Texto as="h3" valor={p.titulo} className="font-display text-xl font-bold" />
-              <Texto as="p" valor={p.corto} className="text-sm font-semibold text-texto-sec" />
-              <Texto as="p" valor={p.texto} className="text-[15px] leading-relaxed" />
-              <ul className="mt-auto flex flex-col gap-1.5 border-t border-linea pt-3 text-sm text-texto-sec">
-                {p.puntos.map((x, j) => (
-                  <li key={j} className="flex gap-2">
-                    <svg aria-hidden="true" viewBox="0 0 24 24" className="mt-0.5 size-4 shrink-0 text-ok-texto" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
-                    <Texto valor={x} />
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ol>
-        <div className="grid gap-6 rounded-2xl bg-lateral p-7 text-white sm:p-9 lg:grid-cols-[1.4fr_1fr] lg:items-center">
-          <div className="flex flex-col gap-3">
-            <Texto as="h3" valor={c.modelo.titulo} className="font-display text-2xl font-bold" />
-            <Texto as="p" valor={c.modelo.texto} className="text-[16px] leading-relaxed text-white/90" />
-          </div>
-          <ul className="flex flex-col gap-2.5">
-            {c.modelo.puntos.map((x, i) => (
-              <li key={i} className="flex items-center gap-2.5 rounded-xl bg-white/10 px-4 py-3 font-semibold">
-                <svg aria-hidden="true" viewBox="0 0 24 24" className="size-5 shrink-0 text-[#9EC1FF]" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
-                <Texto valor={x} />
-              </li>
-            ))}
-          </ul>
+        <div className="grid gap-3 md:grid-cols-4">
+          {c.pasos.map((x, i) => {
+            const activo = abierto === i;
+            return (
+              <button
+                key={i}
+                type="button"
+                aria-expanded={activo}
+                aria-controls="paso-detalle"
+                onClick={() => setAbierto(activo ? null : i)}
+                style={{ order: i * 2 }}
+                className={`group flex items-start gap-4 rounded-2xl border p-5 text-left transition-colors ${
+                  activo ? "border-primario bg-superficie shadow-[0_0_0_3px_var(--seleccion)]" : "border-linea bg-superficie/70 hover:bg-superficie"
+                }`}
+              >
+                <span className={`font-display text-[40px] font-extrabold leading-none tabular-nums ${activo ? "text-acento-texto" : "text-texto-sec/50"}`}>{i + 1}</span>
+                <span className="flex min-w-0 flex-1 flex-col gap-1">
+                  <Texto valor={x.titulo} className="font-display text-lg font-bold leading-tight" />
+                  <Texto valor={x.linea} className="text-sm leading-snug text-texto-sec" />
+                </span>
+                <span aria-hidden="true" className={`mt-1 text-texto-sec transition-transform duration-300 ${activo ? "rotate-180" : ""}`}>
+                  <Ico d="M6 9l6 6 6-6" className="size-4" />
+                </span>
+                <span className="sr-only">{c.verDetalle.texto}</span>
+              </button>
+            );
+          })}
+          {p && abierto !== null && (
+            <div
+              id="paso-detalle"
+              key={abierto}
+              role="region"
+              aria-label={p.titulo.texto}
+              style={{ order: abierto * 2 + 1 }}
+              className="desplegar grid md:col-span-4 md:!order-[99]"
+            >
+              <div className="overflow-hidden">
+                <div className="grid items-center gap-6 rounded-2xl border border-linea bg-superficie p-6 md:grid-cols-[1fr_1.1fr] md:p-8">
+                  <ul className="flex flex-col gap-2.5">
+                    {p.puntos.map((pt, j) => (
+                      <li key={j} className="flex gap-2.5 text-[15px] leading-snug">
+                        <Ico d={TRAZOS.check} className="mt-0.5 size-4 shrink-0 text-ok-texto" />
+                        <Texto valor={pt} />
+                      </li>
+                    ))}
+                  </ul>
+                  <EscenaViva className="flex min-h-[190px] items-center justify-center rounded-xl bg-suave p-4">
+                    <MiniPaso i={abierto} e={p.escena} />
+                  </EscenaViva>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

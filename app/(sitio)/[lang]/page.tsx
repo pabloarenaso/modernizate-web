@@ -10,6 +10,7 @@ import { ComoTrabajamos } from "@/components/sitio/trabajo/ComoTrabajamos";
 import { obtenerContenido } from "@/content";
 import { esIdioma } from "@/content/tipos";
 import { BANDERAS } from "@/lib/banderas";
+import { seccionesVisibles } from "@/lib/secciones";
 import { rutaLocal } from "@/lib/rutas";
 
 export default async function Inicio({ params }: PageProps<"/[lang]">) {
@@ -29,7 +30,12 @@ export default async function Inicio({ params }: PageProps<"/[lang]">) {
         <ComoTrabajamos c={c.comoTrabajamos} />
         <Contacto c={c.contacto} />
       </main>
-      <Pie c={c.pie} mensajeWhatsapp={c.contacto.whatsappMensaje.texto} nombre={c.marcaNombre.texto} />
+      <Pie
+        c={c.pie}
+        mensajeWhatsapp={c.contacto.whatsappMensaje.texto}
+        nombre={c.marcaNombre.texto}
+        enlaces={seccionesVisibles.map((id) => ({ href: `${inicio}#${id}`, texto: c.cabecera.nav[id] }))}
+      />
     </>
   );
 }

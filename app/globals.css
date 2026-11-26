@@ -491,6 +491,26 @@ html[data-revision] [data-estado="borrador"]::after {
 }
 [data-esperando] .segmento { transform: scaleX(0); }
 
+/* Cómo trabajamos: apertura suave del detalle y mini-escenas en bucle de 8 s. */
+.desplegar { animation: desplegar 0.45s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@keyframes desplegar { from { grid-template-rows: 0fr; opacity: 0; } to { grid-template-rows: 1fr; opacity: 1; } }
+.mp-1, .mp-2, .mp-3, .mp-4 { animation: 8s ease-out infinite; }
+.mp-1 { animation-name: mp-1; } .mp-2 { animation-name: mp-2; } .mp-3 { animation-name: mp-3; } .mp-4 { animation-name: mp-4; }
+@keyframes mp-1 { 0%, 8% { opacity: 0; transform: translateY(6px) scale(0.9); } 14%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes mp-2 { 0%, 24% { opacity: 0; transform: translateY(6px) scale(0.9); } 30%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes mp-3 { 0%, 40% { opacity: 0; transform: translateY(6px) scale(0.9); } 46%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes mp-4 { 0%, 58% { opacity: 0; transform: translateY(6px) scale(0.9); } 64%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.mp-barra { animation: mp-barra 8s ease-in-out infinite; }
+@keyframes mp-barra { 0%, 6% { transform: scaleX(0.04); } 56%, 94% { transform: scaleX(1); } 100% { transform: scaleX(0.04); } }
+.mp-voz { height: 12px; animation: mp-voz 0.9s ease-in-out infinite alternate; }
+@keyframes mp-voz { from { height: 3px; } to { height: 13px; } }
+.mp-rec { animation: hablar 1.4s ease-in-out infinite; }
+
+/* Escenas (estándar): todo se congela fuera de pantalla. */
+[data-pausado] .escena-anim, [data-pausado] .escena-anim * { animation-play-state: paused !important; }
+.cursor-clic { animation: cursor-clic 1.6s ease-out infinite; }
+@keyframes cursor-clic { 0%, 60% { opacity: 0; transform: scale(0.4); } 70% { opacity: 1; } 100% { opacity: 0; transform: scale(1.8); } }
+
 @media (prefers-reduced-motion: reduce) {
   /* Fondos quietos: las nubes quedan a la vista y los meteoros se ocultan. */
   .nube { animation: none; transform: translateX(var(--reposo, 700px)); }

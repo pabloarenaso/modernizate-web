@@ -4,7 +4,8 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Texto } from "@/components/Texto";
 import type { EscenaTiendaC } from "@/content/tipos";
 import { useDisparo } from "./disparo";
-import { Escalar } from "./Escalar";
+import { Escalar } from "@/components/escenas/base/Escalar";
+import { Navegador } from "@/components/escenas/base/Navegador";
 import { FotoProducto, fondosProducto, type TipoProducto } from "./FotoProducto";
 
 type Props = {
@@ -30,7 +31,6 @@ function Ico({ d, className = "size-4" }: { d: string; className?: string }) {
 }
 const CARRITO = "M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2M10 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM18 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2z";
 const LUPA = "M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM21 21l-4.3-4.3";
-const CANDADO = "M7 11V8a5 5 0 0 1 10 0v3M6 11h12v9H6z";
 
 type Vuelo = { k: number; x: number; y: number; dx: number; dy: number };
 
@@ -84,27 +84,7 @@ export function EscenaTienda({ c, tamano, disparo: propio }: Props) {
   ));
 
   const navegador = (
-    <div className={`flex flex-col overflow-hidden rounded-xl border border-linea bg-superficie ${mini ? "h-full" : ""} shadow-[0_30px_60px_-30px_rgba(11,21,48,0.45)]`}>
-      {/* Barra del navegador */}
-      <div className="flex items-center gap-2 border-b border-linea bg-suave px-3 py-2">
-        <span aria-hidden="true" className="flex gap-1.5">
-          <span className="size-2.5 rounded-full bg-[#FF5F57]" />
-          <span className="size-2.5 rounded-full bg-[#FEBC2E]" />
-          <span className="size-2.5 rounded-full bg-[#28C840]" />
-        </span>
-        {!mini && (
-          <span className="hidden items-center gap-1 text-texto-sec @[560px]:flex">
-            <Ico d="M15 5l-7 7 7 7" className="size-3.5" />
-            <Ico d="M9 5l7 7-7 7" className="size-3.5 opacity-40" />
-            <Ico d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5" className="size-3.5" />
-          </span>
-        )}
-        <span className="mx-auto flex min-w-0 max-w-[340px] flex-1 items-center justify-center gap-1.5 rounded-md bg-superficie px-3 py-1 text-[11.5px] text-texto-sec shadow-[inset_0_0_0_1px_var(--linea)]">
-          <Ico d={CANDADO} className="size-3 shrink-0" />
-          <Texto valor={c.dominio} className="truncate text-texto" />
-        </span>
-        <span aria-hidden="true" className="w-[42px]" />
-      </div>
+    <Navegador mini={mini} dominio={<Texto valor={c.dominio} />}>
       {!mini && <Texto valor={c.aviso} className="bg-[#4A3426] px-3 py-1 text-center text-[11px] font-medium text-[#FFF4E6]" />}
       {/* Encabezado de la tienda */}
       <div className="flex items-center gap-3 border-b border-linea px-3.5 py-2.5">
@@ -140,7 +120,7 @@ export function EscenaTienda({ c, tamano, disparo: propio }: Props) {
         {!mini && <Texto as="p" valor={c.seccion} className="mb-2.5 font-display text-[13px] font-semibold @[560px]:text-[15px]" />}
         <div className={`grid grid-cols-3 ${mini ? "gap-2.5" : "gap-2.5 @[560px]:gap-4"}`}>{productos}</div>
       </div>
-    </div>
+    </Navegador>
   );
 
   const pago = (

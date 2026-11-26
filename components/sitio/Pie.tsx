@@ -11,7 +11,9 @@ async function anioActual() {
   return new Date().getFullYear();
 }
 
-export async function Pie({ c, mensajeWhatsapp, nombre }: { c: Contenido["pie"]; mensajeWhatsapp: string; nombre: string }) {
+type Enlace = { href: string; texto: Contenido["pie"]["lema"] };
+
+export async function Pie({ c, mensajeWhatsapp, nombre, enlaces }: { c: Contenido["pie"]; mensajeWhatsapp: string; nombre: string; enlaces: Enlace[] }) {
   const wa = enlaceWhatsapp(mensajeWhatsapp);
   const anio = await anioActual();
   return (
@@ -21,6 +23,17 @@ export async function Pie({ c, mensajeWhatsapp, nombre }: { c: Contenido["pie"];
           <Logo nombre={nombre} className="text-[20px]" />
           <Texto as="p" valor={c.lema} className="max-w-[320px] text-sm text-texto-sec" />
         </div>
+        <nav aria-label={nombre}>
+          <ul className="flex flex-col gap-3 text-sm">
+            {enlaces.map((e) => (
+              <li key={e.href}>
+                <a href={e.href} className="hover:text-acento-texto hover:underline">
+                  <Texto valor={e.texto} />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
         <ul className="flex flex-col gap-3 text-sm">
           {correoContacto && (
             <li className="flex items-center gap-2">

@@ -1,6 +1,6 @@
 import { Texto } from "@/components/Texto";
 import type { Contenido, Mensaje } from "@/content/tipos";
-import { Telefono } from "./Telefono";
+import { Telefono } from "@/components/escenas/base/Telefono";
 
 type Props = { c: Contenido["hero"]["conversacion"]; paso: number; escribiendo: boolean; redactando: boolean };
 
