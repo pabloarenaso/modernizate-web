@@ -135,6 +135,8 @@ export type EscenaOrdenC = {
   pedidos: Texto;
   estados: [Texto, Texto, Texto, Texto];
   alDia: Texto;
+  sitio: Texto;
+  enLinea: Texto;
 };
 export type Servicios = {
   kicker: Texto;

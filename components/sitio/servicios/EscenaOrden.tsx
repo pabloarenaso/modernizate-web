@@ -33,18 +33,18 @@ export function EscenaOrden({ c, foco }: { c: EscenaOrdenC; foco: Zona | null })
         <div className="orden escena-anim relative h-[440px] w-[600px]" data-foco={foco ?? undefined}>
           {/* ── Orden: el panel ── */}
           <div className="do-orden absolute inset-[20px]">
-            <Navegador className="h-full" dominio={<span data-zona="sitio" className="zona rounded px-1"><Texto valor={c.dominio} /></span>}>
+            <Navegador className="h-full" dominio={<Texto valor={c.dominio} />}>
               <div className="flex flex-1 flex-col gap-3 bg-suave p-4">
-                <div className="flex items-center justify-between">
+                <div data-zona="medida" className="zona flex items-center justify-between rounded-lg">
                   <Texto valor={c.panel} className="font-display text-[17px] font-bold" />
-                  <span data-zona="medida" className="zona do-o3 flex items-center gap-1.5 rounded-full bg-ok-fondo px-3 py-1 text-[12px] font-semibold text-ok-texto">
+                  <span className="do-o3 flex items-center gap-1.5 rounded-full bg-ok-fondo px-3 py-1 text-[12px] font-semibold text-ok-texto">
                     <Ico d={TRAZOS.check} className="size-3.5" />
                     <Texto valor={c.alDia} />
                   </span>
                 </div>
                 <div className="relative grid flex-1 grid-cols-3 gap-6">
                   {/* Mensajes respondidos */}
-                  <div data-zona="asistente" className="zona flex flex-col gap-3 rounded-xl border border-linea bg-superficie p-3.5">
+                  <div data-zona="asistente" className="zona flex flex-col gap-2.5 rounded-xl border border-linea bg-superficie p-3">
                     <Texto valor={c.mensajes} className="text-[11px] font-semibold uppercase tracking-wide text-texto-sec" />
                     {c.clientes.map((n, i) => (
                       <div key={i} className={`do-o${Math.min(i + 1, 3)} flex items-center gap-2`}>
@@ -78,15 +78,30 @@ export function EscenaOrden({ c, foco }: { c: EscenaOrdenC; foco: Zona | null })
                       </div>
                     ))}
                   </div>
-                  {/* Flechas que mueven datos entre columnas */}
-                  <div data-zona="automatizaciones" className="zona pointer-events-none absolute inset-x-0 top-1/2 h-0">
-                    {[33.33, 66.66].map((l) => (
-                      <svg key={l} aria-hidden="true" viewBox="0 0 24 12" className="absolute -top-[6px] h-3 w-6 -translate-x-1/2 text-primario" style={{ left: `${l}%` }}>
+                  {/* Flechas que mueven datos entre columnas (automatizaciones) */}
+                  {[33.33, 66.66].map((l) => (
+                    <span key={l} data-zona="automatizaciones" className="zona absolute top-[42%] z-10 flex size-7 -translate-x-1/2 items-center justify-center rounded-full border border-linea bg-superficie text-primario shadow-sm" style={{ left: `${l}%` }}>
+                      <svg aria-hidden="true" viewBox="0 0 24 12" className="h-3 w-5">
                         <path className="do-flecha" d="M1 6h19" stroke="currentColor" strokeWidth="2" strokeDasharray="3 3" fill="none" />
                         <path d="M17 2l4 4-4 4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                    ))}
-                  </div>
+                    </span>
+                  ))}
+                </div>
+                {/* Vitrina: el sitio del negocio, en línea */}
+                <div data-zona="sitio" className="zona flex items-center gap-3 rounded-xl border border-linea bg-superficie p-2.5">
+                  <span aria-hidden="true" className="flex h-11 w-[74px] shrink-0 flex-col gap-1 overflow-hidden rounded-md border border-linea bg-suave p-1">
+                    <span className="h-1.5 w-full rounded-sm bg-primario/70" />
+                    <span className="flex flex-1 gap-1"><span className="flex-1 rounded-sm bg-[#F2B8A0]" /><span className="flex-1 rounded-sm bg-[#BFE3D6]" /><span className="flex-1 rounded-sm bg-[#DCE6FF]" /></span>
+                  </span>
+                  <span className="min-w-0 flex-1 leading-tight">
+                    <Texto valor={c.dominio} className="block truncate text-[12px] font-semibold" />
+                    <Texto valor={c.sitio} className="text-[11px] text-texto-sec" />
+                  </span>
+                  <span className="flex items-center gap-1 rounded-full bg-ok-fondo px-2 py-0.5 text-[10.5px] font-semibold text-ok-texto">
+                    <span className="block size-1.5 rounded-full bg-current" />
+                    <Texto valor={c.enLinea} />
+                  </span>
                 </div>
               </div>
             </Navegador>

@@ -82,6 +82,8 @@ export const es = {
       pedidos: b("Pedidos"),
       estados: [b("Pagado"), b("Enviado"), b("Preparando"), b("Entregado")],
       alDia: b("Todo al día"),
+      sitio: b("128 visitas hoy · 3 consultas"),
+      enLinea: b("En línea"),
     },
   },
   comoTrabajamos: {
@@ -161,7 +163,7 @@ export const es = {
     kicker: b("Soluciones"),
     titulo: b("Lo que construimos y cómo lo construimos contigo."),
     intro: b("Abre cada caso y míralo en tres pasos: dónde partimos, cómo lo armamos juntos y qué recibes al final. Tú conoces tu negocio; nosotros, la tecnología."),
-    abrir: b("Recorrer el caso"),
+    abrir: b("¿Qué hay detrás de esto?"),
     cerrar: b("Cerrar"),
     huevo: b("Sorpresa"),
     huevoFrase: b("Personas que escuchan, tecnología que trabaja."),

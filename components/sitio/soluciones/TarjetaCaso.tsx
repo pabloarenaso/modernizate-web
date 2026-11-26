@@ -41,10 +41,10 @@ export function TarjetaCaso({ caso, c, hrefContacto, id, mini, grande }: Props) 
           type="button"
           onClick={abrir}
           onFocus={() => setHover((n) => n + 1)}
-          className="mt-2 inline-flex h-10 items-center gap-1.5 self-start rounded-lg border border-linea px-3.5 text-sm font-semibold text-acento-texto after:absolute after:inset-0 hover:bg-suave"
+          className="boton-detras mt-2 inline-flex h-8 items-center gap-1.5 self-start rounded-full bg-seleccion px-3 text-[13px] font-semibold text-acento-texto transition-colors after:absolute after:inset-0 hover:bg-primario-relleno hover:text-white"
         >
+          <svg aria-hidden="true" viewBox="0 0 24 24" className="lupa size-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM21 21l-4.3-4.3" /></svg>
           <Texto valor={c.abrir} />
-          <span aria-hidden="true">→</span>
         </button>
         )}
       </div>
@@ -56,7 +56,7 @@ export function TarjetaCaso({ caso, c, hrefContacto, id, mini, grande }: Props) 
         onClick={(e) => {
           if (e.target === e.currentTarget) e.currentTarget.close();
         }}
-        className="m-auto max-h-[94vh] w-[calc(100%-20px)] max-w-[1080px] overflow-y-auto rounded-2xl border border-linea bg-fondo p-0 text-texto backdrop:bg-[#0B1530]/60 backdrop:backdrop-blur-sm"
+        className="panel-caso m-auto max-h-[94vh] w-[calc(100%-20px)] max-w-[1080px] overflow-y-auto rounded-2xl border border-linea bg-fondo p-0 text-texto backdrop:bg-[#0B1530]/60 backdrop:backdrop-blur-sm"
       >
         <div className="flex flex-col gap-6 p-4 sm:p-7">
           <div className="flex items-start justify-between gap-4">

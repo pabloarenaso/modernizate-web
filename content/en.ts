@@ -82,6 +82,8 @@ export const en = {
       pedidos: b("Orders"),
       estados: [b("Paid"), b("Shipped"), b("Preparing"), b("Delivered")],
       alDia: b("All up to date"),
+      sitio: b("128 visits today · 3 inquiries"),
+      enLinea: b("Online"),
     },
   },
   comoTrabajamos: {
@@ -161,7 +163,7 @@ export const en = {
     kicker: b("Solutions"),
     titulo: b("What we build, and how we build it with you."),
     intro: b("Open each case and see it in three steps: where we start, how we build it together and what you get in the end. You know your business; we know the technology."),
-    abrir: b("Walk through the case"),
+    abrir: b("What's behind this?"),
     cerrar: b("Close"),
     huevo: b("Surprise"),
     huevoFrase: b("People who listen, technology that works."),

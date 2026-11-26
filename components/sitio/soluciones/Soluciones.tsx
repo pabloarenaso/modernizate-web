@@ -4,6 +4,7 @@ import { EscenaAsistente } from "./EscenaAsistente";
 import { EscenaAutomatizacion } from "./EscenaAutomatizacion";
 import { EscenaMedida } from "./EscenaMedida";
 import { EscenaTienda } from "./EscenaTienda";
+import { AsistenteMovil, AutomatizacionMovil, MedidaMovil, TiendaMovil } from "./Moviles";
 import { TarjetaCaso } from "./TarjetaCaso";
 
 type Props = { c: SolucionesC; flujos: Contenido["hero"]["flujo"]; hrefContacto: string };
@@ -26,32 +27,32 @@ export function Soluciones({ c, flujos, hrefContacto }: Props) {
           caso={c.tienda}
           c={c}
           hrefContacto={href("tienda")}
-          mini={<EscenaTienda c={c.tienda.escena} tamano="mini" />}
-          grande={<EscenaTienda c={c.tienda.escena} tamano="grande" />}
+          mini={<><div className="sm:hidden"><TiendaMovil c={c.tienda.escena} /></div><div className="hidden sm:block"><EscenaTienda c={c.tienda.escena} tamano="mini" /></div></>}
+          grande={<><div className="sm:hidden"><TiendaMovil c={c.tienda.escena} /></div><div className="hidden sm:block"><EscenaTienda c={c.tienda.escena} tamano="grande" /></div></>}
         />
         <TarjetaCaso
           id="caso-asistente"
           caso={c.asistente}
           c={c}
           hrefContacto={href("asistente")}
-          mini={<EscenaAsistente c={c.asistente.escena} tamano="mini" />}
-          grande={<EscenaAsistente c={c.asistente.escena} tamano="grande" />}
+          mini={<><div className="sm:hidden"><AsistenteMovil c={c.asistente.escena} /></div><div className="hidden sm:block"><EscenaAsistente c={c.asistente.escena} tamano="mini" /></div></>}
+          grande={<><div className="sm:hidden"><AsistenteMovil c={c.asistente.escena} /></div><div className="hidden sm:block"><EscenaAsistente c={c.asistente.escena} tamano="grande" /></div></>}
         />
         <TarjetaCaso
           id="caso-automatizacion"
           caso={c.automatizacion}
           c={c}
           hrefContacto={href("automatizacion")}
-          mini={<EscenaAutomatizacion c={c.automatizacion.escena} flujos={flujos} tamano="mini" />}
-          grande={<EscenaAutomatizacion c={c.automatizacion.escena} flujos={flujos} tamano="grande" />}
+          mini={<><div className="sm:hidden"><AutomatizacionMovil c={c.automatizacion.escena} flujo={flujos} /></div><div className="hidden sm:block"><EscenaAutomatizacion c={c.automatizacion.escena} flujos={flujos} tamano="mini" /></div></>}
+          grande={<><div className="sm:hidden"><AutomatizacionMovil c={c.automatizacion.escena} flujo={flujos} /></div><div className="hidden sm:block"><EscenaAutomatizacion c={c.automatizacion.escena} flujos={flujos} tamano="grande" /></div></>}
         />
         <TarjetaCaso
           id="caso-medida"
           caso={c.medida}
           c={c}
           hrefContacto={href("medida")}
-          mini={<EscenaMedida c={c.medida.escena} tamano="mini" />}
-          grande={<EscenaMedida c={c.medida.escena} tamano="grande" />}
+          mini={<><div className="sm:hidden"><MedidaMovil c={c.medida.escena} /></div><div className="hidden sm:block"><EscenaMedida c={c.medida.escena} tamano="mini" /></div></>}
+          grande={<><div className="sm:hidden"><MedidaMovil c={c.medida.escena} /></div><div className="hidden sm:block"><EscenaMedida c={c.medida.escena} tamano="grande" /></div></>}
         />
       </div>
     </section>

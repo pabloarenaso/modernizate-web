@@ -539,7 +539,10 @@ html[data-revision] [data-estado="borrador"]::after {
 @keyframes do-timbre { 0%, 40%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(-12deg); } 20% { transform: rotate(12deg); } }
 .do-flecha { animation: do-flecha 0.8s linear infinite; }
 @keyframes do-flecha { to { stroke-dashoffset: -6; } }
-/* Etiqueta de servicio enfocada: su zona se ilumina y el resto se atenúa. */
+/* Etiqueta de servicio enfocada: la escena se queda en el panel ordenado, su zona se ilumina y el resto se atenúa. */
+.orden[data-foco] .do-caos { animation: none; opacity: 0; }
+.orden[data-foco] .do-orden, .orden[data-foco] .do-o1, .orden[data-foco] .do-o2, .orden[data-foco] .do-o3 { animation: none; opacity: 1; transform: none; }
+.orden[data-foco] .do-check { animation: none; color: var(--chat-leido); }
 .orden .zona { transition: filter 0.3s, box-shadow 0.3s; }
 .orden[data-foco="sitio"] .zona:not([data-zona~="sitio"]) { filter: grayscale(1) opacity(0.35); }
 .orden[data-foco="sitio"] .zona[data-zona~="sitio"] { box-shadow: 0 0 0 3px var(--primario), 0 0 26px rgba(31, 79, 224, 0.35); }
@@ -588,6 +591,18 @@ html[data-revision] [data-estado="borrador"]::after {
 @keyframes sorpresa-pulso { 0% { box-shadow: 0 0 0 0 rgba(31, 79, 224, 0.45); } 100% { box-shadow: 0 0 0 14px rgba(31, 79, 224, 0); } }
 .confeti-pieza { position: absolute; top: -24px; animation-name: confeti-caer; animation-timing-function: cubic-bezier(0.25, 0.4, 0.6, 1); animation-fill-mode: both; }
 @keyframes confeti-caer { from { transform: translate(0, 0) rotate(0); opacity: 1; } 85% { opacity: 1; } to { transform: translate(var(--deriva), 108vh) rotate(var(--giro)); opacity: 0.6; } }
+
+html { scroll-behavior: smooth; }
+
+/* Soluciones: botón "¿Qué hay detrás de esto?" y apertura del panel. */
+.boton-detras:hover .lupa, .boton-detras:focus-visible .lupa { animation: lupa 0.6s ease-in-out; }
+@keyframes lupa { 30% { transform: rotate(-18deg) scale(1.2); } 60% { transform: rotate(12deg) scale(1.2); } }
+.panel-caso[open] { animation: panel-abre 0.42s cubic-bezier(0.2, 0.9, 0.3, 1.15); }
+.panel-caso[open]::backdrop { animation: fondo-abre 0.3s ease-out; }
+@keyframes panel-abre { from { opacity: 0; transform: translateY(28px) scale(0.94); } }
+@keyframes fondo-abre { from { opacity: 0; } }
+.mv-punto { animation: mv-punto 8s ease-in-out infinite; top: 22px; }
+@keyframes mv-punto { 0%, 10% { top: 22px; opacity: 0; } 14% { opacity: 1; } 70% { top: calc(100% - 34px); opacity: 1; } 78%, 100% { top: calc(100% - 34px); opacity: 0; } }
 
 /* Escenas (estándar): todo se congela fuera de pantalla. */
 [data-pausado] .escena-anim, [data-pausado] .escena-anim * { animation-play-state: paused !important; }
