@@ -18,3 +18,4 @@
 | 2026-11-26 17:15 | main | e8e9d87 → 94bd04c | OK; ajustes 5 y 6: pasos y vista previa del reporte |
 | 2026-11-26 17:43 | main | 94bd04c → 9e81b63 | OK; carrusel suave y workflows |
 | 2026-11-26 17:47 | main | 9e81b63 → 39861fc | OK; Cómo trabajamos: escenas robustas y corrección pb-* |
+| 2026-11-26 17:55 | main | 39861fc → a55a851 | OK; sorpresas: 12 efectos distintos |
