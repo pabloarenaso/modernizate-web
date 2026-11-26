@@ -24,13 +24,15 @@ const iconosMenu = [
 
 /** Escena 3: dashboard del negocio (datos ficticios), con menú lateral, indicadores, gráfico y pedidos. */
 export function EscenaPanel({ c, titulo, tic }: Props) {
-  // Secuencia: tics 0–3 la tabla avanza; 4–7 reporte con gráficos; 7 se pulsa descargar; 8–9 progreso; 10+ listo.
+  // Secuencia: tics 0–3 la tabla avanza; 4–7 reporte con gráficos; 7 se pulsa descargar; 8–9 progreso; 10 listo;
+  // 11–14 vista previa de impresión (se pulsa "Imprimir" en el 13) y se cierra.
+  const vista = tic >= 11 && tic <= 14;
   const reporte = tic >= 4;
   const fase = tic < 8 ? "boton" : tic < 10 ? "progreso" : "listo";
   const filas = [...c.filas, ...c.masFilas];
   const desplazamiento = Math.min(tic, 3);
   return (
-    <div className="aparecer flex h-full overflow-hidden rounded-2xl border border-linea bg-suave shadow-[0_24px_60px_-28px_rgba(11,21,48,0.4)]">
+    <div className="aparecer relative flex h-full overflow-hidden rounded-2xl border border-linea bg-suave shadow-[0_24px_60px_-28px_rgba(11,21,48,0.4)]">
       <nav aria-hidden="true" className="flex w-12 shrink-0 flex-col items-center gap-2 bg-lateral py-3 sm:w-[150px] sm:items-stretch sm:px-2.5">
         <span className="mb-2 flex items-center gap-2 px-1 text-white">
           <Isotipo className="h-4 text-[#DCE6FF]" />
@@ -178,6 +180,45 @@ export function EscenaPanel({ c, titulo, tic }: Props) {
           </div>
         )}
       </div>
+      {vista && (
+        <div className="aparecer absolute inset-0 z-20 flex items-center justify-center bg-[#0B1530]/45 p-3 backdrop-blur-[2px]">
+          <div className={`flex w-full max-w-[300px] flex-col gap-2 rounded-xl bg-superficie p-2.5 shadow-2xl ${tic === 14 ? "vista-sale" : ""}`}>
+            <div className="flex items-center justify-between px-1 text-[11px] font-semibold">
+              <Texto valor={c.reporte.vista} />
+              <span className={`relative inline-flex items-center gap-1 rounded-md bg-primario-relleno px-2 py-1 text-[10.5px] text-white ${tic === 13 ? "pulsar" : ""}`}>
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 9V3h10v6M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v7H7z" /></svg>
+                <Texto valor={c.reporte.imprimir} />
+              </span>
+            </div>
+            {/* Hoja tipo documento (papel blanco en ambos modos) */}
+            <div className="flex flex-col gap-2 rounded-md bg-white p-3 text-[#0B1530] ring-1 ring-black/5">
+              <div className="flex items-center justify-between border-b border-[#E2E8F2] pb-1.5">
+                <span className="flex items-center gap-1"><Isotipo className="h-2.5 text-[#1F4FE0]" /><span className="text-[8.5px] font-semibold text-[#4A5468]">{titulo.texto}</span></span>
+                <span className="text-[8px] text-[#4A5468]">{c.periodo.texto}</span>
+              </div>
+              <Texto as="p" valor={c.reporte.documento} className="text-[12px] font-bold" />
+              <div className="flex flex-col gap-1">
+                {[94, 80, 66].map((w, i) => <span key={i} className="h-1 rounded-full bg-[#E2E8F2]" style={{ width: `${w}%` }} />)}
+              </div>
+              <div className="grid grid-cols-[1fr_auto] gap-2">
+                <table className="w-full text-[8.5px]">
+                  <tbody>
+                    {filas.slice(0, 3).map((f, i) => (
+                      <tr key={i} className="border-b border-[#E2E8F2]">
+                        <td className="py-0.5 text-[#4A5468]">{f.pedido.texto}</td>
+                        <td className="py-0.5 text-right font-semibold tabular-nums">{f.monto.texto}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <svg aria-hidden="true" viewBox="0 0 60 40" className="h-10 w-16">
+                  {ventas.map((v, i) => <rect key={i} x={4 + i * 14} y={40 - v * 0.4} width="9" height={v * 0.4} rx="1.5" fill="#1F4FE0" opacity={0.45 + i * 0.18} />)}
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

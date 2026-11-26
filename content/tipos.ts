@@ -115,7 +115,7 @@ export type Soluciones = {
 export type FlujoC = { nombre: Texto; nodos: Texto[] };
 
 export type Servicio = { nombre: Texto; que: Texto; para: Texto; plazo: Texto };
-export type PasoTrabajo = { titulo: Texto; linea: Texto; puntos: Texto[]; escena: [Texto, Texto, Texto] };
+export type PasoTrabajo = { titulo: Texto; linea: Texto; puntos: Texto[]; escena: Texto[] };
 export type EscenaOrdenC = {
   etiqueta: Texto;
   chat: Texto;
@@ -328,6 +328,9 @@ export type Contenido = {
         generando: Texto;
         listo: Texto;
         archivo: Texto;
+        vista: Texto;
+        documento: Texto;
+        imprimir: Texto;
       };
     };
   };

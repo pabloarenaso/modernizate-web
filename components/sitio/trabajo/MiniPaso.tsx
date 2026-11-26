@@ -6,7 +6,7 @@ import type { Texto as TextoC } from "@/content/tipos";
 const tarjeta = "rounded-xl border border-linea bg-superficie shadow-[0_18px_40px_-24px_rgba(11,21,48,0.45)]";
 
 /** Paso 1: videollamada con dos cuadros, barras de voz y una nota que se va completando. */
-function Llamada({ e }: { e: [TextoC, TextoC, TextoC] }) {
+function Llamada({ e }: { e: TextoC[] }) {
   return (
     <div className="flex w-full max-w-[340px] flex-col gap-2.5">
       <div className={`${tarjeta} overflow-hidden`}>
@@ -35,71 +35,88 @@ function Llamada({ e }: { e: [TextoC, TextoC, TextoC] }) {
   );
 }
 
-/** Paso 2: hoja de propuesta; las secciones se marcan y aparece "Lista para revisar". */
-function Propuesta({ e }: { e: [TextoC, TextoC, TextoC] }) {
-  const filas = e[1].texto.split(" · ");
+/** Paso 2: hoja de propuesta; se marcan una a una Alcance, Plazo, Responsable y Modalidad de pago. */
+function Propuesta({ e }: { e: TextoC[] }) {
   return (
     <div className={`${tarjeta} relative w-full max-w-[300px] p-3.5`}>
       <div className="mb-2.5 flex items-center gap-2">
         <span className="flex h-7 w-6 items-end justify-center rounded-[3px] bg-[#E5484D] pb-0.5 text-[7px] font-bold text-white">PDF</span>
         <Texto valor={e[0]} className="text-[12.5px] font-semibold" />
       </div>
-      <ul className="flex flex-col gap-2" data-estado={e[1].estado}>
-        {filas.map((f, i) => (
+      <ul className="flex flex-col gap-2">
+        {e.slice(1, 5).map((f, i) => (
           <li key={i} className="flex items-center gap-2 text-[12px]">
-            <span className={`mp-${i + 1} flex size-4 items-center justify-center rounded-full bg-ok-fondo text-ok-texto`}><Ico d={TRAZOS.check} className="size-3" /></span>
-            <span className="font-medium">{f}</span>
-            <span className="ml-auto h-1.5 w-16 rounded-full bg-suave" />
+            <span className="relative flex size-4 items-center justify-center rounded-full border border-linea">
+              <span className={`mp-${i + 1} absolute inset-[-1px] flex items-center justify-center rounded-full bg-[#12A150] text-white`}><Ico d={TRAZOS.check} className="size-3" /></span>
+            </span>
+            <Texto valor={f} className="font-medium" />
+            <span className="ml-auto h-1.5 w-12 rounded-full bg-suave" />
           </li>
         ))}
       </ul>
-      <Texto valor={e[2]} className="mp-4 mt-3 inline-block rounded-full bg-seleccion px-2.5 py-1 text-[11px] font-semibold text-acento-texto" />
+      <Texto valor={e[5]} className="mp-5 mt-3 inline-block rounded-full bg-seleccion px-2.5 py-1 text-[11px] font-semibold text-acento-texto" />
     </div>
   );
 }
 
-/** Paso 3: barra de construcción, pruebas que pasan y la etiqueta "En vivo". */
-function Construccion({ e }: { e: [TextoC, TextoC, TextoC] }) {
+/** Paso 3: fases reales con progreso: configuración → pruebas → capacitación → "Listo para usar". */
+function Construccion({ e }: { e: TextoC[] }) {
   return (
-    <div className={`${tarjeta} w-full max-w-[300px] p-3.5`}>
-      <div className="flex items-center justify-between text-[12px]">
-        <Texto valor={e[0]} className="font-semibold" />
-        <span className="mp-4 flex items-center gap-1 rounded-full bg-ok-fondo px-2 py-0.5 text-[10.5px] font-semibold text-ok-texto">
-          <span className="block size-1.5 rounded-full bg-current" /><Texto valor={e[2]} />
-        </span>
-      </div>
-      <div className="mt-2 h-2 overflow-hidden rounded-full bg-suave">
-        <span className="mp-barra block h-full origin-left rounded-full bg-primario" />
-      </div>
-      <Texto as="p" valor={e[1]} className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-texto-sec" />
-      <div className="mt-1.5 flex gap-1.5">
-        {[1, 2, 3].map((n) => (
-          <span key={n} className={`mp-${n} flex h-7 flex-1 items-center justify-center rounded-md bg-ok-fondo text-ok-texto`}><Ico d={TRAZOS.check} className="size-3.5" /></span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/** Paso 4: una consulta del cliente, la respuesta y "Resuelto". */
-function Soporte({ e }: { e: [TextoC, TextoC, TextoC] }) {
-  return (
-    <div className="flex w-full max-w-[300px] flex-col gap-2 text-[12px]">
-      <Texto as="p" valor={e[0]} className="mp-1 self-start rounded-2xl rounded-bl-md border border-linea bg-superficie px-3 py-2" />
-      <p className="mp-2 flex items-center gap-1.5 self-end rounded-2xl rounded-br-md bg-primario-relleno px-3 py-2 text-white">
-        <Texto valor={e[1]} />
-        <Ico d={TRAZOS.check} className="size-3.5" />
-      </p>
-      <span className="mp-3 flex items-center gap-1.5 self-center rounded-full bg-ok-fondo px-3 py-1 text-[11px] font-semibold text-ok-texto">
-        <Ico d={TRAZOS.check} className="size-3" />
-        <Texto valor={e[2]} />
+    <div className={`${tarjeta} flex w-full max-w-[300px] flex-col gap-2.5 p-3.5`}>
+      {e.slice(0, 3).map((f, i) => (
+        <div key={i} className="flex flex-col gap-1">
+          <span className="flex items-center justify-between text-[12px]">
+            <Texto valor={f} className="font-medium" />
+            <span className={`mp-${i + 2} flex size-4 items-center justify-center rounded-full bg-[#12A150] text-white`}><Ico d={TRAZOS.check} className="size-3" /></span>
+          </span>
+          <span className="h-1.5 overflow-hidden rounded-full bg-suave">
+            <span className={`fase-${i + 1} block h-full origin-left rounded-full bg-primario`} />
+          </span>
+        </div>
+      ))}
+      <span className="mp-5 flex items-center gap-1.5 self-start rounded-full bg-ok-fondo px-2.5 py-1 text-[11px] font-semibold text-ok-texto">
+        <span className="block size-1.5 rounded-full bg-current" /><Texto valor={e[3]} />
       </span>
     </div>
   );
 }
 
+/** Una línea de tiempo corta: cada estado se enciende en orden (clases pa-*, pb-*). */
+function Linea({ titulo, pasos, prefijo }: { titulo: TextoC; pasos: TextoC[]; prefijo: "pa" | "pb" }) {
+  return (
+    <div className={`${tarjeta} flex w-full max-w-[300px] flex-col gap-2 p-3.5`}>
+      <Texto valor={titulo} className="text-[11px] font-semibold uppercase tracking-wide text-texto-sec" />
+      <ol className="flex flex-col gap-1.5">
+        {pasos.map((p, i) => {
+          // Soporte termina "Resuelto" (check verde); la solicitud de cambio queda "En implementación" (en curso).
+          const ultimo = i === pasos.length - 1;
+          const resuelto = ultimo && prefijo === "pa";
+          return (
+            <li key={i} className={`${prefijo}-${i + 1} flex items-center gap-2 text-[12px]`}>
+              <span className={`flex size-4 shrink-0 items-center justify-center rounded-full text-white ${resuelto ? "bg-[#12A150]" : "bg-primario"}`}>
+                {resuelto ? <Ico d={TRAZOS.check} className="size-3" /> : ultimo ? <span className="en-curso block size-2.5 rounded-full border-2 border-white border-t-transparent" /> : <span className="block size-1.5 rounded-full bg-white" />}
+              </span>
+              <Texto valor={p} className={resuelto ? "font-semibold text-ok-texto" : ultimo ? "font-semibold text-acento-texto" : "font-medium"} />
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+}
+
+/** Paso 4: alterna dos flujos cortos: soporte y solicitud de cambio (los cambios se gestionan con orden). */
+function Soporte({ e }: { e: TextoC[] }) {
+  return (
+    <div className="flujos-alternos grid w-full max-w-[300px]">
+      <div className="flujo-a col-start-1 row-start-1"><Linea titulo={e[0]} pasos={e.slice(1, 4)} prefijo="pa" /></div>
+      <div className="flujo-b col-start-1 row-start-1"><Linea titulo={e[4]} pasos={e.slice(5, 9)} prefijo="pb" /></div>
+    </div>
+  );
+}
+
 /** Mini-ilustración animada de cada paso (estándar de escenas, tamaño pequeño). */
-export function MiniPaso({ i, e }: { i: number; e: [TextoC, TextoC, TextoC] }) {
+export function MiniPaso({ i, e }: { i: number; e: TextoC[] }) {
   const Escena = [Llamada, Propuesta, Construccion, Soporte][i];
   return (
     <div className="escena-anim flex w-full justify-center">

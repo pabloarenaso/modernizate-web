@@ -17,7 +17,7 @@ type Props = { c: Contenido["hero"]; cta: TextoC; hrefContacto: string; hrefMeto
 type Estado = { escena: number; paso: number; escribiendo: boolean; redactando: boolean; espera: number; t: number };
 const TIC = 1200;
 /** Tics de espera al final de cada escena (la 2 y la 3 usan esos tics para su propia secuencia). */
-const ESPERAS = [3, 12, 11];
+const ESPERAS = [3, 12, 15];
 
 /** Hero con carrusel de 3 escenas y título sincronizado (tiempos de Landing.dc.html). */
 export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
