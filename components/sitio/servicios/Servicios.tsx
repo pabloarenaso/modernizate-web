@@ -1,5 +1,6 @@
 "use client";
 
+import { Sorpresa } from "@/components/Sorpresa";
 import { useState } from "react";
 import { Texto } from "@/components/Texto";
 import type { Servicios as ServiciosC } from "@/content/tipos";
@@ -12,7 +13,7 @@ export function Servicios({ c, hrefCasos }: { c: ServiciosC; hrefCasos: string }
   const foco = encima ?? fijo;
 
   return (
-    <section id="que-hacemos" aria-labelledby="que-hacemos-titulo" className="mx-auto grid max-w-[1240px] items-center gap-10 px-6 py-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14 lg:py-24">
+    <section id="que-hacemos" aria-labelledby="que-hacemos-titulo" className="relative mx-auto grid max-w-[1240px] items-center gap-10 px-6 py-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14 lg:py-24">
       <div className="flex flex-col gap-5">
         <Texto as="p" valor={c.kicker} className="kicker text-acento-texto" />
         <h2 id="que-hacemos-titulo" className="disp text-[30px] leading-[1.1] sm:text-[38px]">
@@ -26,6 +27,7 @@ export function Servicios({ c, hrefCasos }: { c: ServiciosC; hrefCasos: string }
               <li key={z}>
                 <button
                   type="button"
+                  data-chispa
                   aria-pressed={fijo === z}
                   onClick={() => setFijo(fijo === z ? null : z)}
                   onMouseEnter={() => setEncima(z)}
@@ -47,7 +49,10 @@ export function Servicios({ c, hrefCasos }: { c: ServiciosC; hrefCasos: string }
           <span aria-hidden="true">→</span>
         </a>
       </div>
-      <EscenaOrden c={c.escena} foco={foco} />
+      <div data-chispa className="rounded-2xl">
+        <EscenaOrden c={c.escena} foco={foco} />
+      </div>
+      <Sorpresa efecto="electricidad" className="absolute bottom-4 right-6" />
     </section>
   );
 }

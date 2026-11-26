@@ -33,7 +33,7 @@ export function TiendaMovil({ c }: { c: EscenaTiendaC }) {
           </span>
         </div>
         {c.productos.slice(0, 2).map((p, i) => (
-          <div key={i} className="flex items-center gap-3 border-b border-linea px-3.5 py-2.5 last:border-b-0">
+          <div key={i} data-voltear className="flex items-center gap-3 border-b border-linea px-3.5 py-2.5 last:border-b-0">
             <span className="flex size-12 shrink-0 items-center justify-center rounded-lg" style={{ background: fondosProducto[tipos[i]] }}>
               <FotoProducto tipo={tipos[i]} className="size-10" />
             </span>
@@ -108,7 +108,7 @@ export function AutomatizacionMovil({ c, flujo }: { c: { descripcion: TextoC }; 
         <span aria-hidden="true" className="absolute bottom-6 left-[27px] top-6 w-0.5 bg-linea" />
         <span aria-hidden="true" className="mv-punto absolute left-[22px] size-3 rounded-full bg-primario shadow-[0_0_12px_3px_rgba(31,79,224,0.55)]" />
         {pasos.map((p, i) => (
-          <div key={i} className={`mp-${i + 1} relative flex items-center gap-3 ${tarjeta} px-3 py-2.5`}>
+          <div key={i} data-nodo className={`mp-${i + 1} relative flex items-center gap-3 ${tarjeta} px-3 py-2.5`}>
             <span className={`flex size-10 shrink-0 items-center justify-center rounded-xl bg-suave ${color[p.tipo]}`}>
               <Ico d={["M13 2 4 14h7l-1 8 9-12h-7z", "M6 3v12M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 9a9 9 0 0 1-9 9", "M5 8h14v10H5zM12 4v4M9 13h.01M15 13h.01", "M22 2 11 13M22 2l-7 20-4-9-9-4z"][i]} className="size-5" />
             </span>

@@ -4,11 +4,14 @@ import { useRef, useState, type ReactNode } from "react";
 import { Texto } from "@/components/Texto";
 import type { Caso, Soluciones } from "@/content/tipos";
 import { Disparo } from "./disparo";
-import { HuevoPanel } from "./HuevoPanel";
+import { Sorpresa } from "@/components/Sorpresa";
+import type { Efecto } from "@/lib/sorpresas";
 
 type Props = {
   caso: Caso;
-  c: Pick<Soluciones, "abrir" | "cerrar" | "huevo" | "huevoFrase">;
+  c: Pick<Soluciones, "abrir" | "cerrar">;
+  /** Easter egg fijo de este caso. */
+  efecto: Efecto;
   hrefContacto: string;
   id: string;
   /** Escena chica (tarjeta) y grande (panel); se animan con el contexto Disparo. */
@@ -18,7 +21,7 @@ type Props = {
 };
 
 /** Tarjeta de un caso con su miniatura; al abrirla, un panel con la escena grande y los tres pasos. */
-export function TarjetaCaso({ caso, c, hrefContacto, id, mini, grande }: Props) {
+export function TarjetaCaso({ caso, c, efecto, hrefContacto, id, mini, grande }: Props) {
   const dialogo = useRef<HTMLDialogElement>(null);
   const [hover, setHover] = useState(0);
   const [abierto, setAbierto] = useState(0);
@@ -72,7 +75,7 @@ export function TarjetaCaso({ caso, c, hrefContacto, id, mini, grande }: Props) 
               <svg aria-hidden="true" viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6l12 12M18 6 6 18" /></svg>
             </button>
           </div>
-          <div className="rounded-2xl bg-suave p-3 sm:p-6">{abierto > 0 && <Disparo.Provider value={abierto}>{grande}</Disparo.Provider>}</div>
+          <div data-escena className="rounded-2xl bg-suave p-3 sm:p-6">{abierto > 0 && <Disparo.Provider value={abierto}>{grande}</Disparo.Provider>}</div>
           <ol className="grid gap-5 md:grid-cols-3">
             {caso.lineas.map((l, i) => (
               <li key={i} className="flex flex-col gap-1.5">
@@ -88,7 +91,7 @@ export function TarjetaCaso({ caso, c, hrefContacto, id, mini, grande }: Props) 
             <a href={hrefContacto} className="inline-flex h-12 items-center rounded-[10px] bg-primario-relleno px-6 font-semibold text-white hover:brightness-110">
               <Texto valor={caso.cta} />
             </a>
-            <HuevoPanel boton={c.huevo} frase={c.huevoFrase} />
+            <Sorpresa efecto={efecto} className="relative ml-auto" />
           </div>
         </div>
       </dialog>

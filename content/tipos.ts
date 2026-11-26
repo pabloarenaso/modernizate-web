@@ -33,6 +33,7 @@ export const tokensColor = [
 export type TokenColor = (typeof tokensColor)[number];
 
 import type { IdSeccion } from "@/lib/secciones";
+import type { Efecto } from "@/lib/sorpresas";
 
 /** Escena del hero: título en dos partes (la segunda en color de acento), párrafo y textos del marco. */
 export type EscenaHero = { tituloA: Texto; tituloB: Texto; parrafo: Texto; marco: Texto; punto: Texto };
@@ -104,8 +105,6 @@ export type Soluciones = {
   intro: Texto;
   abrir: Texto;
   cerrar: Texto;
-  huevo: Texto;
-  huevoFrase: Texto;
   tienda: Caso & { escena: EscenaTiendaC };
   asistente: Caso & { escena: EscenaAsistenteC };
   automatizacion: Caso & { escena: EscenaAutomatizacionC };
@@ -205,6 +204,7 @@ export type Contenido = {
   idioma: { etiqueta: Texto; es: Texto; en: Texto };
   tema: { cambiarANoche: Texto; cambiarADia: Texto };
   noEncontrado: { titulo: Texto; texto: Texto; volver: Texto };
+  sorpresas: Sorpresas;
   cabecera: {
     saltar: Texto;
     inicio: Texto;
@@ -283,7 +283,6 @@ export type Contenido = {
     kicker: Texto;
     escenas: [EscenaHero, EscenaHero, EscenaHero];
     secundario: Texto;
-    huevo: Texto;
     nota: Texto;
     carrusel: { region: Texto; diapositiva: Texto; de: Texto };
     conversacion: {
@@ -365,3 +364,6 @@ export type Contenido = {
     controles: { titulo: Texto };
   };
 };
+
+/** Easter eggs: nombre accesible del botón, mensaje de cada efecto (se ve solo con movimiento reducido) y el mensaje oculto del paso 3. */
+export type Sorpresas = { etiqueta: Texto; mensajes: Record<Efecto, Texto>; reverso: Texto };

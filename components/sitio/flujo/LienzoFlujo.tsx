@@ -81,7 +81,7 @@ export function LienzoFlujo({ flujo, nombres, e, animar, escalaMinima = 0.6 }: P
           {flujo.nodos.map((n, i) => {
             const tam = n.tipo === "agente" ? { w: MEDIDAS.agenteAncho, h: MEDIDAS.agenteAlto } : n.tipo === "herramienta" ? { w: MEDIDAS.herramienta, h: MEDIDAS.herramienta } : { w: MEDIDAS.nodo, h: MEDIDAS.nodo };
             return (
-              <div key={i} className="absolute" style={{ left: n.x - tam.w / 2, top: n.y - tam.h / 2, width: tam.w, height: tam.h }}>
+              <div key={i} data-nodo className="absolute" style={{ left: n.x - tam.w / 2, top: n.y - tam.h / 2, width: tam.w, height: tam.h }}>
                 <NodoFlujo n={n} nombre={nombres[i]} e={e} t={lit(i)} animar={animar} />
               </div>
             );

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Isotipo } from "@/components/Isotipo";
 import { Logo } from "@/components/Logo";
+import { Sorpresa } from "@/components/Sorpresa";
 import { Texto } from "@/components/Texto";
 import type { Contenido } from "@/content/tipos";
 import { correoContacto, enlaceWhatsapp } from "./contacto/enlaces";
@@ -73,7 +74,7 @@ export async function Pie({ c, mensajeWhatsapp, nombre, enlaces }: { c: Contenid
         <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-2 px-6 py-5 text-xs text-texto-sec">
           <span data-estado={c.derechos.estado}>{c.derechos.texto.replace("{anio}", String(anio))}</span>
           <span className="flex items-center gap-1.5">
-            <Isotipo className="h-3 text-primario" />
+            <Sorpresa efecto="estrella" variante="logo" />
             <Texto valor={c.hecho} />
           </span>
         </div>

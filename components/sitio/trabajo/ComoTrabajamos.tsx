@@ -3,7 +3,12 @@
 import { useState } from "react";
 import { EscenaViva } from "@/components/escenas/base/EscenaViva";
 import { Ico, TRAZOS } from "@/components/escenas/base/Ico";
+import { Sorpresa } from "@/components/Sorpresa";
 import { Texto } from "@/components/Texto";
+import type { Efecto } from "@/lib/sorpresas";
+
+/** Easter egg fijo de cada paso (docs/estandar-escenas.md §9). */
+const EFECTOS: Efecto[] = ["temblor", "tildes", "vuelta", "fuegos"];
 import type { ComoTrabajamos as ComoTrabajamosC } from "@/content/tipos";
 import { MiniPaso } from "./MiniPaso";
 
@@ -58,7 +63,7 @@ export function ComoTrabajamos({ c }: { c: ComoTrabajamosC }) {
               className="desplegar grid md:col-span-4 md:!order-[99]"
             >
               <div className="overflow-hidden">
-                <div className="grid items-center gap-6 rounded-2xl border border-linea bg-superficie p-6 md:grid-cols-[1fr_1.1fr] md:p-8">
+                <div data-sorpresa-ambito className="relative grid items-center gap-6 rounded-2xl border border-linea bg-superficie p-6 pb-14 md:grid-cols-[1fr_1.1fr] md:p-8">
                   <ul className="flex flex-col gap-2.5">
                     {p.puntos.map((pt, j) => (
                       <li key={j} className="flex gap-2.5 text-[15px] leading-snug">
@@ -70,6 +75,7 @@ export function ComoTrabajamos({ c }: { c: ComoTrabajamosC }) {
                   <EscenaViva className="flex min-h-[260px] items-center justify-center rounded-xl bg-suave p-4">
                     <MiniPaso i={abierto} e={p.escena} />
                   </EscenaViva>
+                  <Sorpresa efecto={EFECTOS[abierto]} className="absolute bottom-3 right-3" />
                 </div>
               </div>
             </div>

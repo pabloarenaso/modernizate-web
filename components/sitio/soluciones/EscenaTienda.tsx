@@ -66,7 +66,7 @@ export function EscenaTienda({ c, tamano, disparo: propio }: Props) {
   }, [disparo]);
 
   const productos = c.productos.map((p, i) => (
-    <div key={i} className={`flex min-w-0 flex-col ${mini ? "gap-1" : "gap-1 @[560px]:gap-1.5"}`}>
+    <div key={i} data-voltear className={`flex min-w-0 flex-col ${mini ? "gap-1" : "gap-1 @[560px]:gap-1.5"}`}>
       <div className={`flex items-center justify-center rounded-lg ${mini ? "aspect-[4/3]" : "aspect-[6/5]"}`} style={{ background: fondosProducto[tipos[i]] }}>
         <FotoProducto tipo={tipos[i]} className="h-[86%] w-[86%]" />
       </div>

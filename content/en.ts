@@ -14,6 +14,24 @@ export const en = {
     texto: b("The address you are looking for does not exist or has changed."),
     volver: b("Back to home"),
   },
+  sorpresas: {
+    etiqueta: b("Surprise"),
+    reverso: b("What you do not see counts too: testing, tuning and a team that knows how to use it."),
+    mensajes: {
+      confeti: b("So glad you made it!"),
+      electricidad: b("Everything connected, everything running."),
+      voltear: b("Every product, ready to sell."),
+      burbujas: b("Many conversations, none left unanswered."),
+      gravedad: b("Even if something moves, the flow finds its place again."),
+      origami: b("Your document, built to fit."),
+      temblor: b("This shakes up the routine."),
+      tildes: b("The Modernízate accent, in every detail."),
+      vuelta: b("What you do not see counts too: testing, tuning and a team that knows how to use it."),
+      fuegos: b("Let's celebrate: it works!"),
+      iman: b("Writing to us attracts good ideas."),
+      estrella: b("Made in Chile, shining on its own."),
+    },
+  },
   cabecera: {
     saltar: b("Skip to content"),
     inicio: b("Modernízate, home"),
@@ -165,8 +183,6 @@ export const en = {
     intro: b("Open each case and see it in three steps: where we start, how we build it together and what you get in the end. You know your business; we know the technology."),
     abrir: b("What's behind this?"),
     cerrar: b("Close"),
-    huevo: b("Surprise"),
-    huevoFrase: b("People who listen, technology that works."),
     asistente: {
       titulo: b("Customer service assistant"),
       frase: b("Answers questions, books appointments and alerts you to what matters. A person can always take over the conversation."),
@@ -362,7 +378,6 @@ export const en = {
       },
     ],
     secundario: b("See how we work"),
-    huevo: b("Surprise"),
     nota: b("Illustrative scenes"),
     carrusel: {
       region: b("Examples of what we build"),

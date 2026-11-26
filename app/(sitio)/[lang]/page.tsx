@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { Cabecera } from "@/components/sitio/Cabecera";
+import { SorpresasProvider } from "@/components/Sorpresa";
 import { Contacto } from "@/components/sitio/contacto/Contacto";
 import { Hero } from "@/components/sitio/hero/Hero";
 import { Pie } from "@/components/sitio/Pie";
@@ -20,7 +21,7 @@ export default async function Inicio({ params }: PageProps<"/[lang]">) {
   const inicio = rutaLocal(lang, "/");
 
   return (
-    <>
+    <SorpresasProvider c={c.sorpresas}>
       <Cabecera lang={lang} ruta="/" c={c} />
       <main id="contenido">
         <Hero c={c.hero} cta={c.cabecera.cta} hrefContacto={`${inicio}#contacto`} hrefMetodo={`${inicio}#como-trabajamos`} />
@@ -36,6 +37,6 @@ export default async function Inicio({ params }: PageProps<"/[lang]">) {
         nombre={c.marcaNombre.texto}
         enlaces={seccionesVisibles.map((id) => ({ href: `${inicio}#${id}`, texto: c.cabecera.nav[id] }))}
       />
-    </>
+    </SorpresasProvider>
   );
 }

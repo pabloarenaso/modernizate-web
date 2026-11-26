@@ -56,15 +56,32 @@ animadas hechas en código**, nunca con tarjetas genéricas de ícono y texto. R
 | `Escalar` | Dibuja a un ancho fijo y escala al contenedor (miniaturas) |
 | `EscenaViva` | Contenedor que pausa las animaciones fuera de pantalla |
 
-## 9. Easter eggs: `BotonSorpresa`
-- Un solo disparador para todas las sorpresas: botón circular pequeño (36 px) con la tilde de Modernízate
-  (`components/BotonSorpresa.tsx`).
-- Siempre en la **esquina inferior derecha** de la sección (o del panel) que tiene sorpresa; la sección es `relative`.
-- Discreto pero visible: fondo de superficie, borde fino, tilde en color primario. La primera vez que entra en
-  pantalla hace una **pulsación suave** (dos ondas) y no vuelve a llamar la atención.
-- Nombre accesible desde `content/`: "Sorpresa" / "Surprise" (también como `title`).
-- La sorpresa del hero es `useConfetiPantalla` (`components/ConfetiPantalla.tsx`): capa fija sobre toda la
-  ventana, 180 piezas grandes que caen, repetible; **con movimiento reducido no se muestra**.
+## 9. Easter eggs: BotonSorpresa
 
-Para una escena nueva: elegir marco → escribir el guion en `content/` (4 a 6 momentos) → componer con las
-piezas base → animar con clases CSS en bucle → probar en 1440 y 390 px, día y noche y movimiento reducido.
+- Un solo disparador: `<Sorpresa efecto="…" />` (`components/Sorpresa.tsx`), que usa `BotonSorpresa` (botón circular pequeño con la tilde). Va siempre en la **esquina inferior derecha** de su sección o tarjeta. Pulsa suave la primera vez que entra en pantalla. Nombre accesible: «Sorpresa».
+- En el pie, el isotipo junto a «Hecho en Chile» es el botón (`variante="logo"`).
+- Cada botón tiene **un efecto fijo** (nunca al azar, para que no se repitan). Los efectos viven en `lib/sorpresas.ts` (Web Animations API sobre el DOM).
+- Textos en `content/*.ts` → `sorpresas` (etiqueta, un mensaje por efecto y el mensaje oculto del paso 3).
+
+| Botón | Efecto | Alcance |
+|---|---|---|
+| Hero | `confeti`: confeti grande y abundante | pantalla completa |
+| Qué hacemos | `electricidad`: chispas que recorren los bordes de la escena y de las etiquetas (`data-chispa`) y rayos en zigzag que se dibujan | varios elementos |
+| Soluciones · Tienda (panel) | `voltear`: los productos (`data-voltear`) giran en 3D uno tras otro | varios elementos |
+| Soluciones · Asistente (panel) | `burbujas`: lluvia de burbujas de chat | pantalla completa |
+| Soluciones · Automatización (panel) | `gravedad`: los nodos (`data-nodo` o nodos de React Flow) caen, rebotan y vuelven | varios elementos |
+| Soluciones · A tu medida (panel) | `origami`: la escena (`data-escena`) se pliega en 3D y se despliega | elemento |
+| Cómo trabajamos · Paso 1 | `temblor`: temblor suave de 1 s | pantalla |
+| Cómo trabajamos · Paso 2 | `tildes`: lluvia de tildes de Modernízate | pantalla completa |
+| Cómo trabajamos · Paso 3 | `vuelta`: la tarjeta da una vuelta completa y muestra un mensaje oculto atrás | elemento |
+| Cómo trabajamos · Paso 4 | `fuegos`: fuegos artificiales sobre la sección | sección |
+| Contacto | `iman`: los elementos del formulario se acercan al cursor durante 4 s | varios elementos |
+| Pie («Hecho en Chile») | `estrella`: una estrella fugaz cruza la pantalla y deja la tilde brillando | pantalla y elemento |
+
+Reglas:
+- **Sin destellos** de pantalla completa ni parpadeos de más de 3 por segundo (WCAG 2.3.1). La electricidad son trazos que se mueven, no flashes.
+- Las capas son `pointer-events: none` y se eliminan solas: **nada bloquea la navegación**. Todos se pueden repetir.
+- Si hay un `<dialog>` modal abierto, la capa va dentro de él (la capa superior del navegador taparía todo lo demás).
+- **Movimiento reducido:** no hay animación; el botón muestra solo un mensaje breve (y lo anuncia con `aria-live`).
+- Nunca se anima con transform un elemento que ya se posiciona con transform (p. ej. nodos de React Flow): se anima su contenido.
+- Clases de animación nuevas: nunca con nombres que choquen con utilidades de Tailwind (`pb-1`, `mt-2`…).

@@ -1,4 +1,5 @@
 import { Texto } from "@/components/Texto";
+import { Sorpresa } from "@/components/Sorpresa";
 import type { ContactoC } from "@/content/tipos";
 import { enlaceWhatsapp } from "./enlaces";
 import { FormularioContacto } from "./FormularioContacto";
@@ -8,7 +9,7 @@ import { IconoChat } from "./IconoChat";
 export function Contacto({ c }: { c: ContactoC }) {
   const wa = enlaceWhatsapp(c.whatsappMensaje.texto);
   return (
-    <section id="contacto" aria-labelledby="contacto-titulo" className="border-t border-linea bg-suave">
+    <section id="contacto" aria-labelledby="contacto-titulo" className="relative border-t border-linea bg-suave">
       <div className="mx-auto flex max-w-[1240px] flex-col gap-10 px-6 py-20 lg:py-24">
         <div className="mx-auto flex max-w-[640px] flex-col items-center gap-3 text-center">
           <Texto as="p" valor={c.kicker} className="kicker text-acento-texto" />
@@ -45,6 +46,7 @@ export function Contacto({ c }: { c: ContactoC }) {
           )}
         </div>
       </div>
+      <Sorpresa efecto="iman" className="absolute bottom-4 right-4" />
     </section>
   );
 }

@@ -14,6 +14,24 @@ export const es = {
     texto: b("La dirección que buscas no existe o cambió."),
     volver: b("Volver al inicio"),
   },
+  sorpresas: {
+    etiqueta: b("Sorpresa"),
+    reverso: b("Lo que no se ve también cuenta: pruebas, ajustes y un equipo que sabe usarlo."),
+    mensajes: {
+      confeti: b("¡Qué bueno que llegaste!"),
+      electricidad: b("Todo conectado, todo andando."),
+      voltear: b("Cada producto, listo para vender."),
+      burbujas: b("Muchas conversaciones, ninguna sin respuesta."),
+      gravedad: b("Aunque algo se mueva, el flujo vuelve a su lugar."),
+      origami: b("Tu documento, armado a tu medida."),
+      temblor: b("Esto remueve la rutina."),
+      tildes: b("La tilde de Modernízate, en cada detalle."),
+      vuelta: b("Lo que no se ve también cuenta: pruebas, ajustes y un equipo que sabe usarlo."),
+      fuegos: b("¡A celebrar que ya funciona!"),
+      iman: b("Escribirnos atrae buenas ideas."),
+      estrella: b("Hecho en Chile, con brillo propio."),
+    },
+  },
   cabecera: {
     saltar: b("Saltar al contenido"),
     inicio: b("Modernízate, inicio"),
@@ -165,8 +183,6 @@ export const es = {
     intro: b("Abre cada caso y míralo en tres pasos: dónde partimos, cómo lo armamos juntos y qué recibes al final. Tú conoces tu negocio; nosotros, la tecnología."),
     abrir: b("¿Qué hay detrás de esto?"),
     cerrar: b("Cerrar"),
-    huevo: b("Sorpresa"),
-    huevoFrase: b("Personas que escuchan, tecnología que trabaja."),
     asistente: {
       titulo: b("Asistente de atención"),
       frase: b("Responde consultas, agenda horas y te avisa lo importante. Una persona siempre puede tomar la conversación."),
@@ -362,7 +378,6 @@ export const es = {
       },
     ],
     secundario: b("Ver cómo trabajamos"),
-    huevo: b("Sorpresa"),
     nota: b("Escenas ilustrativas"),
     carrusel: {
       region: b("Ejemplos de lo que construimos"),

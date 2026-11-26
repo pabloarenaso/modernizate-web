@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { BotonSorpresa } from "@/components/BotonSorpresa";
-import { useConfetiPantalla } from "@/components/ConfetiPantalla";
+import { Sorpresa } from "@/components/Sorpresa";
 import { Texto } from "@/components/Texto";
 import type { Contenido, Texto as TextoC } from "@/content/tipos";
 import { useEnPantalla } from "@/hooks/useEnPantalla";
@@ -39,7 +38,6 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
   const arrastre = useRef<{ x: number; y: number } | null>(null);
   const escenaRef = useRef<HTMLDivElement>(null);
   const [e, setE] = useState<Estado>({ escena: 0, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0, prev: null, dir: 1 });
-  const { disparar, confeti } = useConfetiPantalla();
   const guion = c.conversacion.guion;
   // Duración de cada escena en tics, para la barra de progreso de los indicadores.
   const totales = [guion.reduce((n, m) => n + (m.quien === "tarjeta" ? 1 : 2), 0) + ESPERAS[0] + 1, ESPERAS[1] + 1, ESPERAS[2] + 1];
@@ -112,8 +110,7 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
       className="hero-puntos relative overflow-hidden border-b border-linea"
     >
       <FondoHero />
-      <BotonSorpresa etiqueta={c.huevo} onClick={disparar} className="absolute bottom-4 right-4 z-10" />
-      {confeti}
+      <Sorpresa efecto="confeti" className="absolute bottom-4 right-4" />
       <div className="relative mx-auto grid max-w-[1240px] items-center gap-8 px-6 pb-10 pt-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 lg:pb-12 lg:pt-10">
         <div className="flex min-w-0 flex-col gap-5">
           <Texto as="p" valor={c.kicker} className="kicker text-acento-texto" />
