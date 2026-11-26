@@ -64,13 +64,19 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
     return () => clearInterval(id);
   }, [avanza, guion]);
 
-  // Elegir una escena salta a ella y el carrusel sigue avanzando. Solo se detiene con el mouse encima (WCAG 2.2.2).
-  const ir = (i: number, dir?: 1 | -1) =>
+  // Elegir una escena salta a ella y el carrusel sigue avanzando. Se detiene con el mouse encima (WCAG 2.2.2).
+  // Elegir o deslizar reanuda el avance aunque el mouse siga encima; vuelve a pausar solo al entrar de nuevo.
+  const ir = (i: number, dir?: 1 | -1) => {
+    setEncima(false);
     setE((s) =>
       s.escena === i ? s : { escena: i, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0, prev: s.escena, dir: dir ?? (i > s.escena ? 1 : -1) },
     );
+  };
   // Mientras dura la transición no se acepta otro cambio.
-  const mover = (d: 1 | -1) => setE((s) => s.prev !== null ? s : ({ escena: (s.escena + d + 3) % 3, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0, prev: s.escena, dir: d }));
+  const mover = (d: 1 | -1) => {
+    setEncima(false);
+    setE((s) => s.prev !== null ? s : ({ escena: (s.escena + d + 3) % 3, paso: 0, escribiendo: false, redactando: false, espera: 0, t: 0, prev: s.escena, dir: d }));
+  };
 
   // Deslizar con dos dedos en el touchpad (deltaX): umbral y espera para no saltar varias escenas. El scroll vertical no se toca.
   useEffect(() => {
@@ -112,7 +118,8 @@ export function Hero({ c, cta, hrefContacto, hrefMetodo }: Props) {
     <section
       ref={raiz}
       id="inicio"
-      data-pausado={enMovimiento ? undefined : ""}
+      // Con el mouse encima se congela todo (temporizador y animaciones de la escena), para que la pausa se entienda.
+      data-pausado={enMovimiento && !encima ? undefined : ""}
       className="hero-puntos relative overflow-hidden border-b border-linea"
     >
       <FondoHero />
