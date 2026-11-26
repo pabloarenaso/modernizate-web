@@ -17,3 +17,4 @@
 | 2026-11-26 17:11 | main | b7f24fe → e8e9d87 | OK; ajustes 3 y 4: Qué hacemos y Soluciones en celular |
 | 2026-11-26 17:15 | main | e8e9d87 → 94bd04c | OK; ajustes 5 y 6: pasos y vista previa del reporte |
 | 2026-11-26 17:43 | main | 94bd04c → 9e81b63 | OK; carrusel suave y workflows |
+| 2026-11-26 17:47 | main | 9e81b63 → 39861fc | OK; Cómo trabajamos: escenas robustas y corrección pb-* |
