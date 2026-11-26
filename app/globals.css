@@ -554,6 +554,25 @@ html[data-revision] [data-estado="borrador"]::after {
 .orden[data-foco="medida"] .zona:not([data-zona~="medida"]) { filter: grayscale(1) opacity(0.35); }
 .orden[data-foco="medida"] .zona[data-zona~="medida"] { box-shadow: 0 0 0 3px var(--primario), 0 0 26px rgba(31, 79, 224, 0.35); }
 
+/* Proyecto a tu medida: franja de pasos (10 s, base = todo hecho), campos que se escriben y cursor. */
+.fr-c { background: #12a150; color: #fff; border-color: transparent; }
+@keyframes fr-c1 { 0%, 4% { background: var(--superficie); color: var(--texto-sec); border-color: var(--linea); box-shadow: none; } 6%, 20% { background: var(--primario-relleno); color: #fff; border-color: transparent; box-shadow: 0 0 0 4px var(--seleccion); } 22%, 94% { background: #12a150; color: #fff; border-color: transparent; box-shadow: none; } 100% { background: var(--superficie); color: var(--texto-sec); border-color: var(--linea); } }
+@keyframes fr-b1 { 0%, 6% { transform: scaleX(0); } 22%, 94% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+.fr-c1 { animation: fr-c1 10s linear infinite; } .fr-b1 { animation: fr-b1 10s linear infinite; }
+@keyframes fr-c2 { 0%, 26% { background: var(--superficie); color: var(--texto-sec); border-color: var(--linea); box-shadow: none; } 28%, 42% { background: var(--primario-relleno); color: #fff; border-color: transparent; box-shadow: 0 0 0 4px var(--seleccion); } 44%, 94% { background: #12a150; color: #fff; border-color: transparent; box-shadow: none; } 100% { background: var(--superficie); color: var(--texto-sec); border-color: var(--linea); } }
+@keyframes fr-b2 { 0%, 28% { transform: scaleX(0); } 44%, 94% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+.fr-c2 { animation: fr-c2 10s linear infinite; } .fr-b2 { animation: fr-b2 10s linear infinite; }
+@keyframes fr-c3 { 0%, 48% { background: var(--superficie); color: var(--texto-sec); border-color: var(--linea); box-shadow: none; } 50%, 64% { background: var(--primario-relleno); color: #fff; border-color: transparent; box-shadow: 0 0 0 4px var(--seleccion); } 66%, 94% { background: #12a150; color: #fff; border-color: transparent; box-shadow: none; } 100% { background: var(--superficie); color: var(--texto-sec); border-color: var(--linea); } }
+@keyframes fr-b3 { 0%, 50% { transform: scaleX(0); } 66%, 94% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+.fr-c3 { animation: fr-c3 10s linear infinite; } .fr-b3 { animation: fr-b3 10s linear infinite; }
+@keyframes fr-c4 { 0%, 70% { background: var(--superficie); color: var(--texto-sec); border-color: var(--linea); box-shadow: none; } 72%, 86% { background: var(--primario-relleno); color: #fff; border-color: transparent; box-shadow: 0 0 0 4px var(--seleccion); } 88%, 94% { background: #12a150; color: #fff; border-color: transparent; box-shadow: none; } 100% { background: var(--superficie); color: var(--texto-sec); border-color: var(--linea); } }
+@keyframes fr-b4 { 0%, 72% { transform: scaleX(0); } 88%, 94% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+.fr-c4 { animation: fr-c4 10s linear infinite; } .fr-b4 { animation: fr-b4 10s linear infinite; }
+.escribir-campo { animation: escribir-campo 0.7s steps(14) both; }
+@keyframes escribir-campo { from { max-width: 0; } to { max-width: 100%; } }
+.cursor-viaje { animation: cursor-viaje 1.4s ease-out both; }
+@keyframes cursor-viaje { from { transform: translate(-120px, 90px); opacity: 0; } 30% { opacity: 1; } }
+
 /* Escenas (estándar): todo se congela fuera de pantalla. */
 [data-pausado] .escena-anim, [data-pausado] .escena-anim * { animation-play-state: paused !important; }
 .cursor-clic { animation: cursor-clic 1.6s ease-out infinite; }

@@ -73,7 +73,9 @@ export type EscenaAsistenteC = {
   horarios: [Texto, Texto, Texto];
   cliente2: Texto;
   bot2: Texto;
-  cita: { titulo: Texto; detalle: Texto };
+  cliente3: Texto;
+  bot3: Texto;
+  cita: { titulo: Texto; detalle: Texto; dia: Texto };
   derivado: Texto;
   agenda: { titulo: Texto; filas: { hora: Texto; nombre: Texto; estado: Texto }[] };
   app: Texto;
@@ -93,9 +95,7 @@ export type EscenaMedidaC = {
   pdf: { titulo: Texto; empresa: Texto; timbre: Texto };
   permisos: Texto;
   etapas: [EtapaMedida, EtapaMedida, EtapaMedida, EtapaMedida];
-  llamada: { tu: Texto; nosotros: Texto; frase: Texto };
-  mapa: { titulo: Texto; notas: [Texto, Texto, Texto, Texto, Texto]; hallazgo: Texto };
-  piloto: Texto;
+  formulario: { titulo: Texto; campos: [{ etiqueta: Texto; valor: Texto }, { etiqueta: Texto; valor: Texto }, { etiqueta: Texto; valor: Texto }]; guardar: Texto };
   entregado: Texto;
 };
 export type Soluciones = {

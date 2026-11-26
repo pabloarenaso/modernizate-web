@@ -47,3 +47,8 @@ La escena de la Tienda en línea (aprobada por Pablo el 25 nov 2026) fija el niv
 
 ## Opcional: fotografía
 Si Pablo genera fondos o fotos con Magnific (por ejemplo, un local, una bodega o un mostrador), se usan solo como fondo desenfocado detrás del dispositivo, nunca como la ilustración principal. Guardarlas en `public/img/casos/` con texto alternativo.
+
+## Actualización (26 nov 2026, bloque C)
+- **Asistente:** restaurante ficticio "Trattoria Don Piero": consulta de horario, reserva para 4 el sábado a las 21:00, confirmación y una petición especial (sin gluten) derivada a una persona. Tarjeta flotante "Reserva confirmada · Sáb 21:00 · 4 personas" y reservas del sábado.
+- **Proyecto a tu medida:** la escena grande es la app de gestión: clic en "Nuevo registro", formulario que se llena, fila nueva 0153 y PDF con timbre "Emitido"; debajo, franja animada con los 4 pasos de trabajo. Se retiraron las pantallas de videollamada y mapa de proceso.
+- **Automatización:** miniatura con el lienzo horizontal (validaciones y agente de IA con herramientas) y panel con React Flow y punto de luz.

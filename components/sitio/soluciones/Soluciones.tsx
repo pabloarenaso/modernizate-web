@@ -8,7 +8,7 @@ import { TarjetaCaso } from "./TarjetaCaso";
 
 type Props = { c: SolucionesC; flujos: Contenido["hero"]["flujo"]; hrefContacto: string };
 
-/** Sección Soluciones: cuatro casos con miniatura animada; por ahora solo la Tienda abre su panel con la escena grande. */
+/** Sección Soluciones: cuatro casos con miniatura animada y panel "Recorrer el caso" con la escena grande. */
 export function Soluciones({ c, flujos, hrefContacto }: Props) {
   const href = (caso: string) => `${hrefContacto}?caso=${caso}#contacto`;
   return (
@@ -35,6 +35,7 @@ export function Soluciones({ c, flujos, hrefContacto }: Props) {
           c={c}
           hrefContacto={href("asistente")}
           mini={<EscenaAsistente c={c.asistente.escena} tamano="mini" />}
+          grande={<EscenaAsistente c={c.asistente.escena} tamano="grande" />}
         />
         <TarjetaCaso
           id="caso-automatizacion"
@@ -42,6 +43,7 @@ export function Soluciones({ c, flujos, hrefContacto }: Props) {
           c={c}
           hrefContacto={href("automatizacion")}
           mini={<EscenaAutomatizacion c={c.automatizacion.escena} flujos={flujos} tamano="mini" />}
+          grande={<EscenaAutomatizacion c={c.automatizacion.escena} flujos={flujos} tamano="grande" />}
         />
         <TarjetaCaso
           id="caso-medida"
@@ -49,6 +51,7 @@ export function Soluciones({ c, flujos, hrefContacto }: Props) {
           c={c}
           hrefContacto={href("medida")}
           mini={<EscenaMedida c={c.medida.escena} tamano="mini" />}
+          grande={<EscenaMedida c={c.medida.escena} tamano="grande" />}
         />
       </div>
     </section>

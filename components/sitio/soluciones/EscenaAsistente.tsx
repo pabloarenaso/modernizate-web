@@ -10,16 +10,22 @@ import { Escalar } from "@/components/escenas/base/Escalar";
 
 type Props = { c: EscenaAsistenteC; tamano: "mini" | "grande" };
 
-/** Pasos de la conversación: 1 cliente, 2 escribiendo, 3 horarios, 4 elige, 5 escribiendo, 6 confirmación y cita. */
-const FINAL = 6;
-const TIEMPOS = [250, 950, 1900, 2900, 3500, 4400];
+/**
+ * Pasos: 1 consulta horario, 2 escribiendo, 3 horario y horas, 4 elige 21:00 para 4, 5 escribiendo, 6 confirmación y reserva,
+ * 7 petición especial, 8 escribiendo, 9 derivación a una persona.
+ */
+const FINAL = 9;
+const TIEMPOS = [250, 950, 1900, 2900, 3500, 4400, 5700, 6300, 7200];
+
+/** "Trattoria Don Piero" → "TD". */
+const iniciales = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((p) => p[0]).join("").toUpperCase();
 
 function TarjetaCita({ c, ajustar }: { c: EscenaAsistenteC; ajustar?: boolean }) {
   return (
     <div className="flex items-start gap-2.5 rounded-xl border border-linea bg-superficie p-3 shadow-[0_18px_40px_-18px_rgba(11,21,48,0.5)]">
       <span aria-hidden="true" className="flex size-9 shrink-0 flex-col items-center justify-center overflow-hidden rounded-lg border border-linea text-center leading-none">
         <span className="w-full bg-[#E5484D] py-[2px] text-[7px] font-bold uppercase text-white">{c.cita.detalle.texto.slice(0, 3)}</span>
-        <span className="flex-1 pt-0.5 text-[13px] font-bold">26</span>
+        <span className="flex-1 pt-0.5 text-[13px] font-bold">{c.cita.dia.texto}</span>
       </span>
       <div className="min-w-0 leading-tight">
         <Texto as="p" valor={c.cita.titulo} className="text-[13px] font-semibold" />
@@ -42,12 +48,12 @@ export function EscenaAsistente({ c, tamano }: Props) {
   }, [disparo]);
 
   const chat = (
-    <div className={`chat-papel flex min-h-0 flex-1 flex-col gap-1.5 overflow-hidden px-2.5 py-2 ${mini ? "justify-start" : "justify-end"}`}>
+    <div className={`chat-papel flex min-h-0 flex-1 flex-col gap-1.5 overflow-hidden px-2.5 py-2 justify-end`}>
       <Texto valor={c.hoy} className="mb-1 shrink-0 self-center rounded-md bg-[var(--chat-recibida)] px-2 py-0.5 text-[10.5px] font-medium text-[var(--chat-texto-sec)] shadow-sm" />
-      {paso >= 1 && <Burbuja t={c.cliente1} enviada hora="10:22" />}
+      {paso >= 1 && <Burbuja t={c.cliente1} enviada hora="18:40" />}
       {paso === 2 && <Escribiendo />}
       {paso >= 3 && (
-        <Burbuja t={c.bot1} hora="10:22">
+        <Burbuja t={c.bot1} hora="18:40">
           <span className="my-1.5 flex gap-1">
             {c.horarios.map((h, i) => (
               <span
@@ -62,9 +68,15 @@ export function EscenaAsistente({ c, tamano }: Props) {
           </span>
         </Burbuja>
       )}
-      {paso >= 4 && <Burbuja t={c.cliente2} enviada hora="10:23" />}
+      {paso >= 4 && <Burbuja t={c.cliente2} enviada hora="18:41" />}
       {paso === 5 && <Escribiendo />}
-      {paso >= 6 && <Burbuja t={c.bot2} hora="10:23" />}
+      {paso >= 6 && <Burbuja t={c.bot2} hora="18:41" />}
+      {paso >= 7 && <Burbuja t={c.cliente3} enviada hora="18:42" />}
+      {paso === 8 && <Escribiendo />}
+      {paso >= 9 && <Burbuja t={c.bot3} hora="18:42" />}
+      {paso >= 9 && mini && (
+        <Texto valor={c.derivado} className="aparecer shrink-0 self-center rounded-md bg-[var(--chat-recibida)] px-2 py-0.5 text-[10.5px] font-medium text-[var(--chat-texto-sec)] shadow-sm" />
+      )}
     </div>
   );
 
@@ -72,10 +84,10 @@ export function EscenaAsistente({ c, tamano }: Props) {
     <Telefono hora={c.hora} bateria={c.bateria} tamano={tam}>
       <div className="flex shrink-0 items-center gap-2 border-b border-black/5 bg-[var(--chat-cabecera)] px-2 pb-2 pt-1">
         <svg aria-hidden="true" viewBox="0 0 24 24" className="size-[18px] text-[var(--chat-leido)]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M15 5l-7 7 7 7" /></svg>
-        <span aria-hidden="true" className="flex size-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#E9A07D] to-[#B8335A] text-[11px] font-bold text-white">PT</span>
+        <span aria-hidden="true" className="flex size-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#E9A07D] to-[#B8335A] text-[11px] font-bold text-white">{iniciales(c.negocio.texto)}</span>
         <div className="flex min-w-0 flex-1 flex-col leading-tight">
           <Texto valor={c.negocio} className="truncate text-[12.5px] font-semibold" />
-          <Texto valor={paso === 2 || paso === 5 ? c.escribiendo : c.estado} className={`truncate text-[10.5px] ${paso === 2 || paso === 5 ? "text-[var(--chat-verde)]" : "text-[var(--chat-texto-sec)]"}`} />
+          <Texto valor={paso === 2 || paso === 5 || paso === 8 ? c.escribiendo : c.estado} className={`truncate text-[10.5px] ${paso === 2 || paso === 5 || paso === 8 ? "text-[var(--chat-verde)]" : "text-[var(--chat-texto-sec)]"}`} />
         </div>
       </div>
       {chat}
@@ -109,12 +121,12 @@ export function EscenaAsistente({ c, tamano }: Props) {
             <TarjetaCita c={c} />
           </div>
         )}
-        <span className="aparecer absolute -left-3 bottom-[78px] z-20 hidden items-center gap-1.5 rounded-full border border-linea bg-superficie px-2.5 py-1 text-[11.5px] font-medium shadow-md [animation-delay:0.6s] @[720px]:-left-[170px] @[720px]:inline-flex">
+        {paso >= 9 && <span className="aparecer absolute -left-3 bottom-[78px] z-20 hidden items-center gap-1.5 rounded-full border border-linea bg-superficie px-2.5 py-1 text-[11.5px] font-medium shadow-md [animation-delay:0.6s] @[720px]:-left-[170px] @[720px]:inline-flex">
           <svg aria-hidden="true" viewBox="0 0 24 24" className="size-3.5 text-acento-texto" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M16 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 18.5V20M10 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM19 8v6M22 11h-6" /></svg>
           <Texto valor={c.derivado} />
-        </span>
+        </span>}
       </div>
-      {/* Agenda del negocio: la cita nueva entra a las 11:30. */}
+      {/* Reservas del sábado: la mesa para 4 entra a las 21:00. */}
       <div className="w-full max-w-[300px] overflow-hidden rounded-xl border border-linea bg-superficie shadow-[0_18px_40px_-18px_rgba(11,21,48,0.5)]">
         <div className="flex items-center gap-2 border-b border-linea px-3 py-2">
           <svg aria-hidden="true" viewBox="0 0 24 24" className="size-4 text-acento-texto" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M7 3v3M17 3v3M4 8h16M5 5h14v15H5z" /></svg>
