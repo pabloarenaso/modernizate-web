@@ -168,3 +168,11 @@ Cerrada el 25 nov 2026. Comprobado con lint, build y Playwright sobre `next star
 - Nota: Web3Forms (Cloudflare) bloquea Chromium sin interfaz; las pruebas automáticas del formulario usan un user agent de navegador normal.
 - Publicado sin "Por qué ahora" (bandera en `lib/banderas.ts`), sin calculadora ni agenda; tres casos de Soluciones sin panel.
 - Después de publicar (25–26 nov, desplegado): Soluciones con sus cuatro casos y panel en cada uno; Cómo trabajamos con escenas por paso; Contacto con Web3Forms y WhatsApp; botón de contacto; sorpresas con la tilde (una por sección). Las casillas de las Etapas 5 y 6 reflejan el plan original: calculadora, agenda y la revisión de la Etapa 6 siguen pendientes.
+
+### Sesión del 26 nov 2026 (desplegado, último `2dcb243`)
+- Hero: transición deslizante entre escenas (800 ms; fundido con movimiento reducido), touchpad y dedo con un gesto = una escena, sin arrastre con mouse; deslizar o elegir reanuda el avance y la pausa con el mouse congela también la escena; el celular ya no se corta.
+- Hero, escena 2: un workflow a la vez con título animado e indicador 1/3 (7 tics cada uno). Escena 3: vista previa para imprimir tras descargar el reporte.
+- Cómo trabajamos: mini-escenas de 12–14 s con línea de tiempo (`components/escenas/base/useLinea.ts`) y lista de cada paso con título, tarjetas y checks que se dibujan.
+- Sorpresas: un efecto fijo y distinto por botón (12), con mensaje breve si hay movimiento reducido; tabla en `docs/estandar-escenas.md` §9. Reemplaza los easter eggs de Uiverse anteriores.
+- Botón de contacto con líneas de luz (Uiverse SelfMadeSystem/evil-seahorse-60, MIT): destacado en hero y paneles, sutil en cabecera y menú móvil.
+- Corrección: clases de animación `pb-1…4` chocaban con el padding de Tailwind (regla agregada al estándar).
