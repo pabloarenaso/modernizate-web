@@ -167,3 +167,4 @@ Cerrada el 25 nov 2026. Comprobado con lint, build y Playwright sobre `next star
 - [x] HTTP (raíz, www e IP) → https://agmodernizate.cl con 301 mediante `00-modernizate-web.conf` (autorizado por Pablo; `000-default.conf` sin cambios).
 - Nota: Web3Forms (Cloudflare) bloquea Chromium sin interfaz; las pruebas automáticas del formulario usan un user agent de navegador normal.
 - Publicado sin "Por qué ahora" (bandera en `lib/banderas.ts`), sin calculadora ni agenda; tres casos de Soluciones sin panel.
+- Después de publicar (25–26 nov, desplegado): Soluciones con sus cuatro casos y panel en cada uno; Cómo trabajamos con escenas por paso; Contacto con Web3Forms y WhatsApp; botón de contacto; sorpresas con la tilde (una por sección). Las casillas de las Etapas 5 y 6 reflejan el plan original: calculadora, agenda y la revisión de la Etapa 6 siguen pendientes.

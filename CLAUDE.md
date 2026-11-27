@@ -1,3 +1,5 @@
+Este proyecto sigue las reglas maestras de Modernízate (ver ~/.claude/CLAUDE.md)
+
 # Modernízate · sitio web y plataforma
 
 Agencia chilena de automatización e IA. Este repositorio contiene el sitio público (agmodernizate.cl) y, más adelante, la intranet: CRM interno, blog, agenda y workflows (ver `docs/plataforma-vision.md`).
